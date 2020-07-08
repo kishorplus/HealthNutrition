@@ -21,13 +21,13 @@ import com.health.model.Category;
 import com.health.model.Tutorial;
 import com.health.model.User;
 import com.health.model.commentOnComponent;
-import com.health.model.language;
+import com.health.model.Language;
 import com.health.model.topic;
 import com.health.repository.CategoryDao;
 import com.health.repository.TutorialDao;
 import com.health.repository.UserRepository;
 import com.health.repository.commentOnComponentDao;
-import com.health.repository.languagedao;
+import com.health.repository.LanguageDao;
 import com.health.service.tutorialService;
 
 @Controller
@@ -47,7 +47,7 @@ public class AdminReviwer
 	private CategoryDao categoryDao;
 	
 	@Autowired	
-	private languagedao languageDao;
+	private LanguageDao languageDao;
 	
 	@Autowired
 	private tutorialService tutorialService;
@@ -181,7 +181,7 @@ public class AdminReviwer
 		  
 		  Category category=categoryDao.findBycategoryname(categorname);
 	
-		  language language=languageDao.findBylanguageName(lanId);
+		  Language language=languageDao.findBylanguageName(lanId);
 	
 		  int status = 1;
 		
@@ -211,7 +211,7 @@ public class AdminReviwer
 			  
 			  Category category=categoryDao.findBycategoryname(categorname);
 		
-			  language language=languageDao.findBylanguageName(lanId);
+			  Language language=languageDao.findBylanguageName(lanId);
 		  
 			  int AdminStatus=2;
 			  
@@ -243,7 +243,7 @@ public class AdminReviwer
 			  
 			  Category category=categoryDao.findBycategoryname(categorname);
 		
-			  language language=languageDao.findBylanguageName(lanId);
+			  Language language=languageDao.findBylanguageName(lanId);
 			  
 			  Tutorial tutorial=tutorialdao.findByTutorialForComment(topic, category, language);
 		

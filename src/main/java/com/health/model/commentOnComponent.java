@@ -73,7 +73,7 @@ public class commentOnComponent {
 	 
 	 @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	 @JoinColumn(name="language_id")
-	 private language language;
+	 private Language language;
 	 
 	 
 	public Tutorial getTutorial() {
@@ -94,10 +94,10 @@ public class commentOnComponent {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public language getLanguage() {
+	public Language getLanguage() {
 		return language;
 	}
-	public void setLanguage(language language) {
+	public void setLanguage(Language language) {
 		this.language = language;
 	}
 	public User getUser() {

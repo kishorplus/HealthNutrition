@@ -21,7 +21,7 @@ import com.health.domain.security.UserRole;
 import com.health.service.impl.catgoryServiceImpl;
 
 @Entity 
-public class language 
+public class Language 
 {
   
   @Id  
@@ -30,17 +30,14 @@ public class language
   		
   	private int id;
 	private  String languageName ;
+	private Timestamp dateAdded;
 	
-	private Timestamp timedate;
-	
-
-	
-	  public Timestamp getTimedate() {
-		return timedate;
+	public Timestamp getTimedate() {
+		return dateAdded;
 	}
 
 	public void setTimedate(Timestamp timedate) {
-		this.timedate = timedate;
+		this.dateAdded = timedate;
 	}
 
 	private String createdBy;

@@ -5,7 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.health.repository.participantDao;
+import com.health.repository.ParticipantDao;
 import com.health.service.participantService;
 
 
@@ -15,7 +15,7 @@ public class parctocipantDeatailServiceimpl implements participantService {
 	
 	
 	@Autowired 
-	private participantDao participantDao;
+	private ParticipantDao participantDao;
 
 	@Transactional																																																							
 	public Boolean updateparticipantDeatail(String firstname,String lastname,String email,String adharNumber, String gender,String language,int participant_id) 

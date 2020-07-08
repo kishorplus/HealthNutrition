@@ -35,7 +35,7 @@ import com.health.model.Tutorial;
 import com.health.model.User;
 import com.health.model.commentOnComponent;
 import com.health.model.contributor_Role;
-import com.health.model.language;
+import com.health.model.Language;
 import com.health.model.topic;
 import com.health.repository.CategoryDao;
 import com.health.repository.RoleRepository;
@@ -44,7 +44,7 @@ import com.health.repository.UserRepository;
 import com.health.repository.UserRoleRepositary;
 import com.health.repository.commentOnComponentDao;
 import com.health.repository.contributor_RoleDao;
-import com.health.repository.languagedao;
+import com.health.repository.LanguageDao;
 import com.health.repository.topicRepositary;
 import com.health.service.categoryService;
 import com.health.service.tutorialService;
@@ -60,7 +60,7 @@ public class controllerContributer {
 	public static String uploadDirectoryCreationVideo = "src/main/resources/static" + "/Media/content" + "/Creation/Video";
 	
 	@Autowired
-	private languagedao languageDao;
+	private LanguageDao languageDao;
 
 	@Autowired
 	private UserRepository userRepositorydao;
@@ -107,7 +107,7 @@ public class controllerContributer {
 	public String RevokeRequest(Model model) 
 	{
 
-		List<language> language = (List<com.health.model.language>) languageDao.findAll();
+		List<Language> language = (List<com.health.model.Language>) languageDao.findAll();
 
 		model.addAttribute("lan", language);
 		
@@ -135,7 +135,7 @@ public class controllerContributer {
 	public String revokeSubmition(Model model,Authentication authentications,@RequestParam(name="languageName") String languagename)
 	{
 		
-		language language=languageDao.findBylanguageName(languagename);
+		Language language=languageDao.findBylanguageName(languagename);
 		
 		User user = userRepository.findByUsername(authentications.getName());
 		
@@ -576,7 +576,7 @@ public class controllerContributer {
 				
 				topic topic=topicRepositarydao.findBytopicname(inputTopic);
 				
-				com.health.model.language language=languageDao.findBylanguageName(inputLanguage);
+				com.health.model.Language language=languageDao.findBylanguageName(inputLanguage);
 				
 				System.err.println(topic.getTopicname());
 				
@@ -849,7 +849,7 @@ public class controllerContributer {
 			  
 			  Category category=categoryDao.findBycategoryname(categorname);
 		
-			  language language=languageDao.findBylanguageName(lanId);
+			  Language language=languageDao.findBylanguageName(lanId);
 		
 			  int status = 1;
 			  
@@ -885,7 +885,7 @@ public class controllerContributer {
 			  
 			  Category category=categoryDao.findBycategoryname(categorname);
 		
-			  language language=languageDao.findBylanguageName(lanId);
+			  Language language=languageDao.findBylanguageName(lanId);
 		
 			  int status = 1;
 			  
@@ -919,7 +919,7 @@ public class controllerContributer {
 			  
 			  Category category=categoryDao.findBycategoryname(categorname);
 		
-			  language language=languageDao.findBylanguageName(lanId);
+			  Language language=languageDao.findBylanguageName(lanId);
 		
 			  int status = 1;
 			 
@@ -950,7 +950,7 @@ public class controllerContributer {
 			  
 			  Category category=categoryDao.findBycategoryname(categorname);
 		
-			  language language=languageDao.findBylanguageName(lanId);
+			  Language language=languageDao.findBylanguageName(lanId);
 		
 			  int status = 1;
 			 
@@ -977,7 +977,7 @@ public class controllerContributer {
 			  
 			  Category category=categoryDao.findBycategoryname(categorname);
 		
-			  language language=languageDao.findBylanguageName(lanId);
+			  Language language=languageDao.findBylanguageName(lanId);
 		
 			  int status = 1;
 			 

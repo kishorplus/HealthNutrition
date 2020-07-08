@@ -25,7 +25,7 @@ import com.health.model.Testimonial;
 import com.health.model.Tutorial;
 import com.health.model.User;
 import com.health.model.commentOnComponent;
-import com.health.model.language;
+import com.health.model.Language;
 import com.health.model.topic;
 import com.health.repository.CategoryDao;
 import com.health.repository.RoleRepository;
@@ -33,9 +33,9 @@ import com.health.repository.TutorialDao;
 import com.health.repository.UserRepository;
 import com.health.repository.UserRoleRepositary;
 import com.health.repository.commentOnComponentDao;
-import com.health.repository.languagedao;
+import com.health.repository.LanguageDao;
 import com.health.repository.topicRepositary;
-import com.health.service.languageService;
+import com.health.service.LanguageService;
 import com.health.service.tutorialService;
 
 import ch.qos.logback.core.joran.conditional.IfAction;
@@ -60,7 +60,7 @@ public class DomainReviwer {
 	private CategoryDao categoryDao;
 	
 	@Autowired
-	private languagedao languageDao;
+	private LanguageDao languageDao;
 	
 	@Autowired
 	private TutorialDao tutorialDao;
@@ -288,7 +288,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 			
 				  int status = 1;
 				 
@@ -325,7 +325,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 			
 				  int status = 1;
 				 
@@ -364,7 +364,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 			
 				  int status = 1;
 				
@@ -399,7 +399,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 			
 				  int status = 1;
 				 
@@ -459,7 +459,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 			
 				  int status = 1;
 				 
@@ -518,7 +518,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 			
 				  int status = 1;
 				 
@@ -570,7 +570,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 			  
 				  //Admin set to need to improvement
 				  
@@ -600,7 +600,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 			  
 				  //Admin set to need to improvement
 				  
@@ -630,7 +630,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 			  
 			  
 				  int DomainStatus=3;
@@ -658,7 +658,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 				  
 				  Tutorial tutorial=tutorialdao.findByTutorialForComment(topic, category, language);
 				  
@@ -714,7 +714,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 			    
 				  int DomainStatus=3;
 				  
@@ -750,7 +750,7 @@ public class DomainReviwer {
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 				  
 				  Tutorial tutorial=tutorialdao.findByTutorialForComment(topic, category, language);
 				 

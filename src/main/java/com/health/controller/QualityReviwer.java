@@ -16,13 +16,13 @@ import com.health.model.Category;
 import com.health.model.Tutorial;
 import com.health.model.User;
 import com.health.model.commentOnComponent;
-import com.health.model.language;
+import com.health.model.Language;
 import com.health.model.topic;
 import com.health.repository.CategoryDao;
 import com.health.repository.TutorialDao;
 import com.health.repository.UserRepository;
 import com.health.repository.commentOnComponentDao;
-import com.health.repository.languagedao;
+import com.health.repository.LanguageDao;
 import com.health.repository.topicRepositary;
 import com.health.service.tutorialService;
 
@@ -50,7 +50,7 @@ public class QualityReviwer
 	private  tutorialService tutorialService;
 	
 	@Autowired
-	private languagedao languageDao;
+	private LanguageDao languageDao;
 	
 	@Autowired
 	private commentOnComponentDao commentOnComponentDao; 
@@ -332,7 +332,7 @@ public class QualityReviwer
 			  
 			  Category category=categoryDao.findBycategoryname(categorname);
 		
-			  language language=languageDao.findBylanguageName(lanId);
+			  Language language=languageDao.findBylanguageName(lanId);
 		  
 			  //Admin set to need to improvement
 			
@@ -365,7 +365,7 @@ public class QualityReviwer
 				  
 				  Category category=categoryDao.findBycategoryname(categorname);
 			
-				  language language=languageDao.findBylanguageName(lanId);
+				  Language language=languageDao.findBylanguageName(lanId);
 				  
 				  Tutorial tutorial=tutorialdao.findByTutorialForComment(topic, category, language);
 				  
@@ -423,7 +423,7 @@ public class QualityReviwer
 					  
 					  Category category=categoryDao.findBycategoryname(categorname);
 				
-					  language language=languageDao.findBylanguageName(lanId);
+					  Language language=languageDao.findBylanguageName(lanId);
 				
 					  int status = 1;
 					 
@@ -454,7 +454,7 @@ public class QualityReviwer
 					  
 					  Category category=categoryDao.findBycategoryname(categorname);
 				
-					  language language=languageDao.findBylanguageName(lanId);
+					  Language language=languageDao.findBylanguageName(lanId);
 				  
 					  //Admin set to need to improvement
 					
@@ -488,7 +488,7 @@ public class QualityReviwer
 					  
 					  Category category=categoryDao.findBycategoryname(categorname);
 				
-					  language language=languageDao.findBylanguageName(lanId);
+					  Language language=languageDao.findBylanguageName(lanId);
 					  
 					  Tutorial tutorial=tutorialdao.findByTutorialForComment(topic, category, language);
 					  
@@ -544,7 +544,7 @@ public class QualityReviwer
 					  
 					  Category category=categoryDao.findBycategoryname(categorname);
 				
-					  language language=languageDao.findBylanguageName(lanId);
+					  Language language=languageDao.findBylanguageName(lanId);
 				      
 					  int QualityStatus=4;
 						 
@@ -583,7 +583,7 @@ public class QualityReviwer
 					  
 					  Category category=categoryDao.findBycategoryname(categorname);
 				
-					  language language=languageDao.findBylanguageName(lanId);
+					  Language language=languageDao.findBylanguageName(lanId);
 					  
 					  Tutorial tutorial=tutorialdao.findByTutorialForComment(topic, category, language);
 					  
@@ -640,7 +640,7 @@ public class QualityReviwer
 					  
 					  Category category=categoryDao.findBycategoryname(categorname);
 				
-					  language language=languageDao.findBylanguageName(lanId);
+					  Language language=languageDao.findBylanguageName(lanId);
 				  
 					  //Admin set to need to improvement
 					
@@ -679,7 +679,7 @@ public class QualityReviwer
 					  
 					  Category category=categoryDao.findBycategoryname(categorname);
 				
-					  language language=languageDao.findBylanguageName(lanId);
+					  Language language=languageDao.findBylanguageName(lanId);
 					  
 					  Tutorial tutorial=tutorialdao.findByTutorialForComment(topic, category, language);
 					  
@@ -738,7 +738,7 @@ public class QualityReviwer
 						  
 						  Category category=categoryDao.findBycategoryname(categorname);
 					
-						  language language=languageDao.findBylanguageName(lanId);
+						  Language language=languageDao.findBylanguageName(lanId);
 						  
 					
 						  int status = 1;
@@ -769,7 +769,7 @@ public class QualityReviwer
 						  
 						  Category category=categoryDao.findBycategoryname(categorname);
 					
-						  language language=languageDao.findBylanguageName(lanId);
+						  Language language=languageDao.findBylanguageName(lanId);
 					  
 						  //Admin set to need to improvement
 						

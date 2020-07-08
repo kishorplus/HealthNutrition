@@ -8,21 +8,21 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.health.model.Consaltantant;
-import com.health.repository.ConsaltantDao;
-import com.health.service.ConsaltantService;
+import com.health.model.Consultant;
+import com.health.repository.ConsultantDao;
+import com.health.service.ConsultantService;
 
 
 @Service
-public class consaltantServiceImpl implements ConsaltantService {
+public class ConsultantServiceImpl implements ConsultantService {
 
 	@Autowired
-	private ConsaltantDao consaltantdao;
+	private ConsultantDao consultantDao;
 
 	@Override
-	public List<Consaltantant> findAll() {
+	public List<Consultant> findAll() {
 
-		List<Consaltantant> local = (List<Consaltantant>) consaltantdao.findAll();
+		List<Consultant> local = (List<Consultant>) consultantDao.findAll();
 
 		return local;
 
@@ -32,16 +32,16 @@ public class consaltantServiceImpl implements ConsaltantService {
 	public void deleteProduct(Integer id){
 
 		
-		consaltantdao.delete(id);
+		consultantDao.delete(id);
 		
 																																																																												
 	}
 //chage the method
 	@Override
 	
-	  public Consaltantant getProductById(Integer id) {
+	  public Consultant getProductById(Integer id) {
 	  
-	  Consaltantant var = consaltantdao.findOne(id);
+	  Consultant var = consultantDao.findOne(id);
 	  
 	  return var;
 	  
@@ -49,9 +49,9 @@ public class consaltantServiceImpl implements ConsaltantService {
 	 
 	
 	@Transactional																																																							
-	public Boolean UpdateConsalantant(String description,String name, String uploadVideo,int id) {
+	public Boolean updateConsultant(String description,String name, String uploadVideo,int id) {
 		
-		int status=	consaltantdao.updateconsalantant( description,name,uploadVideo,id);
+		int status=	consultantDao.updateconsalantant( description,name,uploadVideo,id);
 		
 		System.err.println(status);
 		
@@ -65,9 +65,9 @@ public class consaltantServiceImpl implements ConsaltantService {
 	
 	
     @Override
-    public Consaltantant saveProduct(Consaltantant product) {
+    public Consultant saveProduct(Consultant product) {
     	
-        return consaltantdao.save(product);
+        return consultantDao.save(product);
     }
 
 	/*

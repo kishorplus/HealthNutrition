@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.health.model.User;
-import com.health.model.language;
+import com.health.model.Language;
 
 @Entity
 @Table(name="user_role")
@@ -26,11 +26,11 @@ public class UserRole
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	public language getLanguage() {
+	public Language getLanguage() {
 		return language;
 	}
 
-	public void setLanguage(language language) {
+	public void setLanguage(Language language) {
 		this.language = language;
 	}
 	
@@ -41,7 +41,7 @@ public class UserRole
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="lan_id")
-	private language language;
+	private Language language;
 
 	private int status;
 

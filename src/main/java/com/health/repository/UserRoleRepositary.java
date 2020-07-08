@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.health.domain.security.Role;
 import com.health.domain.security.UserRole;
 import com.health.model.User;
-import com.health.model.language;
+import com.health.model.Language;
 
 public interface UserRoleRepositary extends  CrudRepository<UserRole, Long>{
 	
@@ -60,7 +60,7 @@ public interface UserRoleRepositary extends  CrudRepository<UserRole, Long>{
 		/* revoke on the basis of language */
 		
 		@Query("from UserRole u where u.user=?1 and lan_id=?2")
-		UserRole findByLanguageAnduser(User user,language role);
+		UserRole findByLanguageAnduser(User user,Language role);
 		
 		
 		@Query("from UserRole u where u.user=?1 and role=?2")

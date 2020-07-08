@@ -27,17 +27,17 @@ import com.health.domain.security.UserRole;
 import com.health.model.Category;
 import com.health.model.Tutorial;
 import com.health.model.User;
-import com.health.model.language;
+import com.health.model.Language;
 import com.health.model.language_assign;
-import com.health.model.partipantDeatil;
+import com.health.model.ParticipantDetail;
 import com.health.model.state;
 import com.health.repository.RoleRepository;
 import com.health.repository.TutorialDao;
 import com.health.repository.UserRepository;
 import com.health.repository.UserRoleRepositary;
 import com.health.repository.languageAssignDao;
-import com.health.repository.languagedao;
-import com.health.repository.participantDao;
+import com.health.repository.LanguageDao;
+import com.health.repository.ParticipantDao;
 import com.health.repository.stateRespositary;
 import com.health.service.UserService;
 import com.health.service.categoryService;
@@ -73,13 +73,13 @@ public class userController
 	private TutorialDao tutorialDao;
 	
 	@Autowired 
-	private participantDao participantDao;
+	private ParticipantDao participantDao;
 	
 	@Autowired 
 	private UserRepository userDao;
 	
 	@Autowired
-	private languagedao languagedao; 
+	private LanguageDao languagedao; 
 	
 	@Autowired 
 	private  languageAssignDao languageAssignDao;
@@ -106,7 +106,7 @@ public class userController
 	
 	
 		
-			List<partipantDeatil> participantdeatail=(List<partipantDeatil>) participantDao.findAll();
+			List<ParticipantDetail> participantdeatail=(List<ParticipantDetail>) participantDao.findAll();
 			
 			
 			model.addAttribute("tutorials",tutorial);
@@ -141,7 +141,7 @@ public class userController
 	public String aaddMeAsContributer(Authentication authentication, Model model,@RequestParam(value="contributerLanguage") String languageName) 
 	{
 		
-		language lan=languagedao.findBylanguageName(languageName);
+		Language lan=languagedao.findBylanguageName(languageName);
 		
 		int languageId=lan.getId();
 		
@@ -180,7 +180,7 @@ public class userController
 	{
 
 		
-		language lan=languagedao.findBylanguageName(languageName);
+		Language lan=languagedao.findBylanguageName(languageName);
 		
 		User user = userService.findByClassname(authentication.getName());
 	

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.health.model.Category;
 import com.health.model.Tutorial;
 import com.health.model.User;
-import com.health.model.language;
+import com.health.model.Language;
 import com.health.model.topic;
 import com.health.repository.TutorialDao;
 import com.health.service.tutorialService;
@@ -115,7 +115,7 @@ public class tutorialServiceImpl implements tutorialService {
 	//admin update status =2
 	
 	@Transactional
-	public Boolean updateVideoStatusByAdmin(int StatusByAdmin,topic topic,Category category,language language)
+	public Boolean updateVideoStatusByAdmin(int StatusByAdmin,topic topic,Category category,Language language)
 	{
 
 		int statusByAdmin=tutorialDao.updateVideoStatusByAdmin( StatusByAdmin, topic, category, language);
@@ -136,7 +136,7 @@ public class tutorialServiceImpl implements tutorialService {
 	
 	
 	@Transactional
-	public Boolean updateOutlineStatusByDomain(int StatusByDomain,topic topic,Category category,language language)
+	public Boolean updateOutlineStatusByDomain(int StatusByDomain,topic topic,Category category,Language language)
 	{
 
 		int statusByAdmin=tutorialDao.updateOutlineStatusByDomain(StatusByDomain, topic, category, language);
@@ -157,7 +157,7 @@ public class tutorialServiceImpl implements tutorialService {
 
 
 	@Transactional
-	public Boolean updateScriptStatusByDomain(int scriptStautusByDomain, topic topic, Category category,language language) 
+	public Boolean updateScriptStatusByDomain(int scriptStautusByDomain, topic topic, Category category,Language language) 
 	{
 		int statusByDomain=tutorialDao.updateScriptStatusByDomain(scriptStautusByDomain, topic, category, language);
 		
@@ -174,7 +174,7 @@ public class tutorialServiceImpl implements tutorialService {
 	}
 
 	@Transactional
-	public Boolean updateOutLineStatusByQuality(int scriptStautusByQuality, topic topic, Category category,language language)
+	public Boolean updateOutLineStatusByQuality(int scriptStautusByQuality, topic topic, Category category,Language language)
 	{
 
 		int statusByQuality=tutorialDao.updateOutLineStatusByQuality(scriptStautusByQuality, topic, category, language);
@@ -195,7 +195,7 @@ public class tutorialServiceImpl implements tutorialService {
 	}
 
 	@Transactional
-	public Boolean upadateSlideStatusByQuality(int scriptStautusByQuality, topic topic, Category category,language language)
+	public Boolean upadateSlideStatusByQuality(int scriptStautusByQuality, topic topic, Category category,Language language)
 	{
 			
 		int statusByQualitSlide=tutorialDao.upadateSlideStatusByQuality(scriptStautusByQuality,topic,category,language);
@@ -212,7 +212,7 @@ public class tutorialServiceImpl implements tutorialService {
 	}
 
 	@Transactional
-	public Boolean upadateScriptStatusByQuality(int scriptStautusByQuality, topic topic, Category category,language language)
+	public Boolean upadateScriptStatusByQuality(int scriptStautusByQuality, topic topic, Category category,Language language)
 	{
 		
 		int statusByQualitScript=tutorialDao.upadateScriptStatusByQuality(scriptStautusByQuality,topic,category,language);
@@ -230,7 +230,7 @@ public class tutorialServiceImpl implements tutorialService {
 	}
 
 	@Transactional
-	public Boolean upadateKeywordByQuality(int scriptStautusByQuality, topic topic, Category category,language language) 
+	public Boolean upadateKeywordByQuality(int scriptStautusByQuality, topic topic, Category category,Language language) 
 	{
 		
 	  int statusByQuality=tutorialDao.upadateKeywordByQuality(scriptStautusByQuality,topic,category,language);
@@ -247,7 +247,7 @@ public class tutorialServiceImpl implements tutorialService {
 	}
 
 	@Transactional
-	public Boolean upadateVideoByQuality(int videoStautusByQuality, topic topic, Category category, language language) {
+	public Boolean upadateVideoByQuality(int videoStautusByQuality, topic topic, Category category, Language language) {
 	
 		
 		  int statusByQuality=tutorialDao.upadateVideoByQuality(videoStautusByQuality,topic,category,language);

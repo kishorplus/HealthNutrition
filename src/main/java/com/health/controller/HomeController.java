@@ -27,14 +27,14 @@ import com.health.domain.security.PasswordResetToken;
 import com.health.domain.security.Role;
 import com.health.domain.security.UserRole;
 import com.health.model.Category;
-import com.health.model.Consaltantant;
+import com.health.model.Consultant;
 import com.health.model.Event;
 import com.health.model.Testimonial;
 import com.health.model.Tutorial;
 import com.health.model.User;
 import com.health.model.state;
 import com.health.repository.CategoryDao;
-import com.health.repository.ConsaltantDao;
+import com.health.repository.ConsultantDao;
 import com.health.repository.EventDao;
 import com.health.repository.TestimonialDao;
 import com.health.repository.TutorialDao;
@@ -49,7 +49,7 @@ import com.health.utility.SecurityUtility;
 public class HomeController {
 
 	
-	private static final List<Consaltantant> List = null;
+	private static final List<Consultant> List = null;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -77,7 +77,7 @@ public class HomeController {
 	private TestimonialDao testimonialdao;
 	
 	@Autowired
-	private ConsaltantDao consalatantDao;
+	private ConsultantDao consultantDao;
 	
 	@Autowired
 	private TutorialDao tutorialDao;
@@ -133,11 +133,11 @@ public class HomeController {
 			  
 		model.addAttribute("events",event);
 
-		List<Consaltantant> consalatant=consalatantDao.findByConsaltantantDate();
+		List<Consultant> consalatant=consultantDao.findByConsultantDate();
 
-		for (Consaltantant consaltantant : consalatant) 
+		for (Consultant consaltantant : consalatant) 
 		{			
-			System.err.println(consaltantant.getNameConsaltant());	
+			System.err.println(consaltantant.getName());	
 		}		
 		List<Testimonial> testimonial=testimonialdao.findBydate();
 	

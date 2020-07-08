@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.health.model.Category;
-import com.health.model.Consaltantant;
+import com.health.model.Consultant;
 import com.health.model.Event;
 import com.health.repository.CategoryDao;
-import com.health.service.ConsaltantService;
+import com.health.service.ConsultantService;
 import com.health.service.categoryService;
 
 @Service
