@@ -200,7 +200,7 @@
 		                                     </button></span>
 						
 		                                          </th>
-
+    
                                      </tr>
 
                                      	 
@@ -216,17 +216,43 @@
 		                                
 		                                          <th>-</th>
 		                                          <th> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#videoViewIdDomain" data-whatever="@mdo"><i class="fas fa-eye"></i> </button> 
-		                                    			 <span  th:if="${statusVideoTrue}"> <button type="button" class="btn btn-info" data-toggle="modal"  data-target="#VideoStatusAccept" data-whatever="@mdo"><i class="fas fa-check-circle"></i>
-		                                          </button>
+		                                    			 <span  th:if="${statusVideoTrue}">
+		                                    			  <button type="button" class="btn btn-info" data-toggle="modal"  data-target="#VideoStatusAccept" data-whatever="@mdo"><i class="fas fa-check-circle"></i>
+		                                        	      </button>
 		                                          </span>
 		                                          </th>
 												     
 													     
 													     
                                     </tr>
+                        
+                                      	      <tr>
+                                      	                             
+		                                          <td>4</td>
+		                                          <td>Slide</td>
+		                                       	   <td>		                                  
+		                                              <span th:each="statusSlide: ${statusSlide}">  
+				                                    	<span style="color:green;" th:text="${statusSlide}">Pending</span>
+														</span>	
+		                            
+												  </td>
+		                                          <th>-</th>
+		                                          <th>
+		                                          
+		                                          <span id="scriptIdDomain" th:each="scriptpath : ${tutorialComponenet}">
+		                                   
+										  			<a class="btn btn-info" target="_blank" id="slidName"  name="categoryName"  th:href="${'/'+scriptpath.getSlide()}" ><i class="fas fa-eye"></i></a>		
+										 		</span>
+										 		
+										// <span  th:if="${statsuSlideTrue}"> <button type="button" class="btn btn-info" data-toggle="modal"  data-target="#SlideStatusAccept" data-whatever="@mdo"><i class="fas fa-check-circle"></i>
+		                                          </button>
+		                                          </span>
+		                                          </th>
+ 	
+                                     </tr>
                                      	 
-	<!--                                      	 <tr>                                            
-		                                          <td>5</td>
+	                                     	 <tr>                                            
+		                                          <td>5	</td>
 		                                          <td>Keywords</td>
 		                                          <td> 
 		                                          	 <span th:each=" statusKeyword: ${statusKeyword}">  
@@ -235,22 +261,21 @@
 													
 		                                         </td>
 		                                          <th>-</th>
-		                                          <th>  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#keywordModale" data-whatever="@mdo"><i style="color: blue;" class="fas fa-upload"></i> </button>
-		                                          		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#keywordModaleView" data-whatever="@mdo"><i class="fas fa-eye"></i>
-		                                          		</button>
-		                                          </th>
+		                                          
+		                                          <th>
+		    											<button type="button" class="btn btn-info" data-toggle="modal" data-target="#keywordModaleViewInDomain" data-whatever="@mdo"><i class="fas fa-eye"></i>
+		                                          	 </button>
+		                                          		
+		                          
+		                           		 <span  th:if="${statusKeywordTrue}"> <button type="button" class="btn btn-info" data-toggle="modal"  data-target="#KeywordStatusAccept" data-whatever="@mdo"><i class="fas fa-check-circle"></i>
+		                                          </button>
+		                                          </span>               		
+		                                 
+		                                         </th>
+                                     	
+                                     	 </tr>
+                                     	
 
-                                     	 </tr> -->
-                                     	 
-                                     <!-- 	  <tr>   
-                                     	                                          
-		                                          <td>6</td>
-		                                          <td>Prerequisite</td>
-		                                          <td>Pending</td>
-		                                          <th>-</th>
-		                                          <th> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#prerequisiteModale" data-whatever="@mdo"><i style="color: blue;" class="fas fa-upload"></i> </button> </th>
-
-                                     	 </tr> -->
   
                                     </tbody>
 							    </table>
@@ -321,7 +346,7 @@
 				           </span> 
 				                   
 				                 
-				               <span style="color:green;" th:if="${mesComment.getComponenenetDeatail()==keyword}">
+				               <span style="color:green;" th:if="${mesComment.getComponenenetDeatail()=='keyword'}">
 				                 
 				                   	<div class="alert alert-warning">
 				                   	
@@ -454,6 +479,55 @@
 	
 				<!-- script End --> 
 			
+	<!-- Here is modale for keywored -->
+			
+			<div class="modal fade" id="keywordModaleViewInDomain" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelKeyWordView" aria-hidden="true">
+						
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabelKeyWordView">View Keyword</h5>
+						        <div class="modal-title">
+						        
+						         </div>
+						         
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      
+				 <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+
+						          <div class="form-group">
+						          
+							     <label for="message-text" class="col-form-label">View Keyword</label>
+							        <textarea class="form-control"  name="keywordViewInDomainKeyword" id="keywordViewInDomainKeyword" rows="10" required="required" readonly="readonly">
+							      
+							        </textarea>
+						          </div>
+						        <button id="keywordDomainId" type="button" class="btn btn-success">View</button>	   
+						             
+					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
+						   
+					</form>
+						    
+						       <div class="modal-footer">
+						         
+							        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+							      
+						      </div> 
+						        
+						      </div>
+						    
+						    </div>
+						  </div>					  
+	</div>	
+			
+	
+		<!-- 	End -->
+			
+			
 				
 				<!-- Video Div	 -->	
 				
@@ -567,6 +641,7 @@
 						          <div class="form-group">
 						          
 							            <label for="message-text" class="col-form-label">Add Keyword</label>
+							            
 							            <textarea class="form-control"  name="keywordArea" id="keyword" rows="10" required="required">
 							        
 							            </textarea>
@@ -715,6 +790,11 @@
 						  </div>					  
 	</div>	
 		
+		
+		
+		
+		
+		
 		<!-- video Review -->
 		
 				<div class="modal fade" id="VideoStatusAccept" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelVideoStatus" aria-hidden="true">
@@ -778,11 +858,146 @@
 						  </div>					  
 	</div>
 	
+
+	 <!-- Here is code for keyword accept or need to Improvement -->
+
+					<div class="modal fade" id="KeywordStatusAccept" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelKeywordStatus" aria-hidden="true">
+						
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabelKeywordStatus">Domain Review-Keyword</h5>
+						        
+						        <div style="color: green; padding-left: 20px" id="saveCommentVideo">
+						        
+						         </div>
+						         
+						            <div style="color: green; padding-left: 20px" id="statusKeywordByDomain">
+						        
+						        	</div>
+						         
+						        
+						        <div class="modal-title">
+						        
+						         </div>
+						         
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      
+				 <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+
+						          <div class="form-group">
+						 
+				                      <select id="KeywordAcceptDomain"  class="form-control" > 
+									   
+									   
+									   <option value="0">Select</option>
+									     <option value="1">Accept</option>
+									     <option value="2">Need Improvement</option>
+									    
+									  </select>  
+				                    
+						          </div>
+						          
+				 <div id="keywordNeedImprovement" style="visibility: hidden">
+								 <textarea class="form-control"  name="keywordCommentMsg" id="keywordCommentMsg" rows="10" required="required" />
+							
+				</div>
+				<br/>
+				              
+				 <button id="AcceptOrNeedToImprovemenetByDomain"  type="button" class="btn btn-success">Submit</button>	   
+
+					</form>
+						    
+						       <div class="modal-footer">
+						          
+						      </div> 
+						        
+						      </div>
+						    
+						    </div>
+						  </div>					  
+	</div>
+					
+
+	<!-- Here is code for accept or neeed to Improvement slide -->
+
+
+	<div class="modal fade" id="SlideStatusAccept" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabeSlideStatus" aria-hidden="true">
+						
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabeSlideStatus">Domain Review-Slide</h5>
+						        
+						        <div style="color: green; padding-left: 20px" id="saveCommentSlide">
+						        
+						         </div>
+						                  
+						            <div style="color: green; padding-left: 20px" id="statusSlideByDomain">
+						        
+						        	</div>
+						        
+						        <div class="modal-title">
+						        
+						         </div>
+						         
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      
+				 <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+
+						          <div class="form-group">
+						 
+				                      <select id="SlideAcceptDomain"  class="form-control" > 
+									   
+									   
+									   <option value="0">Select</option>
+									     <option value="1">Accept</option>
+									     <option value="2">Need Improvement</option>
+									    
+									  </select>  
+				                    
+						          </div>
+						          
+				 <div id="slideNeedImprovement" style="visibility: hidden">
+								 
+								 <textarea class="form-control"  name="slideCommentMsg" id="slideCommentMsg" rows="10" required="required" />
+							
+				</div>
+				<br/>
+				              
+				 <button id="slideAcceptOrNeedToImprovemenetByDomain"  type="button" class="btn btn-success">Submit</button>	   
+
+			</form>
+						    
+						       <div class="modal-footer">
+						          
+						      </div> 
+						        
+						      </div>
+						    
+						    </div>
+						  </div>					  
+	</div>
+
+
 	
 	
+	
+	
+	
+	<!-- end  the slide -->
+
 		
 
-	<!-- View keyword into textbox -->
+	<!-- View keyword into textboxt -->
 			
 					
 	<div class="modal fade" id="keywordModaleView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelKeyWordView" aria-hidden="true">

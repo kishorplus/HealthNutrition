@@ -12,7 +12,27 @@ $( document ).ready(function() {
 	$('#OutlineAcceptOrNeedTiImprovemenet').on('hidden.bs.modal', function () {
 		location.reload();
 		
-	});	
+
+	});
+	
+
+	$('#approveContributorId').on('show.bs.tab',function () {
+		location.reload();
+		
+		
+	});
+	
+	$('#KeywordStatusAccept').on('hidden.bs.modal',function () {
+		location.reload();
+		
+		
+	});
+	
+	
+	
+
+
+
 	
 	$('#videoViewIdAdmin').on('hidden.bs.modal', function () {
 		location.reload();
@@ -1314,7 +1334,42 @@ $( document ).ready(function() {
 										  
 												});
 						
-						
+			/*Here code to view keywored into Domain reviwer*/
+			
+			$('#keywordModaleViewInDomain').click(function()			
+			{
+				
+				
+														var categoryid=$("#categoryId").val();
+														var topicid=$("#topicId").val();
+														var lanId=$("#lanId").val();
+														
+														
+														$.ajax({
+															  	type: "GET",
+													       		 url: "/viewKeywordInDomain",
+													       		 data: { "categorname" : categoryid,"topicid":topicid,"lanId":lanId },			
+													       		 contentType: "application/json",
+													       		 success: function(result)
+													       		 { 
+													       			
+													       			 $('#keywordViewInDomainKeyword').html(result);
+													       		
+																	},
+																	
+																		error : function(err){
+																	console.log("not working. ERROR: "+JSON.stringify(err));
+																}
+										
+															});
+												  
+			});
+			
+			
+			
+			
+			
+			
 						
 				$('#videoViewId').click(function()			
 				{
@@ -1518,6 +1573,102 @@ $( document ).ready(function() {
 														  
 																});
 							
+				// here is code for keyword accept or need to improvement
+							
+							
+							
+					$('#AcceptOrNeedToImprovemenetByDomain').click(function()
+						{
+									
+										var categoryid=$("#categoryId").val();
+										var topicid=$("#topicId").val();
+										var lanId=$("#lanId").val();
+									
+										var vals=$("#KeywordAcceptDomain").val();	
+										
+										
+										 if(vals === '0'){
+											 
+											 
+										 $('#keywordNeedImprovement').css({'visibility':'hidden'});  
+											  
+											  alert("Select Accept Or Need To Improvement");  
+											  
+											
+										 }
+										 else if(vals === '1'){
+											 
+											  $('#keywordNeedImprovement').css({'visibility':'hidden'}); 
+											  
+											  		alert("Hello");		
+											  		
+											  		
+												$.ajax({
+													
+												  	type: "GET",
+										       		 url: "/acceptkeywordByDomain",
+										    		 data: { "categorname" : categoryid,"topicid":topicid,"lanId":lanId },		
+										       		 contentType: "application/json",
+										       		 success: function(result)
+										       		{
+										       			 
+									       			 $("#statusKeywordByDomain").prop('disabled',false);
+									       			 $('#statusKeywordByDomain').html(result);
+										       	
+										       		},
+															
+														error : function(err){
+														console.lo3g("not working. ERROR: "+JSON.stringify(err));
+													}
+
+												});	 
+											  
+											  
+											 
+										 }else if ( vals === '2') {
+											
+											 $('#keywordNeedImprovement').css({'visibility':'visible'});
+											 
+											 var msg=$("#keywordCommentMsg").val();
+											 
+										
+											 
+												$.ajax({
+													
+												  	type: "GET",
+										       		 url: "/needToImpKeywordByDomain",
+										    		 data: { "categorname" : categoryid,"topicid":topicid,"lanId":lanId,'msg':msg},		
+										       		 contentType: "application/json",
+										       		 success: function(result)
+										       		{
+										       			 
+									       			 $("#statusKeywordByDomain").prop('disabled',false);
+									       			 $('#statusKeywordByDomain').html(result);
+										       	
+										       		},
+															
+														error : function(err){
+														console.lo3g("not working. ERROR: "+JSON.stringify(err));
+													}
+
+												});	 
+											 
+										 			
+										 
+										 
+										 }
+										
+											});
+
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							//Display  comment box for need to improvemnet on outline
 							
 							$('#outlineAcceptOtrNeedImp').click(function()			
@@ -1542,6 +1693,8 @@ $( document ).ready(function() {
 										
 											  
 									});
+							
+							
 							
 					$('#outlineAcceptOrNeedToImpClick').click(function()
 					{
@@ -2100,6 +2253,40 @@ $( document ).ready(function() {
 									 
 									 
 							});
+					
+					
+				/*	Here is code keywod accept or need to improvement*/
+					
+				
+					
+					$('#KeywordAcceptDomain').click(function()			
+							{
+						
+									var vals=$("#KeywordAcceptDomain").val();
+				
+									 if(vals === '0')
+									 { 
+										  $('#keywordNeedImprovement').css({'visibility':'hidden'}); 
+					 		          }
+									 else if(vals === '1')
+									 {
+										 	$('#keywordNeedImprovement').css({'visibility':'hidden'}); 
+				
+									 }
+									 else if(vals === '2')
+									 {
+										 
+										 $('#keywordNeedImprovement').css({'visibility':'visible'}); 											 
+										 
+
+									 }
+									 
+									 
+							});
+					
+					
+				/*	end*/
+					
 					
 	/*here is code for video accepet or need to improvement*/
 					
@@ -2726,8 +2913,124 @@ $( document ).ready(function() {
 				});
 		
 		
-		// Here is code for review  For Quality  
 		
+		
+		
+		// Here is code for Domain review -Slide
+		
+		$('#SlideStatusAccept').click(function()			
+				{
+					
+				
+						var vals=$("#SlideAcceptDomain").val();
+				
+					
+						
+								if(vals === '0')
+								{ 
+									
+									$('#slideNeedImprovement').css({'visibility':'hidden'}); 
+									
+								}
+								else if(vals === '1')
+							   {
+													 
+									$('#slideNeedImprovement').css({'visibility':'hidden'});
+					
+								}
+								else if(vals === '2')
+								{
+														 
+									$('#slideNeedImprovement').css({'visibility':'visible'}); 											 
+														 
+								}
+				
+				});
+		
+		
+		
+		$('#slideAcceptOrNeedToImprovemenetByDomain').click(function()			
+		{
+					
+									var categoryid=$("#categoryId").val();
+									var topicid=$("#topicId").val();
+									var lanId=$("#lanId").val();
+									
+									
+									var vals=$("#SlideAcceptDomain").val();
+					
+							if(vals == '0')
+							 { 
+								
+									alert("Select Accept Or Need To Improvement");
+								
+									// here is  code for Script 	// here is  code for Script css({'visibility':'hidden'}); 
+								 
+						     }
+							 else if(vals == '1')
+							 {
+						
+								 
+								 	 $.ajax({
+											
+										  	type: "GET",
+								       		 url: "/acceptSlideByDomain",
+								    		 data: { "categorname" : categoryid,"topicid":topicid,"lanId":lanId },		
+								       		 contentType: "application/json",
+								       		 success: function(result)
+								       		{
+								       		
+								       			 
+							       			 $("#statusSlideByDomain").prop('disabled',false);
+							       			 $('#statusSlideByDomain').html(result);
+							       		
+								       		},
+													
+												error : function(err){
+												console.lo3g("not working. ERROR: "+JSON.stringify(err));
+											}
+
+										});	  
+				
+							 }
+							 else if(vals == '2')
+							 {
+			 
+								 var msg=$("#slideCommentMsg").val();
+								
+								 $.ajax({
+										
+									  	type: "GET",
+							       		 url: "/needToImpSlideByDomain",
+							    		 data: { "categorname" : categoryid,"topicid":topicid,"lanId":lanId,'msg':msg},		
+							       		 contentType: "application/json",
+							       		 success: function(result)
+							       		{
+							       			 
+							       			 $("#statusSlideByDomain").prop('disabled',false);
+								       		 $('#statusKeywordByQuality').html(result);
+								       			 
+									     
+							       		},
+												
+											error : function(err){
+											console.lo3g("not working. ERROR: "+JSON.stringify(err));
+										}
+
+									});	  
+								 
+								 
+							 }
+							
+
+				});
+
+		
+		
+		
+		
+		
+		//End Slide for DOmain review
 		
 		
 		
@@ -2785,7 +3088,7 @@ $( document ).ready(function() {
 					 else if(vals == '2')
 					 {
 	 
-						 var msg=$("#msgkeywordQuality").val();
+						 var msg=$("#keywordViewInDomainKeyword").val();
 						
 						 $.ajax({
 								

@@ -144,6 +144,44 @@ public class DomainReviwer {
 									
 								}	
 								
+							
+								
+		/* Keyword */
+								
+								
+								if(tutorial.getKeywordStatusSet()==0) 
+								{
+									
+									model.addAttribute("statusKeyword", "Pending");
+	
+								}else if (tutorial.getKeywordStatusSet()==1) 				  
+
+								{
+
+									model.addAttribute("statusKeyword","Wating for Domain Review");
+									model.addAttribute("statusKeywordTrue", true);
+									
+								}
+								else if (tutorial.getKeywordStatusSet()==3) 
+								{
+
+										model.addAttribute("statusKeyword","Wating for Quality Review");
+										
+								}
+								else if (tutorial.getKeywordStatusSet()==4) 
+								{
+								
+									model.addAttribute("statusKeyword","Wating for Publish");
+							
+								}
+								else if (tutorial.getKeywordStatusSet()==5) 
+								{
+								
+									model.addAttribute("statusKeyword","Need To Improvement");
+							
+								}
+
+								
 				/* outline */		
 								
 								if(tutorial.getScriptStatus()==0) 
@@ -202,7 +240,7 @@ public class DomainReviwer {
 								}else if (tutorial.getSlideStatus()==5) 
 								{
 								
-									model.addAttribute("statusSlide","Wating for Quality Review");
+									model.addAttribute("statusSlide","Need To Improvement");
 							
 								}
 								else if (tutorial.getSlideStatus()==4) 
@@ -583,7 +621,87 @@ public class DomainReviwer {
 				  return videoStatusUpdate;
 
 			}
+			  
+			// Here is code for accept slide 
+			  
+			  @RequestMapping("/acceptSlideByDomain")
+			  public @ResponseBody List<String> acceptSlideByDomain(@RequestParam(value = "categorname") String categorname,
+					  @RequestParam(value = "topicid") String topicid,
+					  @RequestParam(value = "lanId") String lanId,Model model,Authentication authentication)	  
+			{
+				
+				  List<String> videoStatusUpdate = new ArrayList<String>();
+				  
+				  User user=userRepository.findByUsername(authentication.getName());
+				  
+				  topic topic = topicRepositary.findBytopicname(topicid);		  
+				  
+				  Category category=categoryDao.findBycategoryname(categorname);
 			
+				  language language=languageDao.findBylanguageName(lanId);
+			  
+				  //Admin set to need to improvement
+				  
+				  int AdminStatus=3;
+				  
+				  tutorialService.upadateSlideStatusByQuality(AdminStatus, topic, category,language);
+				  
+				  videoStatusUpdate.add("Slide Stauts Update  successfully");
+				  
+				  return videoStatusUpdate;
+
+			}
+			  
+			  //End
+			  
+			  
+			  
+			
+			  
+				 //Here is code for View keyword information  
+			  
+				@RequestMapping("/viewKeywordInDomain")
+				  public @ResponseBody List<String>
+				  viewKeywordContentQuality(
+						  @RequestParam(value = "categorname") String categorname,
+						  @RequestParam(value = "topicid") String topicid,
+						  @RequestParam(value = "lanId") String lanId,Model model,Authentication authentication)
+				 {
+						
+					System.err.println("Print message");
+					
+					  List<String> topicName = new ArrayList<String>();
+					  
+					 // User user=userRepository.findByUsername(authentication.getName());
+					  
+					  topic topic = topicRepositary.findBytopicname(topicid);		  
+					  
+					  Category category=categoryDao.findBycategoryname(categorname);
+				
+					  language language=languageDao.findBylanguageName(lanId);
+					  
+				
+					  int status = 1;
+					  
+					  Tutorial tutorial=tutorialdao.findByKeywordInQuality(topic,category,language);
+					
+					  topicName.add(tutorial.getKeyword());
+					  
+					  
+					return topicName;
+					  
+				 }	
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
 			  
 			  
 			  @RequestMapping("/needToImprovemenetByDomain")
@@ -696,6 +814,94 @@ public class DomainReviwer {
 
 			}
 			  
+			  // here is code for accept or need to improvement
+
+			  
+				 // code for keyword status into Domain  
+				
+			  @RequestMapping("/acceptkeywordByDomain")
+			  public @ResponseBody List<String> acceptkeywordByDomain(@RequestParam(value = "categorname") String categorname,
+					  @RequestParam(value = "topicid") String topicid,
+					  @RequestParam(value = "lanId") String lanId,Model model,Authentication authentication)	  
+			{
+				
+				  List<String> keywordDomain = new ArrayList<String>();
+				  
+				  User user=userRepository.findByUsername(authentication.getName());
+				  
+				  topic topic = topicRepositary.findBytopicname(topicid);		  
+				  
+				  Category category=categoryDao.findBycategoryname(categorname);
+			
+				  language language=languageDao.findBylanguageName(lanId);
+			  
+			  
+				  int DomainStatus=3;
+				  
+				  tutorialService.upadateKeywordByQuality(DomainStatus, topic, category,language);
+				  
+				  keywordDomain.add("Keyword Accept By Domain");
+				  
+				  return keywordDomain;
+
+			}
+			  
+			  //need to imp for Domain
+			  
+			  @RequestMapping("/needToImpKeywordByDomain")
+			  public @ResponseBody List<String> needToImpKeywordByDomain(@RequestParam(value = "categorname") String categorname,
+					  @RequestParam(value = "topicid") String topicid,
+					  @RequestParam(value = "msg") String msgComment,
+					  @RequestParam(value = "lanId") String lanId,Model model,Authentication authentication)	  
+			{
+				
+				  List<String> outlineDomain = new ArrayList<String>();
+				  
+				  User user=userRepository.findByUsername(authentication.getName());
+				  
+				  topic topic = topicRepositary.findBytopicname(topicid);		  
+				  
+				  Category category=categoryDao.findBycategoryname(categorname);
+			
+				  language language=languageDao.findBylanguageName(lanId);
+				  
+				  Tutorial tutorial=tutorialdao.findByTutorialForComment(topic, category, language);
+				  
+				  int DomainStatus=5;
+				  
+				  
+				  String keyword="keyword";
+				  tutorialService.upadateKeywordByQuality(DomainStatus, topic, category,language);
+			
+					java.util.Date dt = new java.util.Date();
+					java.text.SimpleDateFormat sdf = 
+					     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+					String currentTime = sdf.format(dt);
+		
+					commentOnComponent commentonComponet= new commentOnComponent();
+				 
+							 commentonComponet.setUser(user);
+							 commentonComponet.setTopic(topic);
+							 commentonComponet.setLanguage(language);
+							 commentonComponet.setCategory(category);
+							 commentonComponet.setTutorial(tutorial);
+							 commentonComponet.setCommentdate(currentTime);
+							 commentonComponet.setCommentInfo(msgComment);
+							 
+							 commentonComponet.setComponenenetDeatail(keyword);
+							 					 
+							 commentOnComponentDao.save(commentonComponet);
+				  
+				  
+				 outlineDomain.add("Keyword Status Update  successfully");
+				 
+				  
+				  return outlineDomain;
+
+			}
+			  
+			 
 			  //here is code Accept script for domain review
 			  
 			  @RequestMapping("/commentOnScript")
@@ -791,6 +997,63 @@ public class DomainReviwer {
 
 			}
 			  
+			  
+			  
+  //Here is need to imp for Domain
+			  
+			  @RequestMapping("/needToImpSlideByDomain")
+			  public @ResponseBody List<String> needToImpSlideByDomain(@RequestParam(value = "categorname") String categorname,
+					  @RequestParam(value = "topicid") String topicid,
+					  @RequestParam(value = "msg") String msgComment,
+					  @RequestParam(value = "lanId") String lanId,Model model,Authentication authentication)	  
+			{
+				
+				  List<String> outlineDomain = new ArrayList<String>();
+				  
+				  User user=userRepository.findByUsername(authentication.getName());
+				  
+				  topic topic = topicRepositary.findBytopicname(topicid);		  
+				  
+				  Category category=categoryDao.findBycategoryname(categorname);
+			
+				  language language=languageDao.findBylanguageName(lanId);
+				  
+				  Tutorial tutorial=tutorialdao.findByTutorialForComment(topic, category, language);
+				  
+				  int DomainStatus=5;
+				  
+				  
+				  String keyword="Slide";
+				  tutorialService.upadateSlideStatusByQuality(DomainStatus, topic, category,language);
+			
+					java.util.Date dt = new java.util.Date();
+					java.text.SimpleDateFormat sdf = 
+					     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+					String currentTime = sdf.format(dt);
+		
+					commentOnComponent commentonComponet= new commentOnComponent();
+				 
+							 commentonComponet.setUser(user);
+							 commentonComponet.setTopic(topic);
+							 commentonComponet.setLanguage(language);
+							 commentonComponet.setCategory(category);
+							 commentonComponet.setTutorial(tutorial);
+							 commentonComponet.setCommentdate(currentTime);
+							 commentonComponet.setCommentInfo(msgComment);
+							 
+							 commentonComponet.setComponenenetDeatail(keyword);
+							 					 
+							 commentOnComponentDao.save(commentonComponet);
+				  
+				  
+				 outlineDomain.add("Slide Status Update  successfully");
+				 
+				  
+				  return outlineDomain;
+
+			}
+
 		  
 			  
 			  

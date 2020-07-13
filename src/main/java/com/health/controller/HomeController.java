@@ -1,6 +1,8 @@
 package com.health.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -127,7 +129,21 @@ public class HomeController {
 		
 		List<Tutorial> category=tutorialDao.finBystatus();
 		
-		model.addAttribute("categorys",category);
+		ArrayList<String> tutorialRes=new ArrayList<String>();
+		
+		for (Tutorial tutorial : category){
+			
+			tutorialRes.add(tutorial.getCategory().getCategoryname());
+			
+		}
+		
+		Set<String> categoryList=new LinkedHashSet<String>(tutorialRes);
+		
+	   System.err.println("Prit list"+categoryList);
+		
+		
+		
+		model.addAttribute("categorys",categoryList);
 		
 		List<Event> event=eventDao.getAllEvent();
 			  
@@ -140,7 +156,7 @@ public class HomeController {
 			System.err.println(consaltantant.getNameConsaltant());	
 		}		
 		List<Testimonial> testimonial=testimonialdao.findBydate();
-	
+
 		
 		for (Testimonial videotestimonial : testimonial) 
 		{	

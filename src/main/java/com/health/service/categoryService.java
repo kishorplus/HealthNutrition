@@ -19,6 +19,8 @@ public interface categoryService {
     
     
     Category findByid(int id);
+
+	Category findByid(String id);
     
     
 }

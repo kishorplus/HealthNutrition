@@ -179,7 +179,7 @@ public class ControllerHealth
 
 	
 	@RequestMapping("/showListTutorial")
-	public String  showListTutorial(Model model, @RequestParam(value ="categoryName") int categoryname,@RequestParam(name="inputLanguage") String inputLanguage)		
+	public String  showListTutorial(Model model, @RequestParam(value ="categoryName") String categoryname,@RequestParam(name="inputLanguage") String inputLanguage)		
 	{
 		
 		//List<Category> categoryDropDown=categoryservice.findAll();
@@ -190,10 +190,11 @@ public class ControllerHealth
 		
 		List<Tutorial> categoryDropDown=tutorialDao.finBystatus();
 		
+		
 		model.addAttribute("categorys",categoryDropDown);
 		
-		Category category=categoryDao.findOne(categoryname);
-		
+		Category category=categoryDao.findBycategoryname(categoryname);
+		 
 		int status=1;
 		
 		com.health.model.language language=languageDao.findBylanguageName(inputLanguage);
@@ -1589,11 +1590,13 @@ public class ControllerHealth
 	
 
 	@RequestMapping("/loadByCategoryTuturial")
-	public @ResponseBody  Set<String> getAllSubcategories(@RequestParam(value="id") int id)
+	public @ResponseBody  Set<String> getAllSubcategories(@RequestParam(value="id") String id)
 	{
 	    List<String> languageName=new ArrayList<String>();
 
-		Category cat=categoryService.findByid(id);
+		Category cat=categoryService.findBycategoryname(id);
+		
+		
 		
 		int status=1;
 		

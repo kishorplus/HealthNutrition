@@ -215,6 +215,12 @@ public class QualityReviwer
 			else if (tutorial.getSlideStatus()==1)
 			{
 				
+				model.addAttribute("statusSlide","Waiting for Domain Review");
+			
+			}
+			else if (tutorial.getSlideStatus()==3)
+			{
+				
 				model.addAttribute("statusSlide","Waiting for Quality Review");
 				model.addAttribute("statusSlideTrue", true);
 				
@@ -286,10 +292,20 @@ public class QualityReviwer
 			else if(tutorial.getKeywordStatusSet()==1)
 			{
 				
-				model.addAttribute("statusKeyword","Waiting for Quality review");
-				model.addAttribute("statusKeywordTrue",true);			
+				model.addAttribute("statusKeyword","Waiting for Domain review");
+							
 			
 			}
+			
+			else if (tutorial.getKeywordStatusSet()==3){
+				
+				model.addAttribute("statusKeyword","Wating for Quality  Review");
+				model.addAttribute("statusKeywordTrue",true);
+				
+				
+			}
+			
+			
 			else if (tutorial.getKeywordStatusSet()==4){
 				
 				model.addAttribute("statusKeyword","Waiting for Publish");

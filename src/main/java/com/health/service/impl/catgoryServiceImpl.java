@@ -64,6 +64,12 @@ public class catgoryServiceImpl implements categoryService {
 	  return var;
 	  
 	  }
+
+	@Override
+	public Category findByid(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	  
 
 }
