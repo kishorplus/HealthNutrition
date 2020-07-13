@@ -302,11 +302,40 @@
 
 				<div class="form-group">
 		
-								<div id="videoDiv" class="container" height="240" width="320" scrolling="auto" autoplay="autoplay">
+								<div id="videoDiv" class="row" height="240" width="320" scrolling="auto" autoplay="autoplay">
 								   
-								    <video id='storedVideoId' height="240" width="320" controls="controls">
-								    
+								   <div class="col-sm-6">
+								   	<video id='storedVideoId' height="240" width="320" controls="controls">
 								    </video>
+								   </div>
+								    
+								    <div style="border: 1px solid green;" class="col-sm-6">
+								    	<form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+
+						          <div class="form-group">
+						 
+				                      <select id="VideoAcceptAdmin"  class="form-control" > 
+				                      
+									     <option value="0">Select</option>
+									     <option value="1">Accept</option>
+									     <option value="2">Need Improvement</option>
+									    
+									  </select>  
+				                    
+						          </div>
+						          
+				 <div id="videoNeedImprovement" style="visibility: hidden">
+				 
+				 
+								 <textarea class="form-control"  name="msgVideoCommentByAdmin" id="msgVideoCommentByAdmin" rows="10" required="required" />
+							
+				</div>
+				<br/>
+				              
+				 <button id="videoAcceptOrNeedToImprovemenetByAdmin"  type="button" class="btn btn-success">Submit</button>	   
+
+		</form>	
+								    </div>
 								    
 								</div>
 		
@@ -701,7 +730,7 @@
 						      </div>
 						      <div class="modal-body">
 						      
-				 <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+				 <!-- <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
 
 						          <div class="form-group">
 						 
@@ -725,7 +754,7 @@
 				              
 				 <button id="videoAcceptOrNeedToImprovemenetByAdmin"  type="button" class="btn btn-success">Submit</button>	   
 
-		</form>	
+		</form>	 -->
 						    
 						       <div class="modal-footer">
 						          
