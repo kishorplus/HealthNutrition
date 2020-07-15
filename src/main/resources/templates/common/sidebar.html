@@ -1,0 +1,479 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<!-- <link href="/css/sidebar.css" rel="stylesheet" /> -->
+<link rel="stylesheet" type="text/css" href="/fontawesome-free-5.10.1-web/css/all.css"/>
+<style type="text/css">
+	.item{
+		/*border: 1px solid red;*/
+	}
+</style>
+</head>
+<body>
+    <div th:fragment="he">
+        <h1>Thymeleaf Fragments sample</h1>
+    </div>
+    <p>Go to the next page to see fragments in action</p>
+    <aside>
+        <div>This is a sidebar</div>
+    </aside>
+    <div class="another">This is another sidebar</div>
+    <!-- <footer th:fragment="foo">
+        <a th:href="@{/fragments}">Fragments Index</a> | 
+        <a th:href="@{/markup}">Markup inclussion</a> | 
+        <a th:href="@{/params}">Fragment params</a> | 
+        <a th:href="@{/other}">Other</a>
+    </footer> -->
+    <div th:fragment="nav_sidebar">
+    	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+			list-style: none;
+			text-decoration: none;
+			box-sizing: border-box;
+			font-family: "Roboto",sans-serif;
+		}
+		body{
+			background: #fff;
+		}
+		.wrapper .header{
+			z-index: 1;
+			/*background: rgba(78,182,172);*/
+			/*background: rgba(14,58,55);*/
+			background: #fff;
+			position: fixed;
+			width: calc(100% - 0%);
+			height: 70px;
+			display: flex;
+			top: 0;
+			border-bottom: 1px solid rgba(14,58,55);
+
+		}
+		.wrapper .header .header-menu{
+			width: calc(100% - 0%);
+			height: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 20px;
+		}
+		.wrapper .header .header-menu .title{
+			color: #fff;
+			font-size: 25px;
+			text-transform: uppercase;
+			font-weight: 900;
+		}
+		.wrapper .header .header-menu .title span{
+			color: #4CCEE8;
+		}
+		.wrapper .header .header-menu .sidebar-btn{
+			color: #fff;
+			position: absolute;
+			margin-left: 240px;
+			font-size: 22px;
+			font-weight: 900;
+			cursor: pointer;
+			transition: 0.3s;
+			transition-property: color;
+		}
+		.wrapper .header .header-menu .sidebar-btn:hover{
+			color: #4CCEE8;
+		}
+		.wrapper .header .header-menu ul{
+			display: flex;
+		}
+		.wrapper .header .header-menu ul li a{
+			background: #fff;
+			color: #000;
+			display: block;
+			margin: 0 10px;
+			font-size: 18px;
+			width: 34px;
+			height: 34px;
+			line-height: 35px;
+			text-align: center;
+			border-radius: 50%;
+			transition: 0.3s;
+			transition-property: background,color;
+		}
+
+		.wrapper .header .header-menu ul li a:hover{
+			background: #4CCEE8;
+			color: #fff;
+		}
+		.wrapper .sidebar{
+			z-index: 1;
+			background: #2F323A;
+			background: rgba(14,58,55);
+			position: fixed;
+			top: 70px;
+			width: 250px;
+			height: calc(100% - 9%);
+			transition: 0.3s;
+			transition-property: width;
+			overflow-y: auto;
+		}
+		.wrapper .sidebar .sidebar-menu{
+			overflow : hidden;
+		}
+		.wrapper .sidebar .sidebar-menu .profile img{
+			margin:20px 0;
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+		}
+		.wrapper .sidebar .sidebar-menu .profile p{
+			color: #bbb;
+			font-weight: 700;
+			margin-bottom: 100px;
+		}
+		.wrapper .sidebar .sidebar-menu .item{
+			width: 250px;
+			overflow: hidden;
+		}
+		.wrapper .sidebar .sidebar-menu .item .menu-btn{
+			display: block;
+			color: #fff;
+			position: relative;
+			padding: 25px 20px;
+			transition: 0.3s;
+			transition-property: color;
+		}
+		.wrapper .sidebar .sidebar-menu .item .menu-btn:hover{
+			color: #4CCEE8;
+		}
+		.wrapper .sidebar .sidebar-menu .item .menu-btn i{
+			margin-right: 20px;
+		}
+		.wrapper .sidebar .sidebar-menu .item .menu-btn .drop-down{
+			float: right;
+			font-size: 12px;
+			margin-top: 3px;
+		}
+		.wrapper .sidebar .sidebar-menu .item .sub-menu{
+			background: #3498DB;
+			/*background: rgba(14,58,55,0.5);;*/
+			/*background: red;*/
+			background: #20B8B8;
+			overflow: hidden;
+			max-height: 0;
+			transition: 0.3s;
+			transition-property: background,max-height; 
+		}
+		.wrapper .sidebar .sidebar-menu .item .sub-menu a{
+			display: block;
+			position: relative;
+			color: #fff;
+			white-space: nowrap;
+			font-size: 15px;
+			padding: 20px;
+			border-bottom: 1px solid #8FC5E9; 
+			transition: 0.3s;
+			transition-property: background;
+		}
+
+		.wrapper .sidebar .sidebar-menu .item .sub-menu a:hover{
+			background: #55B1F0;
+			background: #1ebba3;
+		}
+		.wrapper .sidebar .sidebar-menu .item .sub-menu i{
+			padding-right: 20px;
+			font-size: 10px;
+		}
+		.wrapper .sidebar .sidebar-menu .item:target .sub-menu{
+			max-height: 500px;
+		}
+		.wrapper .main-container{
+			width: (100% - 250px);
+			margin-top: 70px;
+			margin-left: 250px;
+			padding: 15px;
+			/*background: url(bk.jpg)no-repeat;*/
+			/*background-size: cover;*/
+			height: 100vh;
+			transition: 0.3s; 
+		}
+		/*.wrapper .c-collapse .sidebar{
+			width: 70px;
+		}*/
+		.c-collapse{
+			width: 70px!important;
+			/*border: 1px solid red;*/
+		}
+		.c-collapse .sidebar .profile img,
+		.c-collapse .sidebar .profile p,
+		.c-collapse  a span{
+			display: none;
+			/*border: 1px solid green;*/
+		}
+		.c-collapse .menu-btn{
+			font-size: 23px;
+		}
+		.c-collapse .sub-menu i{
+			font-size: 18px;
+			padding-left: 3px;
+		}
+		.c-collapse .main-container{
+			width: calc(100% - 70px);
+			margin-left: 70px;
+
+		}.h-nav{
+	color: #1C7871!important;
+    font-weight: bold!important;
+    font-size: 1rem!important;
+    border-bottom: 1px solid #1C7871!important;
+    margin-right:20px;
+	}
+	.h-nav:hover{
+		border: 1px solid #1C7871;
+		transition: 0.3s;
+	}
+	.profile{
+		display: flex;
+		flex-direction: column;
+		color: #fff;
+		justify-content: center;
+		align-items: center;
+		margin-top: 50px;
+	}
+	.user-img{
+	margin-bottom: 10px;
+    border: 1px solid white;
+    border-radius: 50%;
+    padding: 5% 5%;
+    margin-right: 0;
+    margin-bottom: 10px!important;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	}
+	.user-img i{
+		font-size: 1.5rem!important;
+		color: #1C7871;
+
+	}
+	.c-collapse .user-info1{
+		display: none;
+	}
+	.h-nav{
+		margin-top: 20px;
+		margin-right: 20px;
+		float: right;
+		text-decoration: none;
+		
+	}
+	.h-nav a{
+		color: #1C7871;
+	}
+		</style>
+	
+	
+	
+	
+	
+
+
+
+<div class="wrapper">
+<div class="header">
+	<div class="row" style="z-index: 1;width: 100%;">
+    <!-- <div class="col-sm sidebar-btn" style="border: 1px solid red;">
+      <i class="fas fa-bars"></i>
+    </div> -->
+    <!-- <div class="col-md-3"></div> -->
+    <div class="col-md-5" style="float: left;">
+      <a th:href="@{/}"> <img
+									src="/image/HandN-logo.jpg" href="www.google."
+									alt="Smiley face" height="60" width="90" style="margin-top: 0;"> </img>
+								</a>
+								<span style="color: #1C7871;font-size: 2rem;" >Health And <span style="color: #BF360D;font-size: 2rem;">Nutrition</span> </span>
+    </div>
+    <div class="col-sm" >
+      <div class="h-nav">
+		<a sec:authorize="isAnonymous()" th:href="@{/login}">Login|New User</a>
+		<!-- <a sec:authorize="isAuthenticated()" th:href="@{/adminDeatail}" class="h-nav">MY ACCOUNT</a>| -->
+		<a sec:authorize="isAuthenticated()" th:href="@{/logout}" >LOGOUT</a>
+</div>
+    </div>
+  </div>
+</div>
+  
+
+	<!-- <div class="header">
+		<div class="header-menu row">
+			<div class="title">Health And Nutrition</div>
+			<div class="col sidebar-btn" style="border: 1px solid red;">
+				<i class="fas fa-bars"></i>
+			</div>
+			<div style="text-align: center;" class="col-md-4 offset-md-4">
+				<div style="border: 1px solid pink;" class="col" >
+				<a th:href="@{/}"> <img
+									src="/image/HandN-logo.jpg" href="www.google."
+									alt="Smiley face" height="80" width="120"> </img>
+								</a>
+								<span style="color: #1C7871;font-size: 2.5rem;" >Health And <span style="color: #BF360D;font-size: 2.5rem;">Nutrition</span> </span>
+			<div class="sidebar-btn" style="display: 2px solid red;">
+    		<i class="fas fa-bars"></i>
+    		</div>
+			</div>
+			
+    		<div sec:authorize="isAuthenticated()" class='user-info1' style="margin-right: 20px;margin-top: 5px;"> 
+  <i class="fas fa-user" style="color: #1C7871;margin-right: 10px!important;"></i> Logged User : <span sec:authentication="name"></span> 
+</div>
+<a th:href="@{/}"> <img
+									src="/image/HandN-logo.jpg" href="www.google."
+									alt="Smiley face" height="80" width="120"> </img>
+								</a>
+								<span style="color: #1C7871;font-size: 2.5rem;" >Health And <span style="color: #BF360D;font-size: 2.5rem;">Nutrition</span> </span>
+<div class="col" style="border: 1px solid red;">
+		<div style="float: right;">
+		<a sec:authorize="isAnonymous()" th:href="@{/login}">Login|New User</a>
+		<a sec:authorize="isAuthenticated()" th:href="@{/adminDeatail}" class="h-nav">MY ACCOUNT</a>|
+		<a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="h-nav">LOGOUT</a>
+</div>
+</div>
+    		<ul>
+    			<li><a href="#"><i class="fas fa-search"></i></a></li>
+    			<li><a href="#"><i class="fas fa-bell"></i></a></li>
+    			<li><a href="#"><i class="fas fa-power-off"></i></a></li>
+    		</ul>
+		</div>
+	</div> -->
+	<!-- header menu ends -->
+	<!-- sidebar starts -->
+	<div class="sidebar">
+		<div class="sidebar-menu">
+			<div class="col-sm sidebar-btn" style="float: left;color: #fff;">
+      <i class="fas fa-bars"></i>
+    </div>
+			<div class="profile" >
+				<!-- <img src="" ></img> -->
+				<p class="user-img"><i class="fas fa-user" style="color: #1C7871;"></i></p>
+				<div sec:authorize="isAuthenticated()" class='user-info1'> 
+   Logged User : <span sec:authentication="name"></span> 
+</div>
+			</div>
+			<li class="item">
+				<a href="#" class="menu-btn">
+					<i class="fas fa-info-circle"></i>
+					<span>Home</span>
+				</a>
+				
+			</li>
+			<li class="item">
+				<a th:href="@{approveRole}" class="menu-btn">
+					<i class="fas fa-info-circle"></i>
+					<span>Approve Role</span>
+				</a>
+				
+			</li>
+			<!-- <li class="item">
+				<a href="#" class="menu-btn"><i class="fas fa-bell"></i><span>Dashboard</span>
+				</a>
+			</li> -->
+			<li class="item" id="content">
+				<a href="#content" class="menu-btn">
+					<i class="fas fa-user-circle"></i>
+					<span>Content<i class="fas fa-chevron-down drop-down"></i></span>
+				</a>
+				<div class="sub-menu">
+					<a th:href="@{Consaltant}"><i class="fas fa-image"></i>
+						<span>Consultants</span>
+					</a>
+					<a th:href="@{addEvent}"><i class="fas fa-address-card"></i>
+						<span>Events</span>
+					</a>
+					<a th:href="@{Testimonial}"><i class="fas fa-address-card"></i>
+						<span>Testimonials</span>
+					</a>
+				</div>
+			</li>
+
+			<li class="item" id="creation">
+				<a href="#creation" class="menu-btn">
+					<i class="fas fa-envelope"></i>
+					<span>
+						Creation<i class="fas fa-chevron-down drop-down"></i>
+					</span>
+				</a>
+				<div class="sub-menu">
+					<a th:href="@{Category}"><i class="fas fa-envelope-square"></i>
+						<span>Category</span>
+					</a>
+					<a th:href="@{language}"><i class="fas fa-exclamation-circle"></i>
+						<span>Language</span>
+					</a>
+					<a th:href="@{roleNew}"><i class="fas fa-exclamation-circle"></i>
+						<span>Role</span>
+					</a>
+					<a th:href="@{displaytopiform}"><i class="fas fa-exclamation-circle"></i>
+						<span>Topic</span>
+					</a>
+					<a th:href="@{listContributor}"><i class="fas fa-exclamation-circle"></i>
+						<span>Assign Contributor</span>
+					</a>
+				</div>
+			</li>
+			<li class="item" id="view">
+				<a href="#view" class="menu-btn">
+					<i class="fas fa-envelope"></i>
+					<span>View Records<i class="fas fa-chevron-down drop-down"></i></span>
+				</a>
+				<div class="sub-menu">
+					<a th:href="@{Consaltant}"><i class="fas fa-image"></i>
+						<span>Consultants</span>
+					</a>
+					<a th:href="@{language}"><i class="fas fa-exclamation-circle"></i>
+						<span>Domain Reviewer</span>
+					</a>
+					<hr/>
+					<a th:href="@{roleNew}"><i class="fas fa-exclamation-circle"></i>
+						<span>Role</span>
+					</a>
+					<a th:href="@{displaytopiform}"><i class="fas fa-exclamation-circle"></i>
+						<span>Topic</span>
+					</a>
+					<a th:href="@{listContributor}"><i class="fas fa-exclamation-circle"></i>
+						<span>Assign Contributor</span>
+					</a>
+				</div>
+			</li>
+			<li class="item">
+				<a href="#messages" class="menu-btn">
+					<i class="fas fa-info-circle"></i>
+					<span>
+						About 
+					</span>
+				</a>
+				
+			</li>
+
+
+		</div>
+	</div>
+	<!-- sidebar end -->
+	<!-- main container starts -->
+	<div class="main-container">
+		
+	</div>
+	<!-- main container ends -->
+</div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// alert('1');
+		$('.sidebar-btn').click(function(){
+			// alert('2');
+			$(".sidebar").toggleClass("c-collapse");
+		});
+	});
+</script>
+</div>
+
+</body>
+</html>

@@ -163,12 +163,10 @@ public class HomeController {
 			System.err.println(videotestimonial.getUploadTestiminial());	
 		}
 		
-		
+		List<Tutorial> tutorials=tutorialDao.finBystatus();
+		model.addAttribute("tutorials",tutorials);
 		model.addAttribute("listofConsalatatnt",consalatant);
 		model.addAttribute("listofTestimonial",testimonial);
-		
-		
-		
 		return "index";
 		
 	}

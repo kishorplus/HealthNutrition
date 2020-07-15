@@ -11,16 +11,18 @@
 
 </head>
   <body>
-  		<div th:replace="common/trail :: navbar1"/>
+  		<!-- <div th:replace="common/trail :: navbar1"/> -->
   		
-  		<div class="container" style="padding-top: 90px">
+  		<!-- <div class="container" style="padding-top: 90px"> -->
+  		<div style="display:flex;">
+		<div th:replace="common/sidebar :: nav_sidebar"></div>
 
-	    <div class="row">
+	    <div class="row" style='width:100%;'>
 	      <div class="col-lg-10 col-xl-9 mx-auto">
-	        <div class="card card-signin flex-row my-5">
+	        <div class="card card-signin flex-row a-card">
 	       
 	          <div class="card-body">
-	           <h5 class="card-title text-center" style="color:maroon; font-size: 20px">
+	           <h5 class="card-title text-center a-card-title">
     			<div class="">    
                                 <div th:if="${msgSuccefull}">
    								 <span th:text="${msgSuccefull}"></span>
@@ -42,8 +44,8 @@
 						</div>
 	
 	 		
-                          <button type="submit" value="showAlert"  class="btn btn-success">Submit</button>&nbsp;&nbsp;&nbsp;
-                           <button type="reset" class="btn btn-success">Reset</button>
+                          <button type="submit" value="showAlert"  class="btn a-btn">Submit</button>&nbsp;&nbsp;&nbsp;
+                           <button type="reset" class="btn a-btn">Reset</button>
                                                 
               
                      </form>

@@ -26,10 +26,28 @@
 	box-sizing: border-box;
 }
 body{
-	padding-top: 0;
+	padding-top: 70px;
+}
+.btn{
+	background-color: var(--btn-color);
+	border:2px solid var(--btn-color);
+	padding: 1% 2%;
+	color: var(--white);
+	font-weight: bold;
+	margin: 5% 5% 5% 0;
+}
+.btn:hover{
+	background-color: var(--white);
+	border:2px solid var(--btn-color);
+	padding: 1% 2%;
+	color: var(--btn-color);
+	font-weight: bold;
 }
 /*-----------------------------------header upper-bar---------------------------*/
-
+header .upper-bar{
+	z-index : 1;
+	background: #F2FAF9;
+}
 /*-----------------------------------/header upper-bar---------------------------*/
 
 /*-----------------------------------Intro text with carousel---------------------------*/
@@ -79,7 +97,192 @@ body{
 #info .card3{
 	background-color: #e0f2f1;
 }
+.car-content {
+	display : flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	
+}
+.car-content p{
+	width : 100%;
+}
 /*-----------------------------------/Highlights---------------------------*/
+/*-----------------------------------Events---------------------------*/
+.events-bg{
+	background : var(--heading-color);
+}
+.e-cal{
+	font-size : 2rem!important;
+	padding : 10px;
+	display : flex;
+	justify-content : center;
+	align-items : center;
+	color: var(--teal-bright);
+	flex-direction: column;
+}
+.e-cal p{
+	font-size: 0.8rem;
+}
+.events-bg p{
+	margin-top: 0!important;
+}
+.e-content{
+	margin-top: 0!important;
+}
+.e-col{
+	color: var(--teal-bright);
+}
+
+/*-----------------------------------/Events---------------------------*/
+
+/*-----------------------------------Marketing---------------------------*/
+
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-size : 1.2rem;
+  color : var(--heading-color);
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+  font-size: 0.9rem;
+}
+.marketing img{
+	border: 1px solid green;
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+	padding: 10px;
+}
+
+/*-----------------------------------/Marketing---------------------------*/
+
+/*-----------------------------------Testimonials---------------------------*/
+.testimonials-wrapper{
+	position: relative;
+}
+.slick-dots{
+	list-style: none;
+	display: flex;
+	position: absolute;
+	right: 50%;
+}
+.slick-dots li{
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: var(--teal-bright);
+	margin: 10px 10px;
+}
+.t-content{
+	border-left:2px solid var(--teal-dark);
+	/* padding : 10px 25px; */
+	margin : 10px 25px;
+}
+.t-content p{
+	margin : 0 ;
+	font-size : 0.9rem;
+	color : rgba(0,0,0,0.8)
+}
+.t-user{
+	border-left:2px solid var(--teal-dark);;
+	/* padding : 10px 25px; */
+	margin : 10px 25px;
+}
+.t-user p{
+	margin : 10px 0;
+	font-size : 0.8rem;
+	/* color :  */
+}
+.t-item{
+	height : 360px;
+	/* overflow: scroll; */
+	overflow: auto;
+	border : 1px solid rgba(0,0,0,0.2);
+	/* margin : 10px 25px; */
+	width : 30%;
+}
+.t-item h6{
+	/* font-family: "Lucida Console", Courier, monospace; */
+	font-size : 1.2rem;
+	color : #1C7871;
+}
+/*-----------------------------------Testimonials---------------------------*/
+
+/*-----------------------------------Video Display---------------------------*/
+.your-class{
+	padding: 10px 5%;
+}
+#videos{
+	position: relative;
+}
+.v-item{
+	border: 1px solid rgba(0,0,0,0.2);
+	width: 220px!important;
+	height: auto;
+	margin: 15px;
+}
+.v-item .vid{
+	width: 100%;
+	margin-bottom: 15px;
+}
+.v-item h6,p{
+	margin: 10px 20px;
+}
+.v-item h6{
+	font-size: 0.9rem;
+}
+.v-item p{
+	/*margin: 10px 20px;	*/
+	font-size: 0.9rem;
+}
+.v-item .lang{
+	background-color: var(--heading-color);
+	color: #fff;
+	padding: 10px 20px;
+}
+.slick-prev{
+	border: 1px solid var(--teal-bright);
+	position: absolute;
+	left: 0;
+	bottom: 50%;
+	z-index: 1;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	color: var(--green);
+	color: var(--teal-bright);
+	font-size: 2.2rem;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+}
+
+.slick-next{
+	border: 1px solid var(--teal-bright);
+	position: absolute;
+	right: 0;
+	bottom: 50%;
+	z-index: 1;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	color: var(--green);
+	color: var(--teal-bright);
+	font-size: 2.2rem;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+}
+/*-----------------------------------Video Display---------------------------*/
 
 /*-----------------------------------Contact---------------------------*/
 .contact-info{

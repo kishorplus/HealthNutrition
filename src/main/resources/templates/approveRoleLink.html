@@ -1,37 +1,38 @@
-
 <!DOCTYPE html>
 <html xmlns:th="https://thymeleaf.org">
 
-<head th:replace="common/trail :: common-trail" >
-
- <link rel="stylesheet" type="text/css" href="/datatables.css"/>
-<!--  
- <script>
-		$(document).ready(function(){
-			$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-				localStorage.setItem('activeTab', $(e.target).attr('href'));
-			});
-			var activeTab = localStorage.getItem('activeTab');
-			if('activeTab'){
-				$('#myTab a[href="' + activeTab + '"]').tab('show');s
-			}
-		});
-</script>
-  -->
+ <head th:replace="common/trail :: common-trail" > </head>
+<!-- 
+<head>
+	<meta charset="utf-8"/> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="/s/css/owl.carousel.min.css"/> 
+    <link rel="stylesheet" href="/s/fonts/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/s/css/style.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
+	<link rel="stylesheet" href="/s/css/admin.css"/>
+</head> -->
+<style>
+body{
+	background:#fff!important;
+}
+</style>
  
-</head>
-
-  <body>
-  
-  <div th:replace="common/trail :: navbar1"/>
+<body>
+  <!-- <div th:replace="common/trail :: navbar1"/> -->
   			
-   	<div class="container"> 
-   	<div style="border:1px solid red;"></div>
-								<div class="row" style="padding-top: 120px"  >
+  	<div style="display:flex;">
+  	<div th:replace="common/sidebar :: nav_sidebar"></div>
+  	   	<div class="container"> 
+								
+								<div class="row" style="margin-top: 100px"  >
 								<div class="col-12">
-	
+								<div>
+								 <span id='approve-msg' class='approve-success-msg'></span>
+								</div>
 								 <nav>
-									  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+									  <div class="nav nav-tabs a-links" id="nav-tab" role="tablist">
 									  
 											    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
 											    <a class="nav-item nav-link" id="nav-admin-tab" data-toggle="tab" href="#Admin" role="tab" aria-controls="nav-contact" aria-selected="false">Admin Reviewer</a>	
@@ -57,20 +58,20 @@
 									
 									<div class="tab-content" id="nav-tabContent">	
 								
-			 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"></div>
+			 <div class="tab-pane fade show active a-tab-pane" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"></div>
 			
 		
-			 <div class="tab-pane fade" id="Admin" role="tabpanel" aria-labelledby="nav-admin-tab" onloadeddata="return submitA(this);">
+			 <div class="tab-pane fade a-tab-pane" id="Admin" role="tabpanel" aria-labelledby="nav-admin-tab" onloadeddata="return submitA(this);">
 			
-			<h6  id="statusAdmin" class="approve-success-msg" style="color: maroon; padding-left: 200px; padding-top: 20px" > </h6>
+			<!-- <h6  id="statusAdmin" class="approve-success-msg" > </h6> -->
 							 
-					<div class="" style="padding-top: 40px">
+					<div class="">
 						          	
 						          		<div class="row">
 						          	
 						         			 	<div class="col-12">
 						
-						   			 <table id="tableId" class="table table-striped" >
+						   			 <table id="tableId" class="table table-striped a-table-font" >
 						   			 	 
 											         <thead>  
 											           
@@ -96,7 +97,7 @@
 							
 				 <td>
 				 
-				 	<button  id="approveAdminId" type="button"  th:value="${admin.userRoleId}" class="btn btn-success approveAdmin">Approve</button>
+				 	<button  id="approveAdminId" type="button"  th:value="${admin.userRoleId}" class="btn a-btn approveAdmin">Approve</button>
 				 
 				 <!-- <a th:href="${'addAdminRoleById/add/'+ admin.id}">Approve</a> -->
 				 </td>
@@ -109,41 +110,23 @@
 											</div>
 										</div>
 									</div>        
-							
-			<script src="/js/jquery.min.js"></script>
-		 	<script type="text/javascript" charset="utf8" src="/datatables.js"></script>
-		 
-		<script >
-			
-			function submitA() {
-			$(document).ready( function () {
-			    $('#tableIds').DataTable();
-			    
-			 
-			} );
-			}
-			</script>	
-								
-								
-		
-					<div th:fragment="body-bottom-scripts"></div>								  
 
 	</div>
 			
 			
 	
-					 <div class="tab-pane fade" id="Domain" role="tabpanel" aria-labelledby="nav-profile-tab" onloadeddata="return submitA(this);">
+					 <div class="tab-pane fade a-tab-pane" id="Domain" role="tabpanel" aria-labelledby="nav-profile-tab" onloadeddata="return submitA(this);">
 							 
 							 
-					<h6  id="statusDomain" class="approve-success-msg" style="color: maroon; padding-left: 200px; padding-top: 30px"> </h6>
+					<!-- <h6  id="statusDomain" class="approve-success-msg"> </h6> -->
 			
-					<div class="Domain" style="padding-top: 40px">
+					<div class="Domain" >
 						          	
 						          		<div class="row">
 						          	
 						         			 	<div class="col-12">
 						
-						   			 <table id="tableIds" class="table table-striped" >
+						   			 <table id="tableIds" class="table table-striped a-table-font dt-center" >
 						   			 	 
 											         <thead>  
 											           
@@ -165,11 +148,12 @@
 											                <td th:text="${domain.getUser().username}">User Name</td>
 											                <td th:text="${domain.getUser().firstName}">First Name</td>
 											                <td th:text="${domain.getUser().lastName}">Last name</td>
-												            <td th:text="${domain.getLanguage().getLanguageName()}">Language Name</td>              
+												            <!-- <td th:text="${domain.getLanguage().getLanguageName()}">Language Name</td> -->
+												            <td>Language Name</td>              
 							
 											 <td>
 											 
-		<button id="approveDomainId"   type="button"  th:value="${domain.userRoleId}" class="btn btn-success approveDomain">Approve</button>
+		<button id="approveDomainId"   type="button"  th:value="${domain.userRoleId}" class="btn a-btn approveDomain">Approve</button>
 											 
 											 <!-- <a th:href="${'/addDomainRoleById/add/'+ domain.userRoleId}">Approve</a>
 											  -->
@@ -185,46 +169,19 @@
 											</div>
 										</div>
 									</div>        
-							
-							<script type="text/javascript">
-			function refreshPage(){
-				
-					location.reload();
-								
-			}
-		</script>
-							
-							
-							
-			<script src="/js/jquery.min.js"></script>
-		 	<script type="text/javascript" charset="utf8" src="/datatables.js"></script>
-		 
-		<script >
-			
-			function submitA() {
-			$(document).ready( function () {
-			    $('#tableIds').DataTable();
-			    
-			 
-			} );
-			}
-			</script>	
-								
-								
-		
-					<div th:fragment="body-bottom-scripts"></div>								  
-
 	
 	</div>
- 	<div class="tab-pane fade" id="MasterTrainer" role="tabpanel" aria-labelledby="nav-contact-tab">
+ 	<div class="tab-pane fade a-tab-pane" id="MasterTrainer" role="tabpanel" aria-labelledby="nav-contact-tab">
  
- <h6  id="statusMaster" class="approve-success-msg" style="color: maroon; padding-left: 200px; padding-top: 30px" > </h6>
+ <!-- <h6  id="statusMaster" class="approve-success-msg" > </h6> -->
 									  
-			<div class="" style="padding-top: 60px">
+			<div class="Master_class">
           	
     					 <div class="row">
          					  
-									  <table id="tableIdMaster" class="table table-striped">
+         					  <div class="col-12">
+         					  	
+         					  	<table id="tableIdMaster" class="table table-striped a-table-font">
 					         <thead>
 					         
 					            <tr>
@@ -249,7 +206,7 @@
 					                <td th:text="${master.getUser().address}">Address</td>
 	
 						<td>
-				<button  id="approvemasterId" type="button"  th:value="${master.userRoleId}" class="btn btn-success approvemaster">Approve</button>
+				<button  id="approvemasterId" type="button"  th:value="${master.userRoleId}" class="btn a-btn approvemaster">Approve</button>
 						
 									<!-- <a th:href="${'/addMasterTrainerRoleById/add/'+ master.id}">Approve</a>
 									 -->
@@ -260,27 +217,11 @@
 					            </tr>
 					            </tbody>
 					        </table>
+         					  
+         					  </div>
+									  
 							</div>
 				</div>
-				<script type="text/javascript">
-								function refreshPage(){
-										location.reload();
-													
-								}
-				</script>
-				
-				
-				
-			<script src="/js/jquery.min.js"></script>
-		 	<script type="text/javascript" charset="utf8" src="/datatables.js"></script>
-		 
-			<script>
-			
-				$(document).ready( function () {
-				    $('#tableIdMaster').DataTable();
-				} );
-			
-			</script>
 									  
 			<!-- 	th:text="${approve.getUser().id}" -->					  									  
 </div>
@@ -341,31 +282,20 @@
 									</div>
 								</div>
 							</div> 	
-							
-			<script src="/js/jquery.min.js"></script>
-		 	<script type="text/javascript" charset="utf8" src="/datatables.js"></script>		 
-			<script>
-			
-			
-			$(document).ready( function () {
-			    $('#tableIdContributer').DataTable();
-			} );
-			
-			</script>
 						
 													 
 			 </div>
 	 -->
-	<div class="tab-pane fade" id="Contributer" role="tabpanel" aria-labelledby="nav-contact-tab">.
+	<div class="tab-pane fade a-tab-pane" id="Contributer" role="tabpanel" aria-labelledby="nav-contact-tab">
 				
-				<h6  id="statusContributor" class="approve-success-msg" style="color: maroon; padding-left: 200px"> </h6>
+				<!-- <h6  id="statusContributor" class="approve-success-msg"> </h6> -->
 				
-					<div class="container-fluid" style="padding-top: 40px">
+					<div class="container-fluid" >
 				          		<div class="row">
 				          	
-				         			 	<div class="col">
+				         			 	<div class="col-sm-12">
 				
-				   			 	 <table id="tableIdContributer" class="table table-striped">
+				   			 	 <table id="tableIdContributor" class="table table-striped a-table-font">
 									           <thead>										           							           
 									            <tr>
 									               <!--  <th>Id</th> -->
@@ -374,6 +304,7 @@
 									                <th>Last Name</th>
 									                <th>Language</th>  
 									                <th>Approve</th>
+									              <!--   <th>Status</th> -->
 									              <!--   <th>Reject</th>  -->            
 									           </tr>
 									            
@@ -390,21 +321,21 @@
 									                <td th:text="${approve.getUser().lastName}">Last name</td>
 									                <td th:text="${approve.getLanguage().getLanguageName()}">Language Name</td>              
 								 					<td>
-	<button  id="approveContributorId"  type="button"  th:value="${approve.getUserRoleId()}" class="btn btn-success approveContributor">Approve</button>
+	<button  id="approveContributorId"  type="button"  th:value="${approve.getUserRoleId()}" class="btn a-btn approveContributor">Approve</button>
 													   
 <!-- 	<a th:href="${'/addContributerRoleById/add/'+ approve.getUser().id}">Approve</a> 
  -->													
 													</td>
-						 			<td>
+						 			<!-- <td>
 											
-											<span th:if="approve.getStatus"></span>
+											<span th:if="approve.getStatus"></span> -->
 							<!-- 					
 							<button id="rejectContributionId" type="button" value="showAlert"  class="btn btn-success">Reject</button>
 							 -->					    
 									<!--   <a th:href="${'/addRejectRoleById/reject/' + approve.getUser().id}">Reject</a>  -->	
 									
 									
-									</td>  
+									<!-- </td>   -->
 					
 									            </tr>
 									            
@@ -413,33 +344,21 @@
 									</div>
 								</div>
 							</div> 	
-							
-			<script src="/js/jquery.min.js"></script>
-		 	<script type="text/javascript" charset="utf8" src="/datatables.js"></script>		 
-			<script>
-			
-			
-			$(document).ready( function () {
-			    $('#tableIdContributer').DataTable();
-			} );
-			
-			</script>
-						
 													 
 			 </div>
 	 							
-	 	<div class="tab-pane fade" id="Quality" role="tabpanel" aria-labelledby="nav-contact-tab">.
+	 	<div class="tab-pane fade a-tab-pane" id="Quality" role="tabpanel" aria-labelledby="nav-contact-tab">
 		
-		<h6  id="statusQuality" class="approve-success-msg" style="color: maroon; padding-left: 200px; padding-top: 20px"> </h6>
+		<!-- <h6  id="statusQuality" class="approve-success-msg" style="color: maroon; padding-left: 200px; padding-top: 20px"> </h6> -->
 				
-				<div class="container-fluid" style="padding-top: 30px">
+				<div class="container-fluid">
 				          	
 				          		<div class="row">
 				          	
 				         			 	<div class="col">
 				          	
 				          	
-				   			 	 <table id="tableIdQuality" class="table table-striped">
+				   			 	 <table id="tableIdQuality" class="table table-striped a-table-font">
 									            
 									            <thead>
 									            <tr>
@@ -460,7 +379,7 @@
 									                <td th:text="${quality.getUser().lastName}">Last name</td>
 									                <td th:text="${quality.getUser().address}">Address</td>
 					
-						 <td> 	<button id="approveQualityId" type="button"  th:value="${quality.getUserRoleId()}" class="btn btn-success approveQuality">Approve</button>
+						 <td> 	<button id="approveQualityId" type="button"  th:value="${quality.getUserRoleId()}" class="btn a-btn approveQuality">Approve</button>
 						 
 										 <!-- <a th:href="${'/addQualityRoleById/add/'+ quality.id}">Approve</a>
 										  -->
@@ -475,51 +394,50 @@
 								</div>
 							</div> 
 							
-								<script src="/js/jquery.min.js"></script>
-		 	<script type="text/javascript" charset="utf8" src="/datatables.js"></script>
-		 
-			<script>
-			
-			
-			$(document).ready( function () {
-			    $('#tableIdQuality').DataTable();
-			} );
-			
-			</script>	
-							
 							</div>					  
 				</div>							
 		 </div>
 	 </div>						
 </div>
+  	</div>		
+
 						
 		
 						
-			<div th:fragment="body-bottom-scripts">
-			
-			<script src="/js/jquery.min.js"></script>
-		 	<script type="text/javascript" charset="utf8" src="/datatables.js"></script> 
-		 
-			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-			
+			<!-- <div th:fragment="body-bottom-scripts"> -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="/s/js/main.js"></script>
+<script src="/js/ajaxSupport.js"></script>
 
-        	 <script src="static/js/bootstrap.bundle.min.js"></script>
-       		 <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$( document ).ready(function() {
+    $(document).ready( function () {
+    $('#tableId').DataTable();
+    $('#tableIds').DataTable();
+    /* $('#tableIdContributor').DataTable(); */
+    $('#tableIdMaster').DataTable();
+    $('#tableIdQuality').DataTable();
+    
+    $('#tableIdContributor').DataTable( {
+    	  columnDefs: [
+    	    {
+    	        targets: -1,
+    	        className: 'dt-center'
+    	    }
+    	  ]
+    	} );
+    
+    
+} );
+});
+</script>
+			    
 			
-				<script src="/js/jquery.min.js"></script>
-			    <script src="/s/js/jquery-3.2.1.min.js"></script>
-			    <script src="/s/js/popper.min.js"></script>
-			    <script src="/s/js/bootstrap.min.js"></script>
-			    <script src="/s/js/owl.carousel.min.js"></script>
-			    <script src="/s/js/bootstrap-datepicker.js"></script>
-			    <script src="/s/js/jquery.timepicker.min.js"></script>
-			    <script src="/s/js/jquery.waypoints.min.js"></script>
-			    <script src="/s/js/main.js"></script>
-			    <script src="/js/ajaxSupport.js"></script>
 			
-			
-			</div>
+			<!-- </div> -->
  </body>
 </html>

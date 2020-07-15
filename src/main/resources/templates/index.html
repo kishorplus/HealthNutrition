@@ -4,11 +4,14 @@
   <title>Health And Nutrition</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
   <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css" />
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <link rel="stylesheet" th:href="@{/css/main.css}" /> 
+  
   
 </head>
 <body>
-  <header>
+  <header class="fixed-top" >
+    <!-- <div class="row upper-bar" style="position:fixed;width:100%;"> -->
     <div class="row upper-bar">
     <div class="col-md-8 col-sm-12">
     </div>
@@ -25,13 +28,18 @@
 							</span>
     </div>
   </div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <a th:href="@{/}"> <img
+									src="/image/HandN-logo.jpg" href="www.google."
+									alt="Smiley face" height="80" width="120"> </img>
+								</a>
+								<span style="color: #1C7871;font-size: 2.5rem;">Health And <span style="color: #BF360D;font-size: 2.5rem;">Nutrition</span> </span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
+    <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="#">Features</a>
       <a class="nav-item nav-link" href="#">Pricing</a>
@@ -40,12 +48,14 @@
   </div>
 </nav>
   </header>
+  
+ <main>
   <!-- Intro Text with carousel -->
 <section id="intro" class="offset">
   <div class="row jumbotron p-4 p-md-5 text-white rounded">
-    <div class="col-md-6 px-0">
-      <h1 class="display-4 font-italic title"><span class="health">Health And </span><span class="nutrition">Nutrition</span> </h1>
-      <p class="lead my-3 light-txt">Advice on Maternal Nutrition, lactation, child's nutrition by a team of doctors,nutritionists and field officers with 10+ years of experience</p>
+    <div class="col-md-6 px-0 car-content">
+      <!-- <h1 class="display-4 font-italic title"><span class="health">Health And </span><span class="nutrition">Nutrition</span> </h1> -->
+      <p class="lead light-txt">Advice on Maternal Nutrition, lactation, child's nutrition by a team of doctors,nutritionists and field officers with 10+ years of experience</p>
       <p class="lead mb-0"><a href="#" class="font-weight-bold btn">Know More...</a></p>
     </div>
     <div class="col-md-6 px-0">
@@ -127,7 +137,115 @@
 </section>
 <!-- /Highlights -->
 
+<!-- Events  -->
+<section class="container">
+  <div class="d-flex align-items-center p-3 my-3 text-white-50 events-bg rounded shadow-sm">
+    <img class="mr-3" src="../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48" />
+    <div class="lh-100">
+      <h6 class="mb-0 text-white lh-100">Events</h6>
+    </div>
+  </div>
 
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+    <div th:each="event : ${events}">
+    <div class="row text-muted pt-3">
+        <div class="col-md-1 e-cal">
+          <i class="fas fa-calendar-alt "></i>
+          <p th:text="${event.date}"></p>
+        </div>
+        <div class="col-md-11">
+          <p class="small e-content">
+        <strong class="d-block text-gray-dark e-col" th:text="${event.eventname}">@username</strong>
+       <br/>
+       Venue : <span th:text="${event.venuename}">descirption</span>
+       <br/>
+       <span th:text="${event.description}">description</span>
+
+        
+      </p> 
+        </div>
+      </div>
+   	<div class="row text-muted border-bottom border-gray ">
+	      <div class="col-md-1"></div>
+	      <div class="col-md-11">
+	        <p class="small"><span class="e-col"> Contact Details : </span> 
+	        
+	       <span th:text="${event.contactperson}">descirption</span> | <span th:text="${event.contactnumber}">descirption</span> 
+	       | <span th:text="${event.email}">descirption</span> </p>
+	      </div>
+	    </div>
+    </div>
+    
+      
+    
+    
+    <small class="d-block text-right mt-3">
+      <a href="#">All updates</a>
+    </small>
+  </div>
+</section>
+
+
+
+<!-- Consultants -->
+<section class="marketing">
+ <div class="row">
+      <div class="col-lg-4" th:each="consantant : ${listofConsalatatnt}">
+        <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
+        <img th:src="${consantant.getUploadConsaltantImage()}" width="150" height="200" />
+        <h2 th:text="${consantant.getNameConsaltant()}">Heading</h2>
+        <p th:text="${consantant.getDescriptionConsaltant()}" class="text-muted">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row --> 
+</section>
+<!-- Events -->
+
+<!-- Video Display -->
+<section id="videos">
+  <div class='your-class'>
+  <div class="v-item card" th:each="tutorial : ${tutorials}">
+    <div class="embed-responsive embed-responsive-4by3">
+    <iframe class="embed-responsive-item" th:src="${tutorial.getVideo()}"></iframe>
+    </div>
+    <h6 th:text="${tutorial.getCategory()}">Video Category</h6>
+    <p th:text="${tutorial.getTopic()}" class="text-muted">Video Title</p>
+    <div th:text="${tutorial.getLan()}" class="lang"><span>Language</span></div>
+  </div>
+</div>
+<!-- <div>
+<button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="">Previous</button>
+  <button class="slick-next slick-arrow" aria-label="Next" type="button" style="">Next</button>
+</div> -->
+</section>
+
+<!-- Video Display -->
+
+<section id="testimonials">
+  <div class="testimonials-wrapper">
+    <div class="t-item" th:each="testimonial : ${listofTestimonial}">
+      <div class="row t-user">
+        <div class="col-md-4">
+          <div class="embed-responsive embed-responsive-4by3">
+          <iframe class="embed-responsive-item" th:src="${testimonial.getUploadTestiminial()}"></iframe>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <h6 th:text="${testimonial.getTestimonialName()}">Remya Nair</h6>
+          <p th:text="${testimonial.getTestimonialName()}">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
+      </div>
+      <div class="row t-content">
+        <div class="col-md-12">
+          <p th:text="${testimonial.getTestimoniaqlDescription()}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+<!-- Consultants -->
 <!-- Contact  -->
 <section id="contact" >
     <h2 class="main-heading text-center">Contact Us</h2>
@@ -171,6 +289,14 @@
     </div>
   <!-- </div> -->
 </section><!-- Contact end --> 
+ 
+ 
+ 
+ 
+ 
+ </main>
+ 
+
 
 <footer>
   <div class="row">
@@ -206,7 +332,7 @@
       <div class="col-6 col-md">
         <h5>About</h5>
         <ul class="list-unstyled text-small">
-          <li><a  href="#">Team</a></li>
+          <li><a  href="#">Teams</a></li>
           <li><a  href="#">Locations</a></li>
           <li><a  href="#">Privacy</a></li>
           <li><a  href="#">Terms</a></li>
@@ -223,5 +349,33 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	  $('.your-class').slick({
+		  slidesToShow: 4,
+		  slidesToScroll:2
+      
+	  });
+
+     $(".slick-prev").html('<i class="fas fa-chevron-left"></i>');
+     $(".slick-next").html('<i class="fas fa-chevron-right"></i>');
+
+     $('.testimonials-wrapper').slick({
+      slidesToShow: 2,
+      slidesToScroll:2,
+      // autoplay: true,
+      // autoplaySpeed: 2000,
+      arrows: false,
+      dots:true,
+    });
+     
+     $(".slick-dots li").html('');
+
+     
+	});
+</script>
+				
 </body>
 </html>
