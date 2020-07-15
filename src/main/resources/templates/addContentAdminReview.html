@@ -43,14 +43,14 @@
 	
 	       
 	          <div class="card-body">
-	            <h5 class="card-title text-center" style="color:maroon;"><i class="fas fa-align-justify"></i> Admin Review</h5>
+	            <h5 class="card-title text-center" style="color:maroon;"> Admin Review</h5>
 	            
 	                  <form th:action="@{/submitTutorial}" method="post">
 
 			               <table class="table table-bordered">
                                     <thead>
                                       <tr>
-                                        <th>Foss</th>
+                                        <th>Category</th>
                                     <td>
                       
 										  <span id="catId" th:each="catgoryName : ${tutorialComponenet}">
@@ -67,7 +67,7 @@
                                      <thead>
                                       <tr>
                                       
-                                        <th>Topic Name</th>
+                                        <th>Topic</th>
                                         <td>
 			                                          <span id="topicName" th:each="topic : ${tutorialComponenet}">  
 			   										<input class="form-control"  id="topicId" name="categoryName"  th:value="${topic.getTopic().getTopicname()}" readonly="readonly"></input>		
@@ -80,7 +80,7 @@
                                     </thead>
                                  <thead>
                                       <tr>
-                                        <th>Language Name</th>
+                                        <th>Language</th>
                                         <td>
 			                                  <span id="lan" th:each="language : ${tutorialComponenet}">  
 			                         					 <input class="form-control" id="lanId" name="languageName"  th:value="${language.getLan().getLanguageName()}" readonly="readonly"></input>		
@@ -367,7 +367,7 @@
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
-						        <h5 class="modal-title" id="exampleModalLabelOutlineView">View OutLine</h5>
+						        <h5 class="modal-title" id="exampleModalLabelOutlineView">View Outline</h5>
 						        <div class="modal-title">
 						        
 						         </div>
@@ -542,7 +542,7 @@
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
-						        <h5 class="modal-title" id="exampleModalLabelKeyWord">Upload KeyWord</h5>
+						        <h5 class="modal-title" id="exampleModalLabelKeyWord">Upload Keyword</h5>
 						        <div class="modal-title">
 						        
 						         </div>

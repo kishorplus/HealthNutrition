@@ -27,7 +27,7 @@
                                 <div th:if="${msg1}">
    								 <span th:text="${msg1}"></span>
  									 </div> </div></h5>
-	            <h5 class="card-title text-center a-card-title"> Category </h5>
+	            <h5 class="card-title text-center a-card-title">Add Category</h5>
 
             <form class="form-horizontal"  th:action="@{/savecategory}" onsubmit="return submitForm(this);" method="post"  >
 						    
@@ -36,7 +36,7 @@
 							
 						 <div class="form-group">
 						 
-							<label for="Category">Add Category</label>       
+							<label for="Category">Category</label>       
                						 <input type="text" class="form-control " id="Category" name="categoryname"  required="required"/>
 					
 					<span style="color: red;" th:if="${statusOutline}" >Catgory already exists. Choose a different one.</span>

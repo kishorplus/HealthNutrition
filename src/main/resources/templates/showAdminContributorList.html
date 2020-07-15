@@ -27,7 +27,7 @@
                                 <div th:if="${msg}">
    								 <span th:text="${msg}"></span>
  									 </div> </div></h5>
-	            <h5 class="card-title text-center" style="color:maroon; font-size: 30px"> <i class="fas fa-tasks"></i>Assign Tutorial Contribution Form </h5>
+	            <h5 class="card-title text-center" style="color:maroon; font-size: 30px">Assign Contributor Form </h5>
 	            
 	       	   <form class="form-horizontal"  th:action="@{/contribution_roles}" method="post"  onsubmit="return submitForm(this);">
  			
@@ -35,7 +35,7 @@
  					
  			<div class="form-group">  
 			              
-			              <label for="inputUserame">Add User</label>     
+			              <label for="inputUserame"></label>     
 			              <select id="contributorId" class="form-control" name="contributorName"  required="required" >
 								                       <option selected="selected">Select User</option>      
 								<span th:each="contributors: ${userByContributors}">
@@ -49,25 +49,25 @@
 					
 					   <div class="form-group">
 					    		
-					               <label for="lanId">Select Language</label>
+					               <label for="lanId"></label>
 					               
 					                    <select id="lanId" class="form-control" name="languageName"  required="required">
-					              
+					              <option selected="selected">Select Language</option> 
 					                	</select> 				                    
 						</div>
 					 	
 					 <div class="form-group">  
-			               <label for="catgoryByContributor">Add category</label>     
+			               <label for="catgoryByContributor"></label>     
 			              <select id="catgoryByContributor" class="form-control" name="contributorCategory"   required="required">
-								                           								                      
+								      <option selected="selected">Select Category</option>                      								                      
 						</select>					
 					</div> 
 				
 	           				<div class="form-group">
 	           				
-					               		<label for="inputTopic">Topic Name</label>
+					               		<label for="inputTopic"></label>
 					                  	<select id="inputTopic" class="form-control" name="inputTopic"  required="required">
-					              
+					              <option selected="selected">Select Topic</option>
 					                	</select> 
 					                	
 							 </div>

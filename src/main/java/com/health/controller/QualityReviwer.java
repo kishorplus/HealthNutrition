@@ -32,6 +32,13 @@ import ch.qos.logback.core.joran.conditional.ElseAction;
 public class QualityReviwer 
 {
 
+	public static final String RECORD_SAVED_SUCCESS_MSG = "Record Saved Successfully !" ;
+	public static final String DOMAIN_REV_STATUS_MSG = "Waiting for Domain Review" ;
+	public static final String ADMIN_REV_STATUS_MSG = "Waiting for Admin Review" ;
+	public static final String QUALITY_REV_STATUS_MSG = "Waiting for Quality Review" ;
+	public static final String WAITING_PUBLISH_MSG = "Waiting to be published" ;
+	public static final String NEED_IMPROVEMENT_MSG = "Need for improvement";
+	
 	@Autowired
 	private TutorialDao tutorialdao;
 	
@@ -148,23 +155,23 @@ public class QualityReviwer
 			else if(tutorial.getOutlineStatus()==1)
 			{ 
 				
-				model.addAttribute("statusOutline","Wating for Domain Review");
+				model.addAttribute("statusOutline",DOMAIN_REV_STATUS_MSG);
 			
 			
 			}else if (tutorial.getOutlineStatus()==3) 
 			{
 				
-				model.addAttribute("statusOutline","Waiting for Quality review");
+				model.addAttribute("statusOutline",QUALITY_REV_STATUS_MSG);
 				model.addAttribute("statusOutlineTrue",true);
 				
 				
 			}else if (tutorial.getOutlineStatus()==5) {
 				
-				model.addAttribute("statusOutline","Need To Improvement");
+				model.addAttribute("statusOutline",NEED_IMPROVEMENT_MSG);
 				
 			}else if(tutorial.getOutlineStatus()==4) {
 				
-				model.addAttribute("statusOutline","Waiting For Publish");
+				model.addAttribute("statusOutline",WAITING_PUBLISH_MSG);
 			}
 			
 			
@@ -180,18 +187,18 @@ public class QualityReviwer
 			}else if (tutorial.getScriptStatus()==1) 								
 			{
 
-				model.addAttribute("statusScript","Wating for Domain Review");
+				model.addAttribute("statusScript",DOMAIN_REV_STATUS_MSG);
 			
 				
 			}else if (tutorial.getScriptStatus()==3){
 				
-				model.addAttribute("statusScript","Waiting for Quality review");
+				model.addAttribute("statusScript",QUALITY_REV_STATUS_MSG);
 				model.addAttribute("statusScriptTrue", true);
 				
 			
 			}else if (tutorial.getScriptStatus()==4) {
 				
-				model.addAttribute("statusScript","Waiting for Publish");
+				model.addAttribute("statusScript",WAITING_PUBLISH_MSG);
 				
 			}
 			
@@ -199,7 +206,7 @@ public class QualityReviwer
 			else if (tutorial.getScriptStatus()==5) 
 			{
 				
-				model.addAttribute("statusScript","Need To Improvement");
+				model.addAttribute("statusScript",NEED_IMPROVEMENT_MSG);
 				
 			}
 			
@@ -215,13 +222,13 @@ public class QualityReviwer
 			else if (tutorial.getSlideStatus()==1)
 			{
 				
-				model.addAttribute("statusSlide","Waiting for Domain Review");
+				model.addAttribute("statusSlide",DOMAIN_REV_STATUS_MSG);
 			
 			}
 			else if (tutorial.getSlideStatus()==3)
 			{
 				
-				model.addAttribute("statusSlide","Waiting for Quality Review");
+				model.addAttribute("statusSlide",QUALITY_REV_STATUS_MSG);
 				model.addAttribute("statusSlideTrue", true);
 				
 			}
@@ -229,13 +236,13 @@ public class QualityReviwer
 			else if (tutorial.getSlideStatus()==4)
 			{	
 				
-				model.addAttribute("statusSlide","Waiting for Publish");
+				model.addAttribute("statusSlide",WAITING_PUBLISH_MSG);
 			
 			}
 			
 			else if (tutorial.getSlideStatus()==5) {
 				
-				model.addAttribute("statusSlide","Need To Improvement");
+				model.addAttribute("statusSlide",NEED_IMPROVEMENT_MSG);
 				
 			}
 			
@@ -250,18 +257,18 @@ public class QualityReviwer
 			}else if (tutorial.getVideoStatus()==2) 		
 			{
 
-				model.addAttribute("statusVideo","Wating for Domain Review");
+				model.addAttribute("statusVideo",DOMAIN_REV_STATUS_MSG);
 			
 			}
 			else if (tutorial.getVideoStatus()==1){
 				
 				
-				model.addAttribute("statusVideo","Wating for Admin Review");
+				model.addAttribute("statusVideo",ADMIN_REV_STATUS_MSG);
 
 				
 			}else if (tutorial.getVideoStatus()==3){
 				
-				model.addAttribute("statusVideo","Wating for Quality  Review");
+				model.addAttribute("statusVideo",QUALITY_REV_STATUS_MSG);
 				model.addAttribute("statusVideoTrue", true);
 				
 				
@@ -276,7 +283,7 @@ public class QualityReviwer
 			else if (tutorial.getVideoStatus()==5) {
 				
 				
-				model.addAttribute("statusVideo","Need To Improvement");
+				model.addAttribute("statusVideo",NEED_IMPROVEMENT_MSG);
 			}
 			
 			
@@ -292,14 +299,14 @@ public class QualityReviwer
 			else if(tutorial.getKeywordStatusSet()==1)
 			{
 				
-				model.addAttribute("statusKeyword","Waiting for Domain review");
+				model.addAttribute("statusKeyword",DOMAIN_REV_STATUS_MSG);
 							
 			
 			}
 			
 			else if (tutorial.getKeywordStatusSet()==3){
 				
-				model.addAttribute("statusKeyword","Wating for Quality  Review");
+				model.addAttribute("statusKeyword",QUALITY_REV_STATUS_MSG);
 				model.addAttribute("statusKeywordTrue",true);
 				
 				
@@ -308,12 +315,12 @@ public class QualityReviwer
 			
 			else if (tutorial.getKeywordStatusSet()==4){
 				
-				model.addAttribute("statusKeyword","Waiting for Publish");
+				model.addAttribute("statusKeyword",WAITING_PUBLISH_MSG);
 				
 			}else if(tutorial.getKeywordStatusSet()==5)
 			{
 				
-				model.addAttribute("statusKeyword", "Need To Improvement");
+				model.addAttribute("statusKeyword", NEED_IMPROVEMENT_MSG);
 				
 			}
 			
@@ -588,7 +595,7 @@ public class QualityReviwer
 					
 					  
 		
-					  System.err.println("Need To Improvement");
+					  System.err.println(NEED_IMPROVEMENT_MSG);
 					  
 					  List<String> scriptQuality = new ArrayList<String>();
 					  

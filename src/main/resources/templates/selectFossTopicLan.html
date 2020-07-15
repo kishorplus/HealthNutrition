@@ -25,13 +25,13 @@
                                 <div th:if="${msg}">
    								 <span th:text="${msg}"></span>
  									 </div> </div></h5>
-	            <h5 class="card-title text-center" style="color:maroon; font-size: 30px"> <i class="fas fa-tasks"></i> Tutorial Upload Index </h5>
+	            <h5 class="card-title text-center" style="color:maroon; font-size: 30px"> Tutorial Upload Form </h5>
 	            
 	       	   <form class="form-horizontal"  th:action="@{/submitTutorial}" method="post"  onsubmit="return submitForm(this);">
  			
  				
  					 <div class="form-group">  
-			                     <label for="inputUserame">Add Category</label>     
+			                     <label for="inputUserame"></label>     
 			              <select id="categoryContributor" class="form-control " name="categoryName"   required="required" >
 								               
 							 <option id="categoryContributor"  selected="selected">Select Category</option>  

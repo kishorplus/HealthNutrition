@@ -34,6 +34,11 @@ import com.health.service.tutorialService;
 public class AdminReviwer 
 {
 
+	public static final String RECORD_SAVED_SUCCESS_MSG = "Record Saved Successfully !" ;
+	public static final String DOMAIN_REV_STATUS_MSG = "Waiting for Domain Review" ;
+	public static final String ADMIN_REV_STATUS_MSG = "Waiting for Admin Review" ;
+	public static final String QUALITY_REV_STATUS_MSG = "Waiting for Quality Review" ;
+	
 	@Autowired
 	private  TutorialDao tutorialdao;
 	
@@ -83,7 +88,7 @@ public class AdminReviwer
 						else if(tutorial.getOutlineStatus()==1)
 						{ 
 					
-							model.addAttribute("statusOutline","Wating for Domain Review");
+							model.addAttribute("statusOutline",DOMAIN_REV_STATUS_MSG);
 							model.addAttribute("statusOutlineTrue",true);
 						} 
 						
@@ -97,7 +102,7 @@ public class AdminReviwer
 						}else if (tutorial.getScriptStatus()==1) 								
 						{
 
-							model.addAttribute("statusScript","Wating for Domain Review");
+							model.addAttribute("statusScript",DOMAIN_REV_STATUS_MSG);
 							model.addAttribute("statusScriptTrue", true);
 							
 						}
@@ -111,7 +116,7 @@ public class AdminReviwer
 						
 						{
 
-							model.addAttribute("statusSlide","Wating for Domain Review");
+							model.addAttribute("statusSlide",DOMAIN_REV_STATUS_MSG);
 							model.addAttribute("statsuSlideTrue", true);
 							
 						}
@@ -126,15 +131,15 @@ public class AdminReviwer
 						
 						{
 
-							model.addAttribute("statusVideo","Wating for Admin Review");
+							model.addAttribute("statusVideo",ADMIN_REV_STATUS_MSG);
 							model.addAttribute("statusVideoTrue", true);
 							
 						}else if (tutorial.getVideoStatus()==2){
 							
-							model.addAttribute("statusVideo","Waiting for Domain Review ");
+							model.addAttribute("statusVideo",DOMAIN_REV_STATUS_MSG);
 							
 						}else if (tutorial.getVideoStatus()==3) {
-							model.addAttribute("statusVideo","Waiting for Quality review");
+							model.addAttribute("statusVideo",QUALITY_REV_STATUS_MSG);
 							
 						}else if (tutorial.getVideoStatus()==5)
 						{
@@ -151,7 +156,7 @@ public class AdminReviwer
 						}else if (tutorial.getKeywordStatusSet()==1) 
 						
 						{
-							model.addAttribute("statusKeyword","Wating for Domain Review");	
+							model.addAttribute("statusKeyword",DOMAIN_REV_STATUS_MSG);	
 							model.addAttribute("statusKeywordTrue", true);
 						}
 						

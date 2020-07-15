@@ -53,6 +53,13 @@ import com.health.service.impl.catgoryServiceImpl;
 @Controller
 public class controllerContributer {
 
+	public static final String RECORD_SAVED_SUCCESS_MSG = "Record Saved Successfully !" ;
+	public static final String DOMAIN_REV_STATUS_MSG = "Waiting for Domain Review" ;
+	public static final String ADMIN_REV_STATUS_MSG = "Waiting for Admin Review" ;
+	public static final String QUALITY_REV_STATUS_MSG = "Waiting for Quality Review" ;
+	public static final String WAITING_PUBLISH_MSG = "Waiting for publish" ;
+	public static final String NEED_IMPROVEMENT_MSG = "Need for improvement";
+	
 	public static String uploadDirectoryCreation = "src/main/resources/static" + "/Media/content" + "/Creation/Slide";
 	
 	public static String uploadDirectoryCreationScripts = "src/main/resources/static" + "/Media/content" + "/Creation/Script";
@@ -229,7 +236,7 @@ public class controllerContributer {
 			  tutorialService.updateKeyword(keywordMessgae,status,user,topic,category);
 			  
 			  
-			  topicName.add("Update Keyword Successfully");
+			  topicName.add(RECORD_SAVED_SUCCESS_MSG);
   			  
 			return topicName;
 			  
@@ -286,7 +293,7 @@ public class controllerContributer {
 		  	
 			tutorialService.updateScript(substring,slideStatus,user,topic,category);
 			 
-			topicName.add("Update Script Successfully");
+			topicName.add(RECORD_SAVED_SUCCESS_MSG);
 		  
 			return topicName;
 			  
@@ -342,7 +349,7 @@ public class controllerContributer {
 	
 		tutorialService.updateSlide(slide,slideStatus,user,topic,category);
 	  
-			 topicName.add("Update Slide Successfully");
+			 topicName.add(RECORD_SAVED_SUCCESS_MSG);
   			  
 			return topicName;
 			  
@@ -433,7 +440,7 @@ public class controllerContributer {
 		   
 			
 		   
-		    topicName.add("Update Video Successfully");
+		    topicName.add(RECORD_SAVED_SUCCESS_MSG);
 	  			  
 			return topicName;
 			  
@@ -493,7 +500,7 @@ public class controllerContributer {
 		   tutorialService.updateVideo(videopath,videoStatus,user,topic,category);
 
 	   
-		    topicName.add("Update Video successfully");
+		    topicName.add(RECORD_SAVED_SUCCESS_MSG);
 	  			  
 			return topicName;
 			  
@@ -592,7 +599,7 @@ public class controllerContributer {
 								}else if (t.getOutlineStatus()==1)
 								{ 
 							
-									model.addAttribute("statusOutline","Wating for Domain Review");
+									model.addAttribute("statusOutline",DOMAIN_REV_STATUS_MSG);
 									model.addAttribute("statusOutlineTrue", true);
 									model.addAttribute("uploadIcon",true);
 									
@@ -601,7 +608,7 @@ public class controllerContributer {
 								}else if(t.getOutlineStatus()==3){
 									
 
-									model.addAttribute("statusOutline","Waiting for Quality Review");
+									model.addAttribute("statusOutline",QUALITY_REV_STATUS_MSG);
 									model.addAttribute("statusOutlineTrue", true);
 									
 							
@@ -609,7 +616,7 @@ public class controllerContributer {
 								}else if(t.getOutlineStatus()==5)
 								{
 									
-									model.addAttribute("statusOutline","Need To Improvement");
+									model.addAttribute("statusOutline",NEED_IMPROVEMENT_MSG);
 									model.addAttribute("statusOutlineTrue", true);
 						
 								}else if (t.getOutlineStatus()==4) {
@@ -631,18 +638,18 @@ public class controllerContributer {
 								}else if (t.getScriptStatus()==1) 	
 								{
 
-									model.addAttribute("statusScript","Wating for Domain Review");
+									model.addAttribute("statusScript",DOMAIN_REV_STATUS_MSG);
 									model.addAttribute("statusScriptTrue", true);
 									
 								}else if(t.getScriptStatus()==3){
 									
-									model.addAttribute("statusScript","Wating for Quality Review");
+									model.addAttribute("statusScript",QUALITY_REV_STATUS_MSG);
 									model.addAttribute("statusScriptTrue", true);
 						
 									
 								}else if(t.getScriptStatus()==4){
 									
-									model.addAttribute("statusScript","Wating for Publish");
+									model.addAttribute("statusScript",WAITING_PUBLISH_MSG);
 									model.addAttribute("statusScriptTrue", true);
 						
 									
@@ -667,25 +674,25 @@ public class controllerContributer {
 								
 								{
 
-									model.addAttribute("statusSlide","Wating for Domain Review");
+									model.addAttribute("statusSlide",DOMAIN_REV_STATUS_MSG);
 									model.addAttribute("statusSlideTrue", true);
 									
 								}else if(t.getSlideStatus()==3){
 									
-									model.addAttribute("statusSlide","Waiting for Quality Review");
+									model.addAttribute("statusSlide",QUALITY_REV_STATUS_MSG);
 									model.addAttribute("statusSlideTrue", true);
 									
 								}
 								
 								else if(t.getSlideStatus()==5){
 									
-									model.addAttribute("statusSlide","Need To Improvement");
+									model.addAttribute("statusSlide",NEED_IMPROVEMENT_MSG);
 									model.addAttribute("statusSlideTrue", true);
 									
 								}else if (t.getOutlineStatus()==4) {
 									
 
-									model.addAttribute("statusSlide","Wating for Publish");
+									model.addAttribute("statusSlide",WAITING_PUBLISH_MSG);
 									model.addAttribute("statusSlideTrue", true);
 									
 								}
@@ -710,27 +717,27 @@ public class controllerContributer {
 								}else if (t.getVideoStatus()==2) 
 								{ 
 
-										model.addAttribute("statusVideo","Wating for Domain Review");
+										model.addAttribute("statusVideo",DOMAIN_REV_STATUS_MSG);
 										model.addAttribute("statusVideoTrue", true);
 										
 								}				
 								else if (t.getVideoStatus()==3) 
 								{ 
 
-									model.addAttribute("statusVideo","Wating for Quality Review");
+									model.addAttribute("statusVideo",QUALITY_REV_STATUS_MSG);
 									model.addAttribute("statusVideoTrue", true);
 						
 								}
 								else if(t.getVideoStatus()==5)
 								{
 									
-									model.addAttribute("statusVideo","Need To Improvement");
+									model.addAttribute("statusVideo",NEED_IMPROVEMENT_MSG);
 									model.addAttribute("statusVideoTrue", true);
 								
 								}else if (t.getOutlineStatus()==4) 
 								 {
 									 
-									 model.addAttribute("statusVideo","Wating for Publish");
+									 model.addAttribute("statusVideo",WAITING_PUBLISH_MSG);
 									 model.addAttribute("statusVideoTrue", true);
 								} 
 								 
@@ -745,19 +752,19 @@ public class controllerContributer {
 								}else if (t.getKeywordStatusSet()==1) 
 								
 								{
-									model.addAttribute("statusKeyword","Wating for Domain Review");
+									model.addAttribute("statusKeyword",DOMAIN_REV_STATUS_MSG);
 									model.addAttribute("statusKeywordTrue", true);
 									
 								}else if (t.getKeywordStatusSet()==3) {
 									
-									model.addAttribute("statusKeyword","Waiting for Quality Review");
+									model.addAttribute("statusKeyword",QUALITY_REV_STATUS_MSG);
 									model.addAttribute("statusKeywordTrue", true);
 						
 									
 								}else if (t.getOutlineStatus()==4)
 								{
 									
-									model.addAttribute("statusKeyword","Wating for Publish");
+									model.addAttribute("statusKeyword",WAITING_PUBLISH_MSG);
 									model.addAttribute("statusKeywordTrue", true);
 									
 								}
@@ -765,7 +772,7 @@ public class controllerContributer {
 								else if(t.getKeywordStatusSet()==5)
 								{
 									
-									model.addAttribute("statusKeyword","Need To Improvement");
+									model.addAttribute("statusKeyword",NEED_IMPROVEMENT_MSG);
 									model.addAttribute("statusKeywordTrue", true);
 									
 								}

@@ -88,6 +88,8 @@ import com.health.service.impl.catgoryServiceImpl;
 @Controller
 public class ControllerHealth 
 {
+	static final String ROLE_APPROVE_SUCCESS_MSG = "Role Approved Successfully !" ;
+	static final String RECORD_SAVE_SUCCESS_MSG = "Record Saved Successfully !" ;
 
 	public static String uploadDirectoryConsaltant = "src/main/resources/static" + "/Media/content" + "/Consaltant";
 
@@ -177,6 +179,7 @@ public class ControllerHealth
 	@Autowired
 	private contributor_RoleDao contributorRoleDao;
 
+	
 	
 	@RequestMapping("/showListTutorial")
 	public String  showListTutorial(Model model, @RequestParam(value ="categoryName") String categoryname,@RequestParam(name="inputLanguage") String inputLanguage)		
@@ -622,7 +625,7 @@ public class ControllerHealth
 		
 		topicRepositarydao.save(topic);
 	
-		model.addAttribute("msg","Successfully Added Your Recored");
+		model.addAttribute("msg",RECORD_SAVE_SUCCESS_MSG);
 
 
 		return "addTopic";
@@ -822,7 +825,7 @@ public class ControllerHealth
 
 		System.err.println(uploadDirectory);
 
-		model.addAttribute("msg", "Successfully uploaded files");
+		model.addAttribute("msg", RECORD_SAVE_SUCCESS_MSG);
 
 		return "addConsaltant";
 		
@@ -1017,7 +1020,7 @@ public class ControllerHealth
 	
 		testimonialDao.save(testimonial);
 
-		model.addAttribute("msg", "Successfully uploaded Record ");
+		model.addAttribute("msg", RECORD_SAVE_SUCCESS_MSG);
 
 		return "addTestimonial";
 	}
@@ -1179,7 +1182,7 @@ public class ControllerHealth
 
 		eventDao.save(event1);
 		
-		model.addAttribute("msg", "Successfully Save Recored ");
+		model.addAttribute("msg", RECORD_SAVE_SUCCESS_MSG);
 
 
 		return "addEvent";
@@ -1335,7 +1338,7 @@ public class ControllerHealth
 		  }
 		categoryDao.save(category);
 		
-		model.addAttribute("msg1", "Successfully Added Your Recored");
+		model.addAttribute("msg1", RECORD_SAVE_SUCCESS_MSG);
 
 		return "addCategory";
 
@@ -1495,7 +1498,7 @@ public class ControllerHealth
 		categoryTutorialDao.save(cate_tutorial);
 
 
-		model.addAttribute("msg", "Successfully uploaded files ");
+		model.addAttribute("msg", RECORD_SAVE_SUCCESS_MSG);
 
 		return "adduploadTutorial";
 
@@ -2130,7 +2133,7 @@ public class ControllerHealth
 		  questionreposiatryDao.save(question);
 		  
 		  
-			model.addAttribute("msg","Succesfully Save Recored");
+			model.addAttribute("msg","Record saved successfully");
 
 			
 		  System.out.println(substring);
@@ -2248,7 +2251,7 @@ public class ControllerHealth
 					
 			System.err.println(language);
 			
-			model.addAttribute("msgSuccefull","Successfully Added Your Recored");
+			model.addAttribute("msgSuccefull",RECORD_SAVE_SUCCESS_MSG);
 
 			return "addlanguage";
 
@@ -2384,7 +2387,7 @@ public class ControllerHealth
 			role.setName(rolename);	
 			rolerespositary.save(role);
 
-			model.addAttribute("msgSucuploadContributerTutorialcefull","Successfully Added Your Recored");	
+			model.addAttribute("msgSucuploadContributerTutorialcefull",RECORD_SAVE_SUCCESS_MSG);	
 
 			return "addNewRole";
 		}
@@ -2411,7 +2414,7 @@ public class ControllerHealth
 			userRole.setStatus(status);	
 			userRoleRepositary.save(userRole);
 		
-			topicName.add("Approve Role Successfully");
+			topicName.add(ROLE_APPROVE_SUCCESS_MSG);
 						
 			return topicName;
 
@@ -2436,7 +2439,7 @@ public class ControllerHealth
 			userRole.setStatus(status);	
 			userRoleRepositary.save(userRole);
 		
-			topicName.add("Approve Role Successfully");
+			topicName.add(ROLE_APPROVE_SUCCESS_MSG);
 						
 			return topicName;
 
@@ -2460,7 +2463,7 @@ public class ControllerHealth
 			userRole.setStatus(status);	
 			userRoleRepositary.save(userRole);
 		
-			topicName.add("Approve Role Successfully");
+			topicName.add(ROLE_APPROVE_SUCCESS_MSG);
 						
 			return topicName;
 
@@ -2484,7 +2487,7 @@ public class ControllerHealth
 			userRole.setStatus(status);	
 			userRoleRepositary.save(userRole);
 		
-			topicName.add("Approve Role Successfully");
+			topicName.add(ROLE_APPROVE_SUCCESS_MSG);
 						
 			return topicName;
 
@@ -2508,7 +2511,7 @@ public class ControllerHealth
 			userRole.setStatus(status);	
 			userRoleRepositary.save(userRole);
 		
-			topicName.add("Approve Role Successfully");
+			topicName.add(ROLE_APPROVE_SUCCESS_MSG);
 						
 			return topicName;
 
@@ -2703,7 +2706,7 @@ public class ControllerHealth
 
 		tutorialDao.save(tutorialDaoSave);
 		
-		model.addAttribute("msg","Succesfully Save Recored ");
+		model.addAttribute("msg",RECORD_SAVE_SUCCESS_MSG);
 			
 			return "showAdminContributorList";
 		
