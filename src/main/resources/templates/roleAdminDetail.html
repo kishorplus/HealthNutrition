@@ -36,9 +36,15 @@ function submitA() {
 <body>
 <!-- 
 <div th:replace="common/header :: navbar" /> -->
-<div th:replace="common/header :: c_header"></div>
+<!-- <div th:replace="common/header :: c_header"></div> --> 
 
-  <div sec:authorize="hasAnyAuthority('Contributer')">
+<div style="display:flex">
+<div>
+<div th:replace="common/sidebar :: contributor_sidebar"></div>
+</div>
+
+<div style="width:100%;">
+<div sec:authorize="hasAnyAuthority('Contributer')">
 
  <div class="row">
 	      <div class="col-lg-10 col-xl-9 mx-auto">
@@ -114,7 +120,7 @@ function submitA() {
 </div>
 		<!-- Only Admin Can See detail -->
 		
-		<div sec:authorize="hasAnyAuthority('Admin')">
+<div sec:authorize="hasAnyAuthority('Admin')">
 		    
 	
 <div class="#">
@@ -129,7 +135,7 @@ function submitA() {
 	 <span th:text="${msg}"></span>
  </div> </div>
  
-<div th:replace="common/sidebar :: nav_sidebar"></div>
+<!-- <div th:replace="common/sidebar :: nav_sidebar"></div> -->
 
 
 <div class="row" style="padding-left: 50px;"> 
@@ -936,6 +942,12 @@ function submitA() {
 
 
 </div>
+
+</div>
+</div>
+
+
+  
 
 	 <script src="/js/jquery.min.js"></script>
     <script src="/s/js/jquery-3.2.1.min.js"></script>
