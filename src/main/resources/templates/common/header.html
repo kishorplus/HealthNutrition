@@ -46,8 +46,16 @@
 		border: 1px solid #1C7871;
 		transition: 0.3s;
 	}
-
-
+	.top-nav  {
+		margin-right:30px;
+		margin-top : 30px;
+		color:red;
+	}
+	.top-nav span{
+		border:1px solid #1C7871;
+		padding : 10px;
+		border-radius: 10px; 
+	}
 </style>
 
 
@@ -68,9 +76,12 @@
   <i class="fas fa-user" style="color: #1C7871;margin-right: 10px!important;"></i> Logged User : <span sec:authentication="name"></span> 
 </div>
 <div class="row">
-		<div class="col">
-		<a sec:authorize="isAnonymous()" th:href="@{/login}">Login|New User</a>
-		<a sec:authorize="isAuthenticated()" th:href="@{/adminDeatail}" class="h-nav">MY ACCOUNT</a>|
+		<div class="col-md-12">
+		<!-- <a sec:authorize="isAnonymous()" th:href="@{/login}">Logins|New User</a> -->
+		<div class="top-nav" sec:authorize="isAnonymous()">
+		<span><a th:href="@{/}">Homepage</a></span>
+		</div>
+		<a sec:authorize="isAuthenticated()" th:href="@{/adminDeatail}" class="h-nav">MY ACCOUNT</a>
 		<a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="h-nav">LOGOUT</a>
 </div>
 </div>

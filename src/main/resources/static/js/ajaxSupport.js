@@ -18,8 +18,7 @@ $( document ).ready(function() {
 
 	$('#approveContributorId').on('show.bs.tab',function () {
 		location.reload();
-		
-		
+				
 	});
 	
 	$('#KeywordStatusAccept').on('hidden.bs.modal',function () {
@@ -1162,13 +1161,13 @@ $( document ).ready(function() {
 						  
 					});
 			
-			/*load By Contributor user only //Contributor assign from 	*/
+			/*load By Contributor user only contributor assign from 	*/
 	
 	
 			$('#contributorId').click(function()			
 			{	
 				
-				var userContributor=$(this).find(':selected').val();
+					      var userContributor=$(this).find(':selected').val();
 
 								$.ajax({
 									type: "GET",
@@ -1206,7 +1205,7 @@ $( document ).ready(function() {
 			
 	$('#lanId').click(function()			
 	{			
-							var languageName=$("#lanId :selected").text();
+							var languageName=$("#option :selected").text();
 					
 								$.ajax({
 											type: "GET",
@@ -1239,20 +1238,30 @@ $( document ).ready(function() {
 						});	
 					
 						$('#catgoryByContributor').click(function()			
-						{			
+						{		
+							   // var languageName = $form.find( '#lanId' ).val(),
+							
+							
 								var category=$(this).find("option:selected").val();
-	
+								var languageName = $('#lanId').val();
+								var userName= $('#contributorId').val();
+								
+								
+								
+								//	var languageName=$("option :lanId").text();
+								
+								
 									$.ajax({
 													 type: "GET",
 										       		 url: "/loadTopicByCategory",
-										       		 data: { "id": category },
+										       		 data: { "id": category, "lanId" : languageName,"userName": userName },
 										       		 contentType: "application/json",
 										       		 success: function (result){
 						
-										       			 1	
+										       			
 										       			 var html = '';
 										       			 var len = result.length;
-											             html += '<option value="0">Select Topic</option>';
+											            
 											             for (var i = 0; i < len; i++) {
 											             html += '<option value="' + result[i] + '">'
 											               + result[i]
@@ -3062,7 +3071,6 @@ $( document ).ready(function() {
 					 else if(vals == '1')
 					 {
 				
-						 
 						 	 $.ajax({
 									
 								  	type: "GET",

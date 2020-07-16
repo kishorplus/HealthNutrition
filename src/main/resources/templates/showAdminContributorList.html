@@ -10,12 +10,20 @@
  	 	<link rel="stylesheet" href="css/bootstrap.min.css"/> 
 
 </head>
+
+<script type="text/javascript">
+
+$('select').selectpicker();
+
+
+</script>
+
   <body>
   		<!-- <div th:replace="common/trail :: navbar1"/> -->
   		
   		<!-- <div class="container" style="padding-top: 150px"> -->
   		<div style="display:flex;">
-		<div th:replace="common/sidebar :: nav_sidebar"></div>
+		<!-- <div th:replace="common/sidebar :: nav_sidebar"></div> -->
 
 	    <div class="row" style="width:100%;">
 	      <div class="col-lg-10 col-xl-9 mx-auto">
@@ -62,16 +70,22 @@
 								      <option selected="selected">Select Category</option>                      								                      
 						</select>					
 					</div> 
+					
 				
 	           				<div class="form-group">
 	           				
-					               		<label for="inputTopic"></label>
+						<!-- merge conflict starts -->
+					               		<!-- <label for="inputTopic"></label>
 					                  	<select id="inputTopic" class="form-control" name="inputTopic"  required="required">
-					              <option selected="selected">Select Topic</option>
+					              <option selected="selected">Select Topic</option> -->
+					              <!-- merge conflict ends -->
+	           				 
+	           				<label for="catgoryByContributor">Select Topic</label> 
+					                  	<select  id="inputTopic" class="form-control select selectpicker" name="inputTopic"  required="required" multiple="multiple">
 					                	</select> 
 					                	
 							 </div>
-
+							 
 
  				<div class="form-group">
 						 

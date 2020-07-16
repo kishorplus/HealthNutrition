@@ -13,12 +13,18 @@
 
 <script>
 					
-					function submitForm() {
+					/* function submitForm() {
 						  return confirm('Do you really want to submit the form?');
 						  
 						  alert("Submit form succefully");
-						}
+						} */
 					</script>
+					
+<style>
+.cons_record{
+	display : none;
+}
+</style>					
 </head>
 
   <body>
@@ -27,7 +33,8 @@
   		
 <!-- 	<div class="container" style="padding-top: 150px"> -->
 	<div style="display:flex;">
-		<div th:replace="common/sidebar :: nav_sidebar"></div>
+		<!-- <div th:replace="common/sidebar :: nav_sidebar"></div> -->
+		<div th:replace="common/sidebar :: contributor_sidebar"></div>
 	
 	    <div class="row" style='width:100%;'>
 	      <div class="col-lg-10 col-xl-9 mx-auto">
@@ -80,6 +87,61 @@
   				 
           </div>
         </div>
+        <div>
+        
+      	<p>
+<button type="button" class="btn btn-success" id="show_cons">Success</button>
+</p>
+<div id="cons_record" >
+    <div class="container" style="padding-top: 120px">
+          	
+          	     <div>
+					        <h2>Consalantant List</h2>
+					        
+					        <table id="tableId" class="table table-striped">
+					      
+					        <thead class="">
+					         
+					            <tr>
+					                <th>Id</th>
+					                <th>Name</th>
+					                <th>Description</th>
+					          	    <th>Image</th>
+					         
+					                <th>Edit</th>
+					                <th>Delete</th>
+					            </tr>
+					            
+					            
+					            </thead>
+					            <tbody>					            	
+					            
+					            
+					            		<!-- <tr th:each="product : ${products}">
+						                <td th:text="${product.id}">description</td>  
+						                <td th:text="${product.nameConsaltant}">descirption</td>
+						                <td th:text="${product.descriptionConsaltant}">descirption</td>
+						
+						                <td> 
+						                  	<img th:src="${product.uploadConsaltantImage}"  width="120" height="180"/>
+						                
+						                </td>  
+					   
+					                <td><a  th:href="${'productconsalantant/edit/' + product.id}">Edit</a></td>
+					                
+					                
+					                
+					                <td><a onclick="submitForm()" th:href="${'/consalantant/delete/' + product.id}">Delete</a></td>
+      
+					            </tr> -->
+					            </tbody>
+					            
+					        </table>
+					    </div>
+         
+			</div> 
+</div>
+        </div>
       </div>
     </div>
   </div>
@@ -87,10 +149,91 @@
 			<div th:fragment="body-bottom-scripts">
 
         	 <script src="static/js/bootstrap.bundle.min.js"></script>
-       		 <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+       		 <!-- <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+			<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+			
+			<script type="text/javascript">
+			$(document).ready(function(){
+				  
+				function submitForm() {
+					  return confirm('Do you really want to Delete the record');
+					  alert("Delete  Recored succefully");
+					}
+				
+				
+				$("#show_cons").click(function(){
+					 $('#tableId').DataTable();
+					$.ajax({
+			   		  	 type: "GET",
+			       		 url: "/displayConsultants",
+			       		 /* data: { "id": "1"} */
+			       		 contentType: "application/json",
+			       		 success: function (result){
+			       		 alert('success!');
+			       		 console.log(result);
+			       		 $('.cons_record').show();
+			       		/*  console.log(result[0]);
+			       		console.log(result[0].id);
+			       		console.log(result[0].nameConsaltant); */
+			       		var id = result[0].id;
+			       		var name = result[0].nameConsaltant;
+			       		var desc = result[0].descriptionConsaltant;
+			       		var img = result[0].uploadConsaltantImage;
+			       		var editLink = 'productconsalantant/edit/' + id;
+			       		var elink = '<a href="'+editLink+'">Edit</a>';
+			       		var deleteLink = '/consalantant/delete/' + id;
+			       		var dlink = '<a onclick="submitForm()" href="'+deleteLink+'">Delete</a>';
+			       		
+			       		var markup = "<tr><td>" + id + "</td><td>" + name + "</td><td>"+desc+"</td><td>"+"image"+"</td><td>"+elink+"</td><td>"+dlink+"</td></tr>";
+			       		
+			       		console.log(elink);
+			       		console.log(dlink);
+			       		/* console.log(ilink); */
+			       		
+			       		console.log(markup);
+			            $("table tbody").append(markup);
+			       		 
+							},
+							
+								error : function(err){
+							console.log("not working. ERROR: "+JSON.stringify(err));
+						}
+					});
+				    
+				  });
+				
+				
+				
+				});
 			
 			
-			
+			/* $( "#show_cons" ).click(function() {
+				  
+				alert('Hi again');
+
+				$.ajax({
+			   		  	 type: "GET",
+			       		 url: "/show_participantDeatail",
+			       		 data: { "id": categoryid,"lanid": language}
+			       		 contentType: "application/json",
+			       		 success: function (result){
+			       		 alert('success!');
+			       		 
+							},
+							
+								error : function(err){
+							console.log("not working. ERROR: "+JSON.stringify(err));
+						}
+						
+						
+					});
+				
+				}); */
+			</script>
 			</div>
  </body>
 </html>
