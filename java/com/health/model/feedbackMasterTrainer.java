@@ -22,7 +22,16 @@ public class feedbackMasterTrainer {
 	private String description;
 	private String datetime; 
 	private String feedbackTitle;
+	private String path;
 	
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
 	public String getFeedbackTitle() {
 		return feedbackTitle;
 	}

@@ -385,39 +385,35 @@ public class controllerContributer {
 			  System.err.println("u"+ user+"t"+topic+"c"+category);
 
 			  String abc = uploadDirectoryCreation + "/" + categorname + "/"+ lanId + "/"+ topicid;
-
-			  new File(abc).mkdirs();
-
-			  StringBuilder fileNames = new StringBuilder();
-			  for (MultipartFile file :
-				  graphicsFile) { Path fileNameAndPath = Paths.get(abc,
-			  file.getOriginalFilename()); fileNames.append(file.getOriginalFilename() + " ");
-			  topicName.add(file.getOriginalFilename());
-
-			  try {
-
-
-				  Files.write(fileNameAndPath, file.getBytes());
-
-			  fileconversion =fileNameAndPath.toString();
-
-
-			  } catch (IOException e) { e.printStackTrace(); } }
-
-
-			  String substring = fileconversion.substring(26);
 			  
-			  
-			  System.out.println(" path name"+substring);
-			  
-			  
-			  String slide = substring.toString();
+				
+				new File(abc).mkdir();
 
+				StringBuilder fileNames = new StringBuilder();
+				for (MultipartFile file : graphicsFile) {
+					Path fileNameAndPath = Paths.get(abc, file.getOriginalFilename());
+					fileNames.append(file.getOriginalFilename() + " ");
 
-					int slideStatus = 1;
+					try {
 
-			tutorialService.updateSlide(slide,slideStatus,user,topic,category);
-			topicName.add(slide);
+						Files.write(fileNameAndPath, file.getBytes());
+						fileconversion = fileNameAndPath.toString();
+
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+
+				String substring = fileconversion.substring(26);
+
+				String var = substring.toString();
+				
+				int status=1;
+
+			tutorialService.updateSlide(var,status,user,topic,category);
+			
+			topicName.add(var);
+			
 				 topicName.add(RECORD_SAVED_SUCCESS_MSG);
 
 
@@ -425,6 +421,11 @@ public class controllerContributer {
 
 			  
 		 }
+
+		  
+		  
+		  
+		  
 		  
 
 		/* Here is code to generate image from video and upload Video */

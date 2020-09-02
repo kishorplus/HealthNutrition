@@ -43,6 +43,8 @@ public class HealthNutrition implements CommandLineRunner {
 		new File(controllerContributer.uploadDirectoryCreation).mkdirs();
 		new File(controllerContributer.uploadDirectoryCreationScripts).mkdirs();
 		new File(controllerContributer.uploadDirectoryCreationVideo).mkdirs();
+		new File(ControllerHealth.uploadDirectoryFeedback).mkdirs();
+		
 		
 		
 		
