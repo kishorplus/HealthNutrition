@@ -64,6 +64,7 @@ public class Tutorial
 	private int outline_status_id;
 	
 	
+	
 	/*
 	 * @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
 	 * 
@@ -122,6 +123,43 @@ public class Tutorial
 	private String keyword;
 	private int keywordStatusSet;
 	private long keyword_user_id;
+	
+	
+	private String graphics;
+	private int graphicsStatus;
+	private long graphicsUserid;
+
+	public int getOutline_status_id() {
+		return outline_status_id;
+	}
+
+	public void setOutline_status_id(int outline_status_id) {
+		this.outline_status_id = outline_status_id;
+	}
+
+	public String getGraphics() {
+		return graphics;
+	}
+
+	public void setGraphics(String graphics) {
+		this.graphics = graphics;
+	}
+
+	public int getGraphicsStatus() {
+		return graphicsStatus;
+	}
+
+	public void setGraphicsStatus(int graphicsStatus) {
+		this.graphicsStatus = graphicsStatus;
+	}
+
+	public long getGraphicsUserid() {
+		return graphicsUserid;
+	}
+
+	public void setGraphicsUserid(long graphicsUserid) {
+		this.graphicsUserid = graphicsUserid;
+	}
 
 	public Tutorial(){
 		super();

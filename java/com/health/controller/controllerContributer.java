@@ -27,10 +27,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.health.domain.security.UserRole;
 import com.health.model.Category;
+import com.health.model.District;
 import com.health.model.Tutorial;
 import com.health.model.User;
 import com.health.model.commentOnComponent;
 import com.health.model.language;
+import com.health.model.state;
 import com.health.model.topic;
 import com.health.repository.CategoryDao;
 import com.health.repository.RoleRepository;
@@ -40,6 +42,7 @@ import com.health.repository.UserRoleRepositary;
 import com.health.repository.commentOnComponentDao;
 import com.health.repository.contributor_RoleDao;
 import com.health.repository.languagedao;
+import com.health.repository.stateRespositary;
 import com.health.repository.topicRepositary;
 import com.health.service.categoryService;
 import com.health.service.tutorialService;
@@ -81,7 +84,6 @@ public class controllerContributer {
 	@Autowired
 	private topicRepositary topicRepositarydao;
 
-
 	@Autowired
 	private RoleRepository rolerespositary;
 
@@ -109,6 +111,7 @@ public class controllerContributer {
 
 	@Autowired
 	private CategoryDao categoryDao;
+	
 
 	@RequestMapping("/addContributerLanguage")
 	public String RevokeRequest(Model model)
@@ -359,6 +362,70 @@ public class controllerContributer {
 			return topicName;
 
 		 }
+		  
+		  
+	/* Here is code for graphics upload */
+
+		  @RequestMapping(value = "/graphicsUpload",method =RequestMethod.POST)
+		  public @ResponseBody List<String>
+		  getGraphicsUpload(@RequestParam(value = "uploadGraphicUpload") MultipartFile [] graphicsFile,
+				  @RequestParam(value = "categoryid") String categorname,
+				  @RequestParam(value = "topicid") String topicid,
+				  @RequestParam(value = "lanId") String lanId,Model model,Authentication authentication)
+		{
+			  
+
+			  
+			  List<String> topicName = new ArrayList<String>();
+
+			  User user=userRepository.findByUsername(authentication.getName());
+			  topic topic = topicRepositaryDao.findBytopicname(topicid);
+			  Category category=categoryDao.findBycategoryname(categorname);
+
+			  System.err.println("u"+ user+"t"+topic+"c"+category);
+
+			  String abc = uploadDirectoryCreation + "/" + categorname + "/"+ lanId + "/"+ topicid;
+
+			  new File(abc).mkdirs();
+
+			  StringBuilder fileNames = new StringBuilder();
+			  for (MultipartFile file :
+				  graphicsFile) { Path fileNameAndPath = Paths.get(abc,
+			  file.getOriginalFilename()); fileNames.append(file.getOriginalFilename() + " ");
+			  topicName.add(file.getOriginalFilename());
+
+			  try {
+
+
+				  Files.write(fileNameAndPath, file.getBytes());
+
+			  fileconversion =fileNameAndPath.toString();
+
+
+			  } catch (IOException e) { e.printStackTrace(); } }
+
+
+			  String substring = fileconversion.substring(26);
+			  
+			  
+			  System.out.println(" path name"+substring);
+			  
+			  
+			  String slide = substring.toString();
+
+
+					int slideStatus = 1;
+
+			tutorialService.updateSlide(slide,slideStatus,user,topic,category);
+			topicName.add(slide);
+				 topicName.add(RECORD_SAVED_SUCCESS_MSG);
+
+
+				return topicName;
+
+			  
+		 }
+		  
 
 		/* Here is code to generate image from video and upload Video */
 
@@ -593,12 +660,14 @@ public class controllerContributer {
 			}
 
 
-			/* Tutorial index page redirected to upload individual content page */
+		/* Tutorial index page redirected to upload individual content page */
 
 		@RequestMapping("/submitTutorial")
-		public String submitTutorial(Model model,@RequestParam(value="categoryName") String categoryId,@RequestParam(name="inputTopic") String inputTopic,@RequestParam(name="inputLanguage") String inputLanguage,Authentication authetication)
+		public String submitTutorial(Model model,@RequestParam(value="categoryName") String categoryId,@RequestParam(name="inputTopic") String inputTopic,@RequestParam(name="inputLanguage") String inputLanguage,Authentication authetication)	
 		{
-
+		
+		      	List<Category> catAll=(List<Category>) categoryDao.findAll();
+				
 				Category catgory=categoryDao.findBycategoryname(categoryId);
 				topic topic=topicRepositarydao.findBytopicname(inputTopic);
 				com.health.model.language language=languageDao.findBylanguageName(inputLanguage);
@@ -886,11 +955,11 @@ public class controllerContributer {
 			model.addAttribute("CommentMsg",commentComponent);
 
 
-
-
 		}
 
+
 				model.addAttribute("tutorial",tutorial.get(0));
+				model.addAttribute("catAll",catAll);
 				model.addAttribute("tutorials",tutorial);
 
 
@@ -906,9 +975,51 @@ public class controllerContributer {
 
 				return "addContent";
 
+				
 			}
 
-				/* write code for keyword view  addcontent*/
+		/* Here is code for pre Requistic */
+		
+		
+		
+		@Autowired
+		private stateRespositary stateRespositaryDao;
+		
+		
+		@Autowired
+		private languagedao languagedao; 
+		
+		
+		@RequestMapping("/loadTopicByPreRequistic")
+		public @ResponseBody List<String> getPrerequistic(@RequestParam(value = "id") int id,@RequestParam(value="lanId") String lanName) {
+
+			
+		ArrayList<String> file=new ArrayList<String>();	
+
+		Category category=categoryDao.findByid(id);
+		
+		language languaage=languagedao.findBylanguageName(lanName);
+		
+		
+		List<Tutorial> tutorial=tutorialDao.findByCatAndLan(category, languaage);
+		
+		for (Tutorial tutorial2 : tutorial){
+			
+			 file.add(tutorial2.getTopic().getTopicname());
+			
+		}
+		
+		return file;
+
+		}
+		
+		
+		
+		
+		
+		
+		
+		/* write code for keyword view  addcontent*/
 
 		@RequestMapping("/viewKeyword")
 		  public @ResponseBody List<String>
@@ -1086,7 +1197,28 @@ public class controllerContributer {
 			return "listTutorialContributorAccepOrNeedToImprovement";
 
 		}
+		
 
+		// Here is code for pre-requistic
+		
+		@RequestMapping("/savePathTutorial")
+		public String savePathTutorial(@RequestParam(value="catAllID") String categoryName,@RequestParam(value="inputTopicPre") String[] inputTopic)		
+		{
+				System.err.println(inputTopic.toString());
+				System.err.println(categoryName);
+			
+				
+			return "listTutorialContributorAccepOrNeedToImprovement";
+			
+
+		}
+		
+		
+		
+		
+		
+						
+		
 
 
 

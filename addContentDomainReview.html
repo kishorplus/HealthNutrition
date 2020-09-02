@@ -126,6 +126,7 @@
 										</td>
                               						</tr>
                                     </thead> -->
+<<<<<<< Updated upstream:src/main/resources/templates/addContentDomainReview.html
 
 							</table>
 
@@ -586,6 +587,377 @@
 													name="keywordViewInDomainKeyword"
 													id="keywordViewInDomainKeyword" rows="10"
 													required="required" readonly="readonly">
+
+               
+                            </table>
+                                
+                            <table class="table table-bordered" style="background:OldLace;">
+                            
+                            
+                            
+                            <thead>
+                                      <tr>
+                                          
+		                                          <th>Sr No</th>
+		                                          <th>Component</th> 
+		                                          <th>Status</th>
+		                                          <th>User</th>  
+		                                          <th>
+		                                          <i style="color: purple; width:30px " class="fas fa-cogs"></i>
+		                                          </th>
+		                
+                                        </tr>                         
+                             </thead>
+
+                                      <tbody>
+                                      <tr>  
+		                                          <td>1</td>
+		                                          <td>Outline</td>
+		                                          <td>	                                          
+		                                              <span th:each="statusOutline : ${statusOutline}">  
+				                                    	<span style="color:green;" th:text="${statusOutline}">Pending</span>
+													</span>	
+		                        	
+												 </td>
+		                                          <th>-</th>
+		                                          <th>  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#outlineViewModelDomain" data-whatever="@mdo"><i class="fas fa-eye"></i>
+		                                          		</button>
+		                                          		
+		                                          		<span  th:if="${statusOutlineTrue}">
+		                                          		<button type="button" class="btn btn-info" data-toggle="modal"  data-target="#OutlineAcceptOrNeedTiImprovemenet" data-whatever="@mdo"><i class="fas fa-check-circle"></i>	                             
+		                                          		</button>
+		                                          		</span>
+		                                          </th>
+
+                                      </tr>
+                                       <tr>
+                                            
+		                                          <td>2</td>
+		                                          <td>Script</td>
+		                                      		 <td>
+		                                  
+		                                              <span th:each="statusScript :${statusScript}">  
+				                                    	<span style="color:green;" th:text="${statusScript}">Pending</span>
+														</span>	
+		                                          
+		                        	
+												 </td>
+		                                          <th>-</th>
+		                                          <th> 
+		                                      
+		                                          
+		                                        <span id="scriptIdDomain" th:each="scriptpath : ${tutorialComponenet}">
+		                                     
+										  			<a class="btn btn-info" target="_blank" id="cat"  name="categoryName"  th:href="${'/'+scriptpath.getScript()}" ><i class="fas fa-eye"></i></a>		
+								
+										 		</span>     
+		                                          
+		                                         <!--  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewScriptIdDomain" data-whatever="@mdo"><i class="fas fa-eye"></i> </button>
+		                             			 -->
+												<!-- <span  th:if="${statusScript == 'Wating for Domain Review'}"><button type="button" class="btn btn-info" data-toggle="modal"  data-target="#scriptStatusAccept" data-whatever="@mdo"><i class="fas fa-check-circle"></i>
+		                                          </button></span> -->
+									
+											<span  th:if="${statusScriptTrue}"><button type="button" class="btn btn-info" data-toggle="modal"  data-target="#scriptStatusAcceptDomain" data-whatever="@mdo"><i class="fas fa-check-circle"></i>
+		                                     </button></span>
+						
+		                                          </th>
+    
+                                     </tr>
+
+                                     	 
+                               <tr>
+                                            
+		                              			 <td>3</td>
+		                                         <td>Video</td>
+		                                		 <td>		                                  
+		                                              <span th:each="statusVideo : ${statusVideo}">  
+				                                    	<span style="color:green;" th:text="${statusVideo}">Pending</span>
+													 </span>	
+												 </td>
+		                                
+		                                          <th>-</th>
+		                                          <th> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#videoViewIdDomain" data-whatever="@mdo"><i class="fas fa-eye"></i> </button> 
+		                                    			 <span  th:if="${statusVideoTrue}">
+		                                    			  <button type="button" class="btn btn-info" data-toggle="modal"  data-target="#VideoStatusAccept" data-whatever="@mdo"><i class="fas fa-check-circle"></i>
+		                                        	      </button>
+		                                          </span>
+		                                          </th>
+												     
+													     
+													     
+                                    </tr>
+                        
+                                      	      <tr>
+                                      	                             
+		                                          <td>4</td>
+		                                          <td>Slide</td>
+		                                       	   <td>		                                  
+		                                              <span th:each="statusSlide: ${statusSlide}">  
+				                                    	<span style="color:green;" th:text="${statusSlide}">Pending</span>
+														</span>	
+		                            
+												  </td>
+		                                          <th>-</th>
+		                                          <th>
+		                                          
+		                                          <span id="scriptIdDomain" th:each="scriptpath : ${tutorialComponenet}">
+		                                   
+										  			<a class="btn btn-info" target="_blank" id="slidName"  name="categoryName"  th:href="${'/'+scriptpath.getSlide()}" ><i class="fas fa-eye"></i></a>		
+										 		</span>
+										 		
+										 <span  th:if="${statsuSlideTrue}"> <button type="button" class="btn btn-info" data-toggle="modal"  data-target="#SlideStatusAccept" data-whatever="@mdo"><i class="fas fa-check-circle"></i>
+		                                          </button>
+		                                          </span>
+		                                          </th>
+ 	
+                                     </tr>
+                                     	 
+	                                     	 <tr>                                            
+		                                          <td>5	</td>
+		                                          <td>Keywords</td>
+		                                          <td> 
+		                                          	 <span th:each=" statusKeyword: ${statusKeyword}">  
+				                                    	<span style="color:green;" th:text="${statusKeyword}">Pending</span>
+													</span>	
+													
+		                                         </td>
+		                                          <th>-</th>
+		                                          
+		                                          <th>
+		    											<button type="button" class="btn btn-info" data-toggle="modal" data-target="#keywordModaleViewInDomain" data-whatever="@mdo"><i class="fas fa-eye"></i>
+		                                          	 </button>
+		                                          		
+		                          
+		                           		 <span  th:if="${statusKeywordTrue}"> <button type="button" class="btn btn-info" data-toggle="modal"  data-target="#KeywordStatusAccept" data-whatever="@mdo"><i class="fas fa-check-circle"></i>
+		                                          </button>
+		                                          </span>               		
+		                                 
+		                                         </th>
+                                     	
+                                     	 </tr>
+                                     	
+
+  
+                                    </tbody>
+							    </table>
+			     			
+			     			
+			     <!-- Here is code Domain reviwer Comment-->
+			     		
+			     <span th:each="mesComment : ${CommentMsg}">  
+				               
+					<span style="color:green;" th:if="${mesComment.getComponenenetDeatail()=='Video'}">
+				                  
+				       <div class="alert alert-warning">
+				                 
+				                 <i style="width: 30px; height: 25px" class="fas fa-comment"></i> 
+				               <strong style="color:green; text-transform:uppercase;"> <span style="color:green;" th:text="${mesComment.getComponenenetDeatail()}"></span></strong><br></br>
+				                  
+				                     &nbsp;&nbsp;&nbsp; <i class="fas fa-arrow-right"> </i> <span style="color:green;" th:text="${mesComment.getCommentInfo()}">
+				                   
+				                   	</span>
+				                   	
+				             	</div>      	
+				                   	</span>
+				             	
+				                   	
+				              <span style="color:green;" th:if="${mesComment.getComponenenetDeatail()=='Outline'}">
+				                   	    
+				               <div class="alert alert-warning">
+				               
+				                    <i style="width: 30px; height: 25px" class="fas fa-comment"></i> 
+				                    
+				                 <strong style="color:green; text-transform:uppercase;">  <span style="color:green;" th:text="${mesComment.getComponenenetDeatail()}"></span></strong><br></br>
+				                    	
+				                     &nbsp;&nbsp;&nbsp; <i class="fas fa-arrow-right"> </i>	<span style="color:green;" th:text="${mesComment.getCommentInfo()}">Pending</span>
+				                    
+				                  </div>
+				                    
+				              	</span> 
+				                   	
+				            <span style="color:green;" th:if="${mesComment.getComponenenetDeatail()=='Script'}">
+				            
+				        <div class="alert alert-warning">
+				        		
+				        		        <i style="width: 30px; height: 25px" class="fas fa-comment"></i>     
+				                   <strong style="color:green; text-transform:uppercase;"><span style="color:green;" th:text="${mesComment.getComponenenetDeatail()}"></span></strong><br></br>
+				                    
+				               &nbsp;&nbsp;&nbsp; <i class="fas fa-arrow-right"> </i>  <span style="color:green;" th:text="${mesComment.getCommentInfo()}">Pending</span>
+				                    	
+				                   </div> 
+				                    
+				           </span> 
+				                   	
+				              <!--   </div> -->
+				                   	
+				              	
+				                	
+				          <span style="color:green;" th:if="${mesComment.getComponenenetDeatail()=='Slide'}">
+				                   	 
+				                	<div class="alert alert-warning">
+				                	
+				                	 <i style="width: 30px; height: 25px" class="fas fa-comment"></i> 
+				                    
+				                    <strong style="color:green; text-transform:uppercase;"><span style="color:green;" th:text="${mesComment.getComponenenetDeatail()}"></span></strong><br></br>
+				                    
+								  &nbsp;&nbsp;&nbsp; <i class="fas fa-arrow-right"> </i>	<span style="color:green;" th:text="${mesComment.getCommentInfo()}">Pending</span>
+				                    
+				               </div>
+				                    
+				           </span> 
+				                   
+				                 
+				               <span style="color:green;" th:if="${mesComment.getComponenenetDeatail()=='keyword'}">
+				                 
+				                   	<div class="alert alert-warning">
+				                   	
+				                   	        <i style="width: 30px; height: 25px" class="fas fa-comment"></i> 
+				                    
+				                     <strong style="color:green; text-transform:uppercase;"><span style="color:green;" th:text="${mesComment.getComponenenetDeatail()}"></span></strong><br></br>
+				                    
+				                    	  &nbsp;&nbsp;&nbsp; <i class="fas fa-arrow-right"> </i><span style="color:green;" th:text="${mesComment.getCommentInfo()}">Pending</span>
+				                    
+				                    </div>
+				                    
+				               </span>
+									
+												
+					<!-- 	<span style="color:green;" th:text="${mesComment.getCommentInfo()}">Pending</span> -->
+			
+			</span>
+			     			
+			     			
+			     				            
+			          </form>
+			          
+			          
+			          
+					<!--  Outline   View-->
+			     
+			     				
+	<div class="modal fade" id="outlineViewModelDomain" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelOutlineView" aria-hidden="true">
+						
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabelOutlineView">View Outline</h5>
+						        <div class="modal-title">
+						        
+						         </div>
+						         
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						          
+						        </button>
+						      </div>    
+						      <div class="modal-body">
+
+						 <div class="form-group" style="border: thin">
+						          
+							<textarea readonly="readonly"  class="form-group" rows="10"  cols="70"  id="outlineViewResponseDomain" name="outlineViewResponseDomain"> 
+							 
+							 </textarea>
+			
+			</div>
+						
+				             
+				  <button id="keyword" type="submit" class="btn btn-success">View</button>
+		
+						       <div class="modal-footer">
+						         
+							        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+							      
+						      </div> 
+						        
+						      </div>
+						    
+						    </div>
+						  </div>					  
+	</div>	
+	
+			     
+			     
+				 <!--  Outline   End-->
+				 
+				<!-- script View --> 
+				 		
+		<div class="modal fade" id="viewScriptIdDomain" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelViewScript" aria-hidden="true">
+						
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabelViewScript">View Script</h5>
+						        <div class="modal-title">
+						        
+						         </div>
+						         
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      
+		
+					
+					 <form  class="form-horizontal"  th:action="@{/addkeyword}"  method="post" >
+
+						          <div class="form-group">
+						          
+						          <div id="responceScript">
+						          
+						          </div>
+						            
+							      <a name="scriptPdfDomain" target="_blank" id="scriptPdfDomain" >Click To View</a>
+					      
+						          </div>
+						          
+						    <!--   <button id="outlineView" type="button" class="btn btn-success">View</button>	  -->  
+						             
+					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
+						     
+					</form>
+					
+					
+						    
+						       <div class="modal-footer">
+						         
+							        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+							      
+						      </div> 
+						        
+						      </div>
+						    
+						    </div>
+						  </div>					  
+	</div>	
+	
+				<!-- script End --> 
+			
+	<!-- Here is modale for keywored -->
+			
+			<div class="modal fade" id="keywordModaleViewInDomain" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelKeyWordView" aria-hidden="true">
+						
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabelKeyWordView">View Keyword</h5>
+						        <div class="modal-title">
+						        
+						         </div>
+						         
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      
+				 <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+
+						          <div class="form-group">
+						          
+							     <label for="message-text" class="col-form-label">View Keyword</label>
+							        <textarea class="form-control"  name="keywordViewInDomainKeyword" id="keywordViewInDomainKeyword" rows="10" required="required" readonly="readonly">
+>>>>>>> Stashed changes:addContentDomainReview.html
 							      
 							        </textarea>
 											</div>
@@ -672,6 +1044,7 @@
 											Video</h5>
 										<div class="modal-title"></div>
 
+
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
 											<span aria-hidden="true">&times;</span>
@@ -681,6 +1054,10 @@
 
 										<!-- <form class="form-horizontal" th:action="@{/addkeyword}"
 											onsubmit="return submitForm(this);" method="post"> -->
+
+	<!-- end  the slide -->
+
+
 
 											<div class="form-group mb-3">
 

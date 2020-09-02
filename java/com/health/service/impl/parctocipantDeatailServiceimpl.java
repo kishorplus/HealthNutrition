@@ -18,10 +18,10 @@ public class parctocipantDeatailServiceimpl implements participantService {
 	private participantDao participantDao;
 
 	@Transactional																																																							
-	public Boolean updateparticipantDeatail(String firstname,String lastname,String email,String adharNumber, String gender,String language,int participant_id) 
+	public Boolean updateparticipantDeatail(String firstname,String lastname,String email,String adharNumber, String gender,String language,String age,String qua,String exp, String org, int participant_id) 
 	{
 		
-		int status=	participantDao.updateparticipantDeatail( firstname,lastname, email, adharNumber,  gender,language, participant_id);
+		int status=	participantDao.updateparticipantDeatail( firstname,lastname, email, adharNumber,  gender,language,age,qua,exp,org,participant_id);
 		
 	
 		System.err.println(status);

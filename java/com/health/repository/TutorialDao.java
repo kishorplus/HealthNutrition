@@ -30,7 +30,12 @@ public interface TutorialDao extends CrudRepository<Tutorial, Integer> {
 	@Query("from Tutorial u where u.category=?1 and u.lan=?2")
 	List<Tutorial> findByLanAndCategory(Category category,language language);
 
-
+	
+	@Query("from Tutorial u where u.category=?1 and u.lan=?2")
+	List<Tutorial> findByCatAndLan(Category cat,language language);
+	  
+	
+	
 
 	@Query("from Tutorial u where u.category=?1 and u.status=?2")
 	List<Tutorial> findByCategoryLan(Category cat,int status);
@@ -179,7 +184,13 @@ public interface TutorialDao extends CrudRepository<Tutorial, Integer> {
 	@Query("update Tutorial set  status=?1 where id=?2")
 	int updateStatusByQualityApprove(int statusApproveByQuality, int idStatus);
 
+	//int updateGraphics(String graphicsUpload, int graphicsUploadStatus, User user, topic topic, Category category);
+
+	@Modifying
+	@Query("update Tutorial set graphics=?1, graphicsStatus=?2 where user_id=?3 and topic_id=?4 and category_id=?5")
+	int updateGraphics(String graphicsUpload, int graphicsUploadStatus, User user, topic topic, Category category);
 
 
+	
 
 }

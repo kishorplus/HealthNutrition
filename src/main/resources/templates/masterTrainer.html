@@ -220,6 +220,12 @@
 									    <input type="number" class="form-control w-75" name="pinCode" pattern="[0-9]" id="pinCodeId"   minlength="6"  maxlength="6"  required="required"/>
 						 </div>	
 							
+							
+						 <div class="form-group">
+									    <label for="totalParID">Total Participants</label>
+									    <input type="number" class="form-control w-75" name="totalPar" pattern="[0-9]" id="totalParID"   minlength="1"   required="required"/>
+						 </div>
+							
 
 						  <div class="form-group">
 						
@@ -227,6 +233,8 @@
 						      <input type="file" class="form-control w-75" id="ParticipantsDeatailId" accept=".csv" name="ParticipantsDeatail" required="required"/>
 				
 						    </div>
+						    
+						
 						    
 						    
 						    		  
@@ -258,8 +266,10 @@
 		    		
 		    		<!-- <div class="row shadow p-3 mb-5 bg-white rounded"> -->
 		    		<div class="row  p-3 mb-5 bg-white ">
+		    	
 		    		
-		    		<!--  <div class="h4  text-xs-center" style="color: chocolate; padding-top: 8px; padding-left: 300px;" >Download Question</div> -->
+
+		    		 <div class="h4  text-xs-center" style="color: chocolate; padding-top: 8px; padding-left: 250px;" >Download Question</div>
 		    		
 		    		<div class=" col-md-12" style="padding-left: 100px">
 		    		
@@ -276,12 +286,11 @@
                                         <select id="catMasterId" class="form-control w-75" name="catMasterId"  style="width: 400px" required="required" >
 								               
 								                        <option selected="selected">Select Category</option>      
-								                        <span th:each="category: ${categorys}">
-								  								<option th:value="${category.getId()}"><span th:text="${category.categoryname}"></span></option>		
+								                        <span th:each="category: ${addcategory}">
+								  								<option th:value="${category}"><span th:text="${category}"></span></option>		
 								  						</span>
 									   </select>
-								 </div>	   
-			 
+						</div>	   
 			 
 					 <div class="form-group ">
 		

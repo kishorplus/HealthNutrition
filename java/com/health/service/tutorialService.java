@@ -19,6 +19,8 @@ public interface tutorialService {
 	Boolean updateOutline(String outlineMessage, int status,User user,topic topic,Category category);
 	
 	Boolean updateSlide(String slideUpload, int statusSlide,User user,topic topic,Category category);
+	
+	Boolean updateGraphics(String graphicsUpload, int graphicsUploadStatus,User user,topic topic,Category category);
 
 	Boolean updateScript(String scriptUpload, int statusScript,User user,topic topic,Category category);
 

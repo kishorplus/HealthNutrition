@@ -280,5 +280,24 @@ public class tutorialServiceImpl implements tutorialService {
 		
 	}
 
+	@Transactional
+	public Boolean updateGraphics(String graphicsUpload, int graphicsUploadStatus, User user, topic topic,Category category) {
+			
+	
+		
+		  int statusByQgraphics=tutorialDao.updateGraphics(graphicsUpload,graphicsUploadStatus,user,topic,category);
+		
+			if(statusByQgraphics>0)
+			{
+				
+				
+				return true;
+			}else {
+				
+				return false;
+			}
+	
+	}
+
 
 }

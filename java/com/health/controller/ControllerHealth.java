@@ -731,6 +731,7 @@ public class ControllerHealth {
 		model.addAttribute("categorys", category);
 
 		model.addAttribute("languages", language);
+		
 		return "addUploadQuestion";
 	}
 
@@ -1815,9 +1816,11 @@ public class ControllerHealth {
 //		return topicName;
 //
 //	}
+	
+	@Autowired
+	private Questionreposiatry Questionreposiatry;
 
 	@RequestMapping(value = "/masterTrainer", method = RequestMethod.GET)
-//	@RequestMapping("/masterTrainer")
 	public String masterTrainer(Model model, Authentication authentication) {
 //		List<Tutorial> category = tutorialDao.finBystatus();
 //		ArrayList<String> tutorialRes = new ArrayList<String>();
@@ -1830,6 +1833,23 @@ public class ControllerHealth {
 		List<Category> category = categoryservice.findAll();
 
 		model.addAttribute("categorys", category);
+		
+	
+	   ArrayList<String> addcategory=new ArrayList<>();
+		
+		List<Question> Question=(List<com.health.model.Question>) Questionreposiatry.findAll();
+		
+		for (Question question : Question) 
+		{
+			addcategory.add(question.getCategory().getCategoryname());     
+			
+		}	
+		LinkedHashSet<String> linkedhashedSet=new LinkedHashSet<>(addcategory);
+		
+		model.addAttribute("addcategory",linkedhashedSet);
+		
+	
+		model.addAttribute("Questions",Question);
 
 		List<Tutorial> tutorial = tutorialService.findAll();
 
@@ -1848,16 +1868,17 @@ public class ControllerHealth {
 		List<feedbackMasterTrainer> feedbackMasterTrainerList = (List<feedbackMasterTrainer>) feedbackRespositaryDao
 				.findAll();
 
-		for (feedbackMasterTrainer feedbackMasterTrainer : feedbackMasterTrainerList) {
+		for (feedbackMasterTrainer feedbackMasterTrainer : feedbackMasterTrainerList) 
+		{
 
 			feedbakMasTra.add(feedbackMasterTrainer.getCategory().getCategoryname());
-
+			
 		}
-
 		feedbakMasTra.removeAll(catInformation);
 
 		model.addAttribute("listOfcategory", feedbakMasTra);
-
+		
+		
 		model.addAttribute("categorys", category);
 
 //		List<Tutorial> tutorial=tutorialService.findAll();
@@ -1984,8 +2005,10 @@ public class ControllerHealth {
 		   // String  trainingInformation=req.getParameter("traningInformation");
 		    String participants=req.getParameter("participants");
 		//  String traningInfo=req.getParameter("trainingInformation");
-		    int pincode=Integer.parseInt(req.getParameter("pinCode"));
+		    int  pincode=Integer.parseInt(req.getParameter("pinCode"));
+		    int  totalParCandidate=Integer.parseInt(req.getParameter("totalPar"));
 
+		    
 			String path = null;
 			String abc = uploadMasterTrainer + "/" + dataofCamp + category.getCategoryname() ;
 
@@ -2041,7 +2064,6 @@ public class ControllerHealth {
 			String participantdeatailPhoto = filepath.substring(26);
 
 
-
 	  TraningInformation traningInformationObject=new TraningInformation(category);
 
 			  traningInformationObject.setDate(dataofCamp);
@@ -2059,11 +2081,12 @@ public class ControllerHealth {
 			  traningInformationObject.setTitleName(titlename);
 			  traningInformationObject.setAddressInformation(addressInformationName);
 
+
 			//  traningInformationObject.setState(stateName);
 
 			  traningInformationObject.setPincode(pincode);
 			  traningInformationObject.setCategory(category);
-
+			  traningInformationObject.setTotalParticipant(totalParCandidate);
 			  traningInformationObject.setTraingDetail(trainingInformation);
 
 			 traningInformationObject.setParticipant(ParticipantsDeatailFile);
@@ -2117,10 +2140,14 @@ public class ControllerHealth {
 								participantDeatail.setFirstname(data[0]);
 								participantDeatail.setLastname(data[1]);
 								participantDeatail.setEmail(data[2]);
-
 								participantDeatail.setAdharNumber(data[3]);
 								participantDeatail.setGender(data[4]);
-//								participantDeatail.setLastname(data[5]);
+								participantDeatail.setLanguage(data[5]);
+								participantDeatail.setAge(data[6]);
+								participantDeatail.setQualification(data[7]);
+								participantDeatail.setExprience(data[8]);
+								participantDeatail.setOrganization(data[9]);
+								
 								participantDeatail.setCategory(category);
 								participantDeatail.setTitleName(titlename);
 
@@ -2197,8 +2224,6 @@ public class ControllerHealth {
 
 		int participant_id = Integer.parseInt(id);
 
-		System.err.println(participant_id);
-
 		String firstname = req.getParameter("firstName");
 		String lastname = req.getParameter("lastName");
 		String email = req.getParameter("email");
@@ -2206,9 +2231,15 @@ public class ControllerHealth {
 
 		String gender = req.getParameter("gender");
 		String language = req.getParameter("language");
+		
+			String age=req.getParameter("age");
+			String qua=req.getParameter("qua");
+			String exp=req.getParameter("exp");
+			String org =req.getParameter("org");
+			
 
-		participantService.updateparticipantDeatail(firstname, lastname, email, adharNumber, gender, language,
-				participant_id);
+		participantService.updateparticipantDeatail(firstname, lastname, email, adharNumber, gender, language,age,qua,exp,org,participant_id);
+				
 
 		return "redirect:/adminDeatail";
 
@@ -2482,14 +2513,14 @@ public class ControllerHealth {
 	/* here is code for access topic according to category in master trainer */
 
 	@RequestMapping("/getTopicAccordingToCategory")
-	public @ResponseBody List<String> getTopicAccordingToCategory(@RequestParam(value = "id") int categoryId) {
+	public @ResponseBody List<String> getTopicAccordingToCategory(@RequestParam(value = "id") String categoryId) {
 
 		System.err.println("test info 080" + categoryId);
 
 		List<String> topicName = new ArrayList<String>();
 
-		Category cat = categoryDao.findByid(categoryId);
-
+		Category cat = categoryDao.findBycategoryname(categoryId);
+		
 		List<topic> topic = topicRepositarydao.findByCategory(cat);
 
 		for (topic topic2 : topic) {
@@ -2503,19 +2534,20 @@ public class ControllerHealth {
 	}
 
 	@RequestMapping("/displayQuestion")
-	public String displatQuestion(@RequestParam(name = "catMasterId") int catMasterId,
+	public String displatQuestion(@RequestParam(name = "catMasterId") String catMasterId,
 			@RequestParam(name = "lanMasterTrId") String topicId,
 			@RequestParam(value = "dwnByLanguageId") int dwnByLanguageId, Model model) {
 
-		System.err.println(catMasterId + "Hello" + topicId + "test " + dwnByLanguageId);
+	//	System.err.println(catMasterId + "Hello" + topicId + "test " + dwnByLanguageId);
 
 		List<String> topicName = new ArrayList<String>();
 
-		Category category = categoryDao.findByid(catMasterId);
+		Category category = categoryDao.findBycategoryname(catMasterId);//findByid(catMasterId);
 		topic topicDemo = topicRepositarydao.findBytopicname(topicId);
 		com.health.model.language language = languageDao.findOne(dwnByLanguageId);
 
 		List<Question> question = questionreposiatryDao.findByQuestion(topicDemo, category, language);
+		
 
 		for (Question s : question) {
 			// String substring=s.getQuetionpath().substring(23);
@@ -2769,6 +2801,7 @@ public class ControllerHealth {
 
 		topicName.removeAll(tutorialLanguageExits);
 		return topicName;
+	
 	}
 
 	/* Display list of Training information */
@@ -2949,7 +2982,6 @@ public class ControllerHealth {
 		List<String> consultantsList = new ArrayList<String>();
 
 		for (Consaltantant cons : name)
-
 		{
 
 			consultantsList.add(cons.getNameConsaltant());

@@ -15,15 +15,14 @@ public interface participantDao extends CrudRepository<partipantDeatil, Integer>
 
 	
 	@Modifying
-	@Query("update partipantDeatil set  firstname=?1 ,lastname=?2, email=?3,adharNumber=?4,gender=?5,language=?6 where id=?7")
-	 int updateparticipantDeatail(String firstname, String lastname,String email,String adharNumber, String gender,String language,int participant_id);
+	@Query("update partipantDeatil set  firstname=?1 ,lastname=?2, email=?3,adharNumber=?4,gender=?5,language=?6,age=?7,qualification=?8,exprience=?9,organization=?10 where id=?11")
+	 int updateparticipantDeatail(String firstname, String lastname,String email,String adharNumber, String gender,String language,String age,String qua,String exp,String org,int participant_id);
 
 
 	
 	
 	 @Query("from partipantDeatil u where u.category=?1 and u.titleName=?2") 
 	 List<partipantDeatil> findByCategoryAndName(Category category,String name);
-
 
 	
 	/*

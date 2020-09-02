@@ -37,7 +37,16 @@ public class TraningInformation
 	private String districit;
 	private String city;
 	private String titleName;
+	private int totalParticipant;
 	
+	public int getTotalParticipant() {
+		return totalParticipant;
+	}
+
+	public void setTotalParticipant(int totalParticipant) {
+		this.totalParticipant = totalParticipant;
+	}
+
 	public String getTitleName() {
 		return titleName;
 	}

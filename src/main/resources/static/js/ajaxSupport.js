@@ -1,3 +1,4 @@
+
 $(document)
 		.ready(
 				function() {
@@ -645,8 +646,7 @@ $(document)
 										var state = $(this).find(":selected")
 												.val();
 
-										$
-												.ajax({
+										$.ajax({
 													type : "GET",
 													url : "/loadDistrictByState",
 													data : {
@@ -2586,6 +2586,72 @@ $(document)
 
 							});
 
+					
+					
+					
+					
+			/*		Here is code for graphics*/
+					
+
+					$('#graphicsId').click(
+							function() {
+
+								var categoryid = $("#categoryId").val();
+								var topicid = $("#topicId").val();
+								var lanId = $("#lanId").val();
+
+								var form = $('#upload-file-form')[0];
+								var formData = new FormData(form);
+
+								formData.append('categoryid', categoryid);
+								formData.append('topicid', topicid);
+								formData.append('lanId', lanId);
+
+								$.ajax({
+									type : "POST",
+									url : "/graphicsUpload",
+									data : formData,
+									enctype : 'multipart/form-data',
+									processData : false,
+									contentType : false,
+									cache : false,
+									success : function(result) {
+//										$("#statusofSlide").prop('disabled',true);
+//										$('#statusofSlide').html(result[2]);
+										
+										alert("12345hi");
+										
+										$('#sliedPdf').html(result[0]);
+										$("#sliedPdf").prop('href', result[1]);
+										var result = "Slide uploaded successfully";
+										showStatus(SUCCESS,result);
+
+									},
+
+									error : function(err) {console.log("not working. ERROR: "+ JSON.stringify(err));
+									var result = "Graphics uploaded successfully";
+									showStatus(SUCCESS,result);
+									}
+
+								});
+
+							});
+
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					/* video for thumnail and video */
 
 					$('#videoId')
@@ -5027,6 +5093,180 @@ $(document)
 
 									});
 
+				//
+					
+					
+					/*Here is code for Contributor PreRequistic component  display topic */
+				
+								$('#catAllID').change(function(){
+										
+										var selectedCategoryId=$(this).find(":selected").val();
+									    var lanId =$("#lanId").val();
+										$.ajax({
+											  	type: "GET",
+									       		 url: "/loadTopicByPreRequistic",
+									       		 data: { "id": selectedCategoryId, "lanId":lanId},
+									       		 contentType: "application/json",
+									       		 success: function (result)
+									       		 {
+									       			 
+									        		var html = '';
+										            var len = result.length;
+										            html += '<option value="0"></option>';
+										            for (var i = 0; i < len; i++) {
+										             html += '<option value="' + result[i] + '">'
+										               + result[i]
+										               + '</option>';
+										            }
+										            html += '</option>';
+										            
+										            $("#inputTopicPre").prop('disabled',false);
+										            $('#inputTopicPre').html(html);
+								
+													},
+													
+													error : function(err){
+													console.log("not working. ERROR: "+JSON.stringify(err));
+												}
+												
+											});
+									
+										});
+
+		
+					// Here is code for upload preRequistic link path
+								
+					$('#preRequistic').click(function()
+							{
+					
+									var selectedCategoryId=$(this).find(":selected").val();
+									var lanId =$("#lanId").val();
+									var inputTopicPre =$("#inputTopicPre").val();
+									
+									
+									alert(inputTopicPre);
+									
+										$.ajax({
+										  	type: "GET",
+								       		 url: "/loadTopicByPreRequistic",
+								       		 data: { "id": selectedCategoryId, "lanId":lanId},
+								       		 contentType: "application/json",
+								       		 success: function (result)
+								       		 {
+								       			 
+								       			 alert("save information");
+								       			 
+								        		var html = '';
+									            var len = result.length;
+									            html += '<option value="0">Select Topic</option>';
+									            for (var i = 0; i < len; i++) {
+									             html += '<option value="' + result[i] + '">'
+									               + result[i]
+									               + '</option>';
+									            }
+									            html += '</option>';
+									            
+									            $("#inputTopicPre").prop('disabled',false);
+									            $('#inputTopicPre').html(html);
+							
+												},
+												
+												error : function(err){
+												console.log("not working. ERROR: "+JSON.stringify(err));
+											}
+											
+										});
+								
+									});
+
+					
+					
+					/*Here is code for Contributor PreRequistic component  display topic */
+				
+								$('#catAllID').change(function(){
+										
+										var selectedCategoryId=$(this).find(":selected").val();
+									    var lanId =$("#lanId").val();
+										$.ajax({
+											  	type: "GET",
+									       		 url: "/loadTopicByPreRequistic",
+									       		 data: { "id": selectedCategoryId, "lanId":lanId},
+									       		 contentType: "application/json",
+									       		 success: function (result)
+									       		 {
+									       			 
+									        		var html = '';
+										            var len = result.length;
+										            html += '<option value="0"></option>';
+										            for (var i = 0; i < len; i++) {
+										             html += '<option value="' + result[i] + '">'
+										               + result[i]
+										               + '</option>';
+										            }
+										            html += '</option>';
+										            
+										            $("#inputTopicPre").prop('disabled',false);
+										            $('#inputTopicPre').html(html);
+								
+													},
+													
+													error : function(err){
+													console.log("not working. ERROR: "+JSON.stringify(err));
+												}
+												
+											});
+									
+										});
+
+		
+					
+					
+					// Here is code for upload preRequistic link path
+								
+					$('#preRequistic').click(function()
+							{
+					
+									var selectedCategoryId=$(this).find(":selected").val();
+									var lanId =$("#lanId").val();
+									var inputTopicPre =$("#inputTopicPre").val();
+									
+									
+									alert(inputTopicPre);
+									
+										$.ajax({
+										  	type: "GET",
+								       		 url: "/loadTopicByPreRequistic",
+								       		 data: { "id": selectedCategoryId, "lanId":lanId},
+								       		 contentType: "application/json",
+								       		 success: function (result)
+								       		 {
+								       			 
+								       			 alert("save information");
+								       			 
+								        		var html = '';
+									            var len = result.length;
+									            html += '<option value="0">Select Topic</option>';
+									            for (var i = 0; i < len; i++) {
+									             html += '<option value="' + result[i] + '">'
+									               + result[i]
+									               + '</option>';
+									            }
+									            html += '</option>';
+									            
+									            $("#inputTopicPre").prop('disabled',false);
+									            $('#inputTopicPre').html(html);
+							
+												},
+												
+												error : function(err){
+												console.log("not working. ERROR: "+JSON.stringify(err));
+											}
+											
+										});
+								
+									});
+		
+					
 					$('#VideoAcceptOrNeedToImprovemenetByQuality')
 							.click(
 									function() {

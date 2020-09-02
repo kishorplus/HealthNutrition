@@ -33,14 +33,42 @@ import javax.persistence.Table;
 			  private String adharNumber;
 			  private String language;
 			  private String titleName;
-		    
-		    
-		  
+			  private String age;
+			  public String getAge() {
+				return age;
+			}
+			public void setAge(String age) {
+				this.age = age;
+			}
+			private String qualification;
+			  private String exprience;
+			  private String organization;
+			  
+			
 		    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 			 @JoinColumn(name="partipantDeatil_id")
 			 private TraningInformation traningInformation;
 		  
-		    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+		 
+			public String getQualification() {
+				return qualification;
+			}
+			public void setQualification(String qualification) {
+				this.qualification = qualification;
+			}
+			public String getExprience() {
+				return exprience;
+			}
+			public void setExprience(String exprience) {
+				this.exprience = exprience;
+			}
+			public String getOrganization() {
+				return organization;
+			}
+			public void setOrganization(String organization) {
+				this.organization = organization;
+			}
+			@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 			 @JoinColumn(name="category_id")
 			 private Category category;
 		  
