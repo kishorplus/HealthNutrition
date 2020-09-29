@@ -1,446 +1,269 @@
 <!DOCTYPE html>
 <html xmlns:th="https://thymeleaf.org">
 
- <head th:replace="common/trail :: common-trail" > </head>
-<!-- 
-<head>
-	<meta charset="utf-8"/> 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="stylesheet" href="/s/css/owl.carousel.min.css"/> 
-    <link rel="stylesheet" href="/s/fonts/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/s/css/style.css"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
-	<link rel="stylesheet" href="/s/css/admin.css"/>
-</head> -->
+<head th:replace="common/trail :: common-trail">
+</head>
 <style>
-body{
-	background:#fff!important;
+body {
+	background: #fff !important;
 }
 </style>
- 
+
 <body>
-  <!-- <div th:replace="common/trail :: navbar1"/> -->
-  			
-  	<div style="display:flex;">
-  	<!-- <div th:replace="common/sidebar :: nav_sidebar"></div> -->
-  		 <div th:replace="common/sidebar :: contributor_sidebar"></div>
-  	
-  		
-  	   	<div class="container"> 
-								
-								<div class="row" style="margin-top: 100px"  >
-								<div class="col-12">
-								<div>
-								 <span id='approve-msg' class='approve-success-msg'></span>
-								</div>
-								 <nav>
-									  <div class="nav nav-tabs a-links" id="nav-tab" role="tablist">
-									  
-											    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-											    <a class="nav-item nav-link" id="nav-admin-tab" data-toggle="tab" href="#Admin" role="tab" aria-controls="nav-contact" aria-selected="false">Admin Reviewer</a>	
-											    <a class="nav-item nav-link" id="nav-domain-tab" data-toggle="tab" href="#Contributer" role="tab" aria-controls="nav-contact" aria-selected="false">Contributor</a>
-											    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#Domain" role="tab" aria-controls="nav-profile" aria-selected="false">Domain Reviewer</a>		  	
-												<a class="nav-item nav-link" id="nav-quality-tab" data-toggle="tab" href="#Quality" role="tab" aria-controls="nav-contact" aria-selected="false">Quality Reviewer</a>
-												<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#MasterTrainer" role="tab" aria-controls="nav-contact" aria-selected="false">Master Trainer Reviewer</a>
-										
-										
-										
-										
-									  </div>
-									  
-									  
-								</nav>
-									<!-- <div class="row"> -->
-									</div>
-									</div>
-									
-									<div class="row">
-									
-									<div class="col-12">
-									
-									<div class="tab-content" id="nav-tabContent">	
-								
-			 <div class="tab-pane fade show active a-tab-pane" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"></div>
-			
-		
-			 <div class="tab-pane fade a-tab-pane" id="Admin" role="tabpanel" aria-labelledby="nav-admin-tab" onloadeddata="return submitA(this);">
-			
-			<!-- <h6  id="statusAdmin" class="approve-success-msg" > </h6> -->
-							 
-					<div class="">
-						          	
-						          		<div class="row">
-						          	
-						         			 	<div class="col-12">
-						
-						   			 <table id="tableId" class="table table-striped a-table-font" >
-						   			 	 
-											         <thead>  
-											           
-											            <tr>
-											          
-											          <!--       <th>Id</th> -->
-											                <th>User Name</th> 
-											                <th>First Name</th>
-											                <th>Last Name</th>
-											                <th>Address</th>  
-											                <th>Approve</th>
-											                <!-- <th>Reject</th>  -->            
-											            </tr>
-											          </thead>      	
-											         <tbody>
-											            	
-											            	<tr th:each="admin : ${statusByApprovAdmin}">
-											              
-											                <td th:text="${admin.getUser().username}">User Name</td>
-											                <td th:text="${admin.getUser().firstName}">First Name</td>
-											                <td th:text="${admin.getUser().lastName}">Last name</td>
-											                <td th:text="${admin.getUser().address}">Address</td>
-							
-				 <td>
-				 
-				 	<button  id="approveAdminId" type="button"  th:value="${admin.userRoleId}" class="btn a-btn approveAdmin">Approve</button>
-				 
-				 <!-- <a th:href="${'addAdminRoleById/add/'+ admin.id}">Approve</a> -->
-				 </td>
-<!-- 														<td><a th:href="${'/addRejectRoleById/reject/' + admin.id}">Reject</a></td>  
- -->							
-												            </tr>
-													</tbody>			            
-											            
-											        </table>
-											</div>
-										</div>
-									</div>        
+	<div style="display: flex;">
+		<div th:replace="common/sidebar :: contributor_sidebar"></div>
+		<div class="container">
+			<div class="row" style="margin-top: 100px">
+				<div class="col-12">
+					<div>
+						<span id='approve-msg' class='approve-success-msg'></span>
+					</div>
+					<nav>
+						<div class="nav nav-tabs a-links" id="nav-tab" role="tablist">
 
-	</div>
-			
-			
-	
-					 <div class="tab-pane fade a-tab-pane" id="Domain" role="tabpanel" aria-labelledby="nav-profile-tab" onloadeddata="return submitA(this);">
-							 
-							 
-					<!-- <h6  id="statusDomain" class="approve-success-msg"> </h6> -->
-			
-					<div class="Domain" >
-						          	
-						          		<div class="row">
-						          	
-						         			 	<div class="col-12">
-						
-						   			 <table id="tableIds" class="table table-striped a-table-font dt-center" >
-						   			 	 
-											         <thead>  
-											           
-											          <tr>
-											          
-											          <!--       <th>Id</th> -->
-											                <th>User Name</th> 
-											                <th>First Name</th>
-											                <th>Last Name</th>
-											                <th>Language</th>  
-											                <th>Approve</th>
-											           <!--      <th>Reject</th>  -->            
-											            </tr>
-											          </thead>      	
-											         <tbody>
-											            	
-											            	<tr th:each="domain : ${statusByApprovDomain}">
-											              <!--   <td th:text="${domain.id}">ID</td>   -->
-											                <td th:text="${domain.getUser().username}">User Name</td>
-											                <td th:text="${domain.getUser().firstName}">First Name</td>
-											                <td th:text="${domain.getUser().lastName}">Last name</td>
-												            <!-- <td th:text="${domain.getLanguage().getLanguageName()}">Language Name</td> -->
-												            <td>Language Name</td>              
-							
-											 <td>
-											 
-		<button id="approveDomainId"   type="button"  th:value="${domain.userRoleId}" class="btn a-btn approveDomain">Approve</button>
-											 
-											 <!-- <a th:href="${'/addDomainRoleById/add/'+ domain.userRoleId}">Approve</a>
-											  -->
-											 
-											 </td>
-											 
-						<!-- 			<td><a th:href="${'/addRejectRoleById/reject/' + domain.id}">Reject</a></td>  
-			 					-->							
-												        </tr>
-													</tbody>			            
-											            
-											        </table>
-											</div>
-										</div>
-									</div>        
-	
-	</div>
- 	<div class="tab-pane fade a-tab-pane" id="MasterTrainer" role="tabpanel" aria-labelledby="nav-contact-tab">
- 
- <!-- <h6  id="statusMaster" class="approve-success-msg" > </h6> -->
-									  
-			<div class="Master_class">
-          	
-    					 <div class="row">
-         					  
-         					  <div class="col-12">
-         					  	
-         					  	<table id="tableIdMaster" class="table table-striped a-table-font">
-					         <thead>
-					         
-					            <tr>
-					                <!-- <th>Id</th> -->
-					               
-					                <th>First Name</th>
-					                <th>Last Name</th>
-					                <th>Address</th>  
-					                
- 	
-					                <th>Approve</th>
-					                <!-- <th>Reject</th>   -->           
-					            </tr>
-					            
-					            </thead>
-					            
-					            <tbody>
-					            	<tr th:each="master : ${statusByApprovMaster}">
-					                
-					                <td th:text="${master.getUser().firstName}">First Name</td>
-					                <td th:text="${master.getUser().lastName}">Last name</td>
-					                <td th:text="${master.getUser().address}">Address</td>
-	
-						<td>
-				<button  id="approvemasterId" type="button"  th:value="${master.userRoleId}" class="btn a-btn approvemaster">Approve</button>
-						
-									<!-- <a th:href="${'/addMasterTrainerRoleById/add/'+ master.id}">Approve</a>
-									 -->
-									</td>
-<!-- 								    <td><a th:href="${'/addmasterRoleRejectById/reject/' + master.id}">Reject</a></td>   -->
-							
-	
-					            </tr>
-					            </tbody>
-					        </table>
-         					  
-         					  </div>
-									  
-							</div>
+							<a class="nav-item nav-link active" id="nav-home-tab"
+								data-toggle="tab" href="" role="tab" aria-controls="nav-home"
+								aria-selected="true">Home</a> <a class="nav-item nav-link"
+								id="nav-admin-tab" data-toggle="tab" href="#Admin" role="tab"
+								aria-controls="nav-contact" aria-selected="false">Admin
+								Reviewer</a> <a class="nav-item nav-link" id="nav-domain-tab"
+								data-toggle="tab" href="#Contributer" role="tab"
+								aria-controls="nav-contact" aria-selected="false">Contributor</a>
+							<a class="nav-item nav-link" id="nav-profile-tab"
+								data-toggle="tab" href="#Domain" role="tab"
+								aria-controls="nav-profile" aria-selected="false">Domain
+								Reviewer</a> <a class="nav-item nav-link" id="nav-quality-tab"
+								data-toggle="tab" href="#Quality" role="tab"
+								aria-controls="nav-contact" aria-selected="false">Quality
+								Reviewer</a> <a class="nav-item nav-link" id="nav-contact-tab"
+								data-toggle="tab" href="#MasterTrainer" role="tab"
+								aria-controls="nav-contact" aria-selected="false">Master
+								Trainer Reviewer</a>
+						</div>
+					</nav>
 				</div>
-									  
-			<!-- 	th:text="${approve.getUser().id}" -->					  									  
-</div>
-			<!-- <div class="tab-pane fade" id="ContributerPage" role="tabpanel" aria-labelledby="nav-contact-tab">.
-				
-				<h6  id="statusContributor" style="color: maroon; padding-left: 200px"> </h6>
-				
-					<div class="container-fluid" style="padding-top: 40px">
-				          		<div class="row">
-				          	
-				         			 	<div class="col">
-				
-				   			 	 <table id="tableIdContributer" class="table table-striped">
-									           <thead>										           							           
-									            <tr>
-									                <th>Id</th>
-									                <th>User Name</th> 
-									                <th>First Name</th>
-									                <th>Last Name</th>
-									                <th>Language</th>  
-									                <th>Approve</th>
-									                <th>Reject</th>             
-									           </tr>
-									            
-									            </thead>									            
-									            <tbody>
-								<tr th:each="approve : ${statusByApprovContributer}">
-   	
-						<td>
-						<input id="contributorId" class="conID" style="width: 100px" readonly="readonly" th:value="${approve.getUserRoleId()}"/>
-						</td>  
-													
-									                <td th:text="${approve.getUser().username}">User Name</td>
-									                <td th:text="${approve.getUser().firstName}">First Name</td>
-									                <td th:text="${approve.getUser().lastName}">Last name</td>
-									                <td th:text="${approve.getLanguage().getLanguageName()}">Language Name</td>              
-								 					<td>
-	<button id="approveContributorId" type="button"  th:value="${approve.getUserRoleId()}" class="btn btn-success approveContributor">Approve</button>
-													   
-	<a th:href="${'/addContributerRoleById/add/'+ approve.getUser().id}">Approve</a> 
-													
-													</td>
-						 			<td>
-											
-											<span th:if="approve.getStatus"></span>
-												
-							<button id="rejectContributionId" type="button" value="showAlert"  class="btn btn-success">Reject</button>
-												    
-									  <a th:href="${'/addRejectRoleById/reject/' + approve.getUser().id}">Reject</a> 	
-									
-									
-									</td>  
-					
-									            </tr>
-									            
-									            </tbody>
-									        </table>
-									</div>
-								</div>
-							</div> 	
-						
-													 
-			 </div>
-	 -->
-	<div class="tab-pane fade a-tab-pane" id="Contributer" role="tabpanel" aria-labelledby="nav-contact-tab">
-				
-				<!-- <h6  id="statusContributor" class="approve-success-msg"> </h6> -->
-				
-					<div class="container-fluid" >
-				          		<div class="row">
-				          	
-				         			 	<div class="col-sm-12">
-				
-				   			 	 <table id="tableIdContributor" class="table table-striped a-table-font">
-									           <thead>										           							           
-									            <tr>
-									               <!--  <th>Id</th> -->
-									                <th>User Name</th> 
-									                <th>First Name</th>
-									                <th>Last Name</th>
-									                <th>Language</th>  
-									                <th>Approve</th>
-									              <!--   <th>Status</th> -->
-									              <!--   <th>Reject</th>  -->            
-									           </tr>
-									            
-									            </thead>									            
-									            <tbody>
-								<tr th:each="approve : ${statusByApprovContributer}">
-   	
-						<!-- <td>
-						<input id="contributorId" class="conID" style="width: 100px" readonly="readonly" th:value="${approve.getUserRoleId()}"/>
-						</td>   -->
-													
-									                <td th:text="${approve.getUser().username}">User Name</td>
-									                <td th:text="${approve.getUser().firstName}">First Name</td>
-									                <td th:text="${approve.getUser().lastName}">Last name</td>
-									                <td th:text="${approve.getLanguage().getLanguageName()}">Language Name</td>              
-								 					<td>
-	<button  id="approveContributorId"  type="button"  th:value="${approve.getUserRoleId()}" class="btn a-btn approveContributor">Approve</button>
-													   
-<!-- 	<a th:href="${'/addContributerRoleById/add/'+ approve.getUser().id}">Approve</a> 
- -->													
-													</td>
-						 			<!-- <td>
-											
-											<span th:if="approve.getStatus"></span> -->
-							<!-- 					
-							<button id="rejectContributionId" type="button" value="showAlert"  class="btn btn-success">Reject</button>
-							 -->					    
-									<!--   <a th:href="${'/addRejectRoleById/reject/' + approve.getUser().id}">Reject</a>  -->	
-									
-									
-									<!-- </td>   -->
-					
-									            </tr>
-									            
-									            </tbody>
-									        </table>
-									</div>
-								</div>
-							</div> 	
-													 
-			 </div>
-	 							
-	 	<div class="tab-pane fade a-tab-pane" id="Quality" role="tabpanel" aria-labelledby="nav-contact-tab">
-		
-		<!-- <h6  id="statusQuality" class="approve-success-msg" style="color: maroon; padding-left: 200px; padding-top: 20px"> </h6> -->
-				
-				<div class="container-fluid">
-				          	
-				          		<div class="row">
-				          	
-				         			 	<div class="col">
-				          	
-				          	
-				   			 	 <table id="tableIdQuality" class="table table-striped a-table-font">
-									            
-									            <thead>
-									            <tr>
-									            <!--     <th>Id</th> -->
-									                <th>User Name</th> 
-									                <th>First Name</th>
-									                <th>Last Name</th>
-									                <th>Address</th>  
-									                <th>Approve</th>
-									                <!-- <th>Reject</th>     -->         
-									            </tr>
-									            </thead>
-									            <tbody>
-									            	<tr th:each="quality : ${statusByApprovQuality}">
-										 
-									                 <td th:text="${quality.getUser().username}">User Name</td>
-									                <td th:text="${quality.getUser().firstName}">First Name</td>
-									                <td th:text="${quality.getUser().lastName}">Last name</td>
-									                <td th:text="${quality.getUser().address}">Address</td>
-					
-						 <td> 	<button id="approveQualityId" type="button"  th:value="${quality.getUserRoleId()}" class="btn a-btn approveQuality">Approve</button>
-						 
-										 <!-- <a th:href="${'/addQualityRoleById/add/'+ quality.id}">Approve</a>
-										  -->
-										 </td>
-									     <!-- <td><a th:href="${'/addQualityRoleRejectById/reject/' + quality.id}">Reject</a></td>  
-									      -->
-									            </tr>
-									            
-									            </tbody>
-									        </table>
-									</div>
-								</div>
-							</div> 
-							
-							</div>					  
-				</div>							
-		 </div>
-	 </div>						
-</div>
-  	</div>		
+			</div>
 
-						
-		
-						
-			<!-- <div th:fragment="body-bottom-scripts"> -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<script src="/s/js/main.js"></script>
-<script src="/js/ajaxSupport.js"></script>
+			<div class="row">
 
-<script type="text/javascript">
-$( document ).ready(function() {
-    $(document).ready( function () {
-    $('#tableId').DataTable();
-    $('#tableIds').DataTable();
-    /* $('#tableIdContributor').DataTable(); */
-    $('#tableIdMaster').DataTable();
-    $('#tableIdQuality').DataTable();
-    
-    $('#tableIdContributor').DataTable( {
-    	  columnDefs: [
-    	    {
-    	        targets: -1,
-    	        className: 'dt-center'
-    	    }
-    	  ]
-    	} );
-    
-    
-} );
-});
-</script>
-			    
-			
-			
-			<!-- </div> -->
- </body>
+				<div class="col-12">
+
+					<div class="tab-content" id="nav-tabContent">
+
+						<div class="tab-pane fade show active a-tab-pane" id="nav-home"
+							role="tabpanel" aria-labelledby="nav-home-tab"></div>
+
+
+						<div class="tab-pane fade a-tab-pane" id="Admin" role="tabpanel"
+							aria-labelledby="nav-admin-tab"
+							onloadeddata="return submitA(this);">
+							<div class="">
+								<div class="row">
+									<div class="col-12">
+										<table id="tableId" class="table table-striped a-table-font">
+											<thead>
+												<tr>
+													<th>User Name</th>
+													<th>First Name</th>
+													<th>Last Name</th>
+													<th>Approve</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="admin : ${statusByApprovAdmin}">
+													<td th:text="${admin.getUser().username}">User Name</td>
+													<td th:text="${admin.getUser().firstName}">First Name</td>
+													<td th:text="${admin.getUser().lastName}">Last name</td>
+													<td>
+														<button id="approveAdminId" type="button"
+															th:value="${admin.userRoleId}"
+															class="btn a-btn approveAdmin">Approve</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade a-tab-pane" id="Domain" role="tabpanel"
+							aria-labelledby="nav-profile-tab"
+							onloadeddata="return submitA(this);">
+							<div class="Domain">
+								<div class="row">
+									<div class="col-12">
+										<table id="tableIds"
+											class="table table-striped a-table-font dt-center">
+											<thead>
+												<tr>
+													<th>User Name</th>
+													<th>First Name</th>
+													<th>Last Name</th>
+													<th>Language</th>
+													<th>Approve</th>
+												</tr>
+											</thead>
+											<tbody>
+
+												<tr th:each="domain : ${statusByApprovDomain}">
+													<td th:text="${domain.getUser().username}">User Name</td>
+													<td th:text="${domain.getUser().firstName}">First Name</td>
+													<td th:text="${domain.getUser().lastName}">Last name</td>
+													<td th:text="${domain.getLanguage().getLanguageName()}">Language
+														Name</td>
+													<td>
+														<button id="approveDomainId" type="button"
+															th:value="${domain.userRoleId}"
+															class="btn a-btn approveDomain">Approve</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="tab-pane fade a-tab-pane" id="MasterTrainer"
+							role="tabpanel" aria-labelledby="nav-contact-tab">
+							<div class="Master_class">
+								<div class="row">
+									<div class="col-12">
+										<table id="tableIdMaster"
+											class="table table-striped a-table-font">
+											<thead>
+												<tr>
+													<th>First Name</th>
+													<th>Last Name</th>
+													<th>Approve</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="master : ${statusByApprovMaster}">
+													<td th:text="${master.getUser().firstName}">First Name</td>
+													<td th:text="${master.getUser().lastName}">Last name</td>
+													<td>
+														<button id="approvemasterId" type="button"
+															th:value="${master.userRoleId}"
+															class="btn a-btn approvemaster">Approve</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade a-tab-pane" id="Contributer"
+							role="tabpanel" aria-labelledby="nav-contact-tab">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-sm-12">
+										<table id="tableIdContributor"
+											class="table table-striped a-table-font">
+											<thead>
+												<tr>
+													<th>User Name</th>
+													<th>First Name</th>
+													<th>Last Name</th>
+													<th>Language</th>
+													<th>Approve</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="approve : ${statusByApprovContributer}">
+													<td th:text="${approve.getUser().username}">User Name</td>
+													<td th:text="${approve.getUser().firstName}">First
+														Name</td>
+													<td th:text="${approve.getUser().lastName}">Last name</td>
+													<td th:text="${approve.getLanguage().getLanguageName()}">Language
+														Name</td>
+													<td>
+														<button id="approveContributorId" type="button"
+															th:value="${approve.getUserRoleId()}"
+															class="btn a-btn approveContributor">Approve</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade a-tab-pane" id="Quality" role="tabpanel"
+							aria-labelledby="nav-contact-tab">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col">
+										<table id="tableIdQuality"
+											class="table table-striped a-table-font">
+											<thead>
+												<tr>
+													<th>User Name</th>
+													<th>First Name</th>
+													<th>Last Name</th>
+													<th>Approve</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="quality : ${statusByApprovQuality}">
+
+													<td th:text="${quality.getUser().username}">User Name</td>
+													<td th:text="${quality.getUser().firstName}">First
+														Name</td>
+													<td th:text="${quality.getUser().lastName}">Last name</td>
+													<td>
+														<button id="approveQualityId" type="button"
+															th:value="${quality.getUserRoleId()}"
+															class="btn a-btn approveQuality">Approve</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+	<script src="/s/js/main.js"></script>
+	<script src="/js/ajaxSupport.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(document).ready(function() {
+				$('#tableId').DataTable();
+				$('#tableIds').DataTable();
+				/* $('#tableIdContributor').DataTable(); */
+				$('#tableIdMaster').DataTable();
+				$('#tableIdQuality').DataTable();
+
+				$('#tableIdContributor').DataTable({
+					columnDefs : [ {
+						targets : -1,
+						className : 'dt-center'
+					} ]
+				});
+
+			});
+		});
+	</script>
+</body>
 </html>

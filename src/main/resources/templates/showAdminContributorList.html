@@ -4,133 +4,128 @@
 
 <head th:replace="common/trail :: common-trail">
 
-	<meta charset="utf-8"/>
-		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-		 <link rel="stylesheet" href="css/style3.css"/>
- 	 	<link rel="stylesheet" href="css/bootstrap.min.css"/> 
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="css/style3.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
 
 </head>
 
 <script type="text/javascript">
-
 $('select').selectpicker();
-
-
 </script>
+<body>
+	<div style="display: flex;">
 
-  <body>
-  		<!-- <div th:replace="common/trail :: navbar1"/> -->
-  		
-  		<!-- <div class="container" style="padding-top: 150px"> -->
-  		<div style="display:flex;">
-		<!-- <div th:replace="common/sidebar :: nav_sidebar"></div> -->
+		<div th:replace="common/sidebar :: contributor_sidebar"></div>
+		<div class="row" style="width: 100%;">
+			<div class="col-lg-10 col-xl-9 mx-auto">
+				<div class="a-update-msg"></div>
+				<div class="card card-signin flex-row a-card">
 
-	    <div class="row" style="width:100%;">
-	      <div class="col-lg-10 col-xl-9 mx-auto">
-	        <div class="card card-signin flex-row my-5">
-	       
-	          <div class="card-body">
-	           <h5 class="card-title text-center" style="color:maroon; font-size: 20px">
-    			<div class="">    
-                                <div th:if="${msg}">
-   								 <span th:text="${msg}"></span>
- 									 </div> </div></h5>
-	            <h5 class="card-title text-center" style="color:maroon; font-size: 30px">Assign Contributor Form </h5>
-	            
-	       	   <form class="form-horizontal"  th:action="@{/contribution_roles}" method="post"  onsubmit="return submitForm(this);">
- 			
- 					
- 					
- 			<div class="form-group">  
-			              
-			              <label for="inputUserame"></label>     
-			              <select id="contributorId" class="form-control" name="contributorName"  required="required" >
-								                       <option selected="selected">Select User</option>      
-								<span th:each="contributors: ${userByContributors}">
-								
-									  		<option th:value="${contributors}"><span th:text="${contributors}"></span></option>	
-									  											
+					<div class="card-body">
+						<h5 class="card-title text-center a-card-title">
+							<div class="">
+								<div th:if="${msg}">
+									<span th:text="${msg}"></span>
+								</div>
+							</div>
+						</h5>
+						<h5 class="card-title text-center"
+							style="color: maroon; font-size: 30px">Assign Contributor
+							Form</h5>
+
+						<form class="form-horizontal" th:action="@{/contribution_roles}"
+							method="post" onsubmit="return submitForm(this);">
+							<div class="form-group">
+
+								<label for="inputUserame"></label> <select id="contributorId"
+									class="form-control" name="contributorName" required="required">
+									<option selected="selected">Select User</option>
+									<span th:each="contributors: ${userByContributors}">
+
+										<option th:value="${contributors}"><span
+												th:text="${contributors}"></span></option>
+
 								</span>
-								  			  						
-						</select>					
-				</div>
-					
-					   <div class="form-group">
-					    		
-					               <label for="lanId"></label>
-					               
-					                    <select id="lanId" class="form-control" name="languageName"  required="required">
-					              <option selected="selected">Select Language</option> 
-					                	</select> 				                    
-						</div>
-					 	
-					 <div class="form-group">  
-			               <label for="catgoryByContributor"></label>     
-			              <select id="catgoryByContributor" class="form-control" name="contributorCategory"   required="required">
-								      <option selected="selected">Select Category</option>                      								                      
-						</select>					
-					</div> 
-					
-				
-	           				<div class="form-group">
-	           				
-						<!-- merge conflict starts -->
-					               		<!-- <label for="inputTopic"></label>
-					                  	<select id="inputTopic" class="form-control" name="inputTopic"  required="required">
-					              <option selected="selected">Select Topic</option> -->
-					              <!-- merge conflict ends -->
-	           				 
-	           				<label for="catgoryByContributor">Select Topic</label> 
-					                  	<select  id="inputTopic" class="form-control select selectpicker" name="inputTopic"  required="required" multiple="multiple">
-					                	</select> 
-					                	
-							 </div>
-							 
 
- 				<div class="form-group">
-						 
-							<label for="Category">Status</label>       
-               				<input type="checkbox" id="checkStatus" class="form-control w-75"  name="checkboxName" />	
-					</div>	
-			          
-						  
-		 <button id="submitContribution" type="submit" class="btn btn-success">Submit</button>&nbsp;&nbsp;&nbsp;
-						  
-						  
- 		      </form>
-         	
-					<script>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="lanId"></label> <select id="lanId"
+									class="form-control" name="languageName" required="required">
+									<option selected="selected">Select Language</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="catgoryByContributor"></label> <select
+									id="catgoryByContributor" class="form-control"
+									name="contributorCategory" required="required">
+									<option selected="selected">Select Category</option>
+								</select>
+							</div>
+
+
+							<div class="form-group">
+								<label for="catgoryByContributor">Select Topic</label> <select
+									id="inputTopic" class="form-control select selectpicker"
+									name="inputTopic" required="required" multiple="multiple">
+								</select>
+
+							</div>
+							<div class="form-group"
+								style="display: flex; justify-content: flex-start;">
+								<input type="checkbox" id="checkStatus"
+									class="form-control a-checkbox" name="checkboxName" /><span><label
+									for="Category">Confirm</label></span>
+							</div>
+							<button id="submitContribution" type="submit"
+								class="btn btn-success">Submit</button>
+							&nbsp;&nbsp;&nbsp;
+						</form>
+
+						<script>
+					$( document ).ready(function() {
+						var msg = localStorage.getItem("assign_contri_msg");
+					    $('.a-update-msg').html(msg);
+					    localStorage.setItem("assign_contri_msg", "");
+					    if(msg!=""){
+					    	alert('not null');
+					    	 $('.a-card').css("margin-top", "40px"); 	
+					    }
+					   
+					});
 					function submitForm() {
-						  return confirm('Do you really want to submit the form?');
-						  
-						  alert("Submit form succefully");
+						  var category = $("#catgoryByContributor").val()
+						  localStorage.setItem("assign_contri_msg", "Contributor assigned for - "+ category);
 						}
 					</script>
-  				 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-			<div th:fragment="body-bottom-scripts">
 
-        	 <script src="static/js/bootstrap.bundle.min.js"></script>
-       		 <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-			
-				<script src="/js/jquery.min.js"></script>
-			    <script src="/s/js/jquery-3.2.1.min.js"></script>
-			    <script src="/s/js/popper.min.js"></script>
-			    <script src="/s/js/bootstrap.min.js"></script>
-			    <script src="/s/js/owl.carousel.min.js"></script>
-			    <script src="/s/js/bootstrap-datepicker.js"></script>
-			    <script src="/s/js/jquery.timepicker.min.js"></script>
-			    <script src="/s/js/jquery.waypoints.min.js"></script>
-			    <script src="/s/js/main.js"></script>
-			     <script src="/js/ajaxSupport.js"></script>
-			
+					</div>
+				</div>
 			</div>
- </body>
+		</div>
+	</div>
+
+	<div th:fragment="body-bottom-scripts">
+
+		<script src="static/js/bootstrap.bundle.min.js"></script>
+		<script src="static/js/jquery.slim.min"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
+
+		<script src="/js/jquery.min.js"></script>
+		<script src="/s/js/jquery-3.2.1.min.js"></script>
+		<script src="/s/js/popper.min.js"></script>
+		<script src="/s/js/bootstrap.min.js"></script>
+		<script src="/s/js/owl.carousel.min.js"></script>
+		<script src="/s/js/bootstrap-datepicker.js"></script>
+		<script src="/s/js/jquery.timepicker.min.js"></script>
+		<script src="/s/js/jquery.waypoints.min.js"></script>
+		<script src="/s/js/main.js"></script>
+		<script src="/js/ajaxSupport.js"></script>
+
+	</div>
+</body>
 </html>
- 
- 
+

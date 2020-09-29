@@ -26,7 +26,7 @@
 	box-sizing: border-box;
 }
 body{
-	padding-top: 70px;
+	padding-top: 120px!important;
 }
 .btn{
 	background-color: var(--btn-color);
@@ -43,22 +43,28 @@ body{
 	color: var(--btn-color);
 	font-weight: bold;
 }
+.main-heading{
+	color : var(--heading-color);
+	text-align: center;
+	margin-top: 25px;
+}
 /*-----------------------------------header upper-bar---------------------------*/
 header .upper-bar{
 	z-index : 1;
 	background: #F2FAF9;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .contact-num{
 	font-size: 0.9rem;
     font-family: "Times New Roman", Times, serif;
 }
 .h-login{
-	font-size: 0.8rem;
+	font-size: 1rem;
     font-family: "Times New Roman", Times, serif;
     color: green;
 }
 .h-login a{
-	color: #BF360D;
+	color: var(--dark-orange);
 }
 
 
@@ -89,12 +95,20 @@ header .upper-bar{
 .light-txt{
 	color: var(--small-text-color);
 }
-
+.featurette{
+	border: 1px solid rgba(0,0,0,0.1);
+    margin: 10px 25px;
+    border-radius: 10px;
+    padding: 2px 25px;
+}
+.featurette a{
+	margin : 25px 0 25px 0;
+}
 /*-----------------------------------/Intro text with carousel---------------------------*/
 
 /*-----------------------------------Highlights---------------------------*/
 #info{
-	padding:0 10%;
+	padding:2% 10%;
 }
 #info .card h1{
 	color: var(--teal-dark);
@@ -151,12 +165,14 @@ header .upper-bar{
 /*-----------------------------------/Events---------------------------*/
 
 /*-----------------------------------Marketing---------------------------*/
-
+.marketing{
+	padding: 0 25px;
+}
 .marketing .col-lg-4 {
   margin-bottom: 1.5rem;
   text-align: center;
 }
-.marketing h2 {
+.marketing h3 {
   font-size : 1.2rem;
   color : var(--heading-color);
 }
@@ -178,12 +194,16 @@ header .upper-bar{
 /*-----------------------------------Testimonials---------------------------*/
 .testimonials-wrapper{
 	position: relative;
+	padding-top:25px;
+
+	
 }
 .slick-dots{
 	list-style: none;
 	display: flex;
 	position: absolute;
-	right: 50%;
+	right: 46%;
+	padding-left:0;
 }
 .slick-dots li{
 	width: 10px;
@@ -216,14 +236,19 @@ header .upper-bar{
 	height : 360px;
 	/* overflow: scroll; */
 	overflow: auto;
-	border : 1px solid rgba(0,0,0,0.2);
 	/* margin : 10px 25px; */
-	width : 30%;
+	width : 25%;
 }
 .t-item h6{
 	/* font-family: "Lucida Console", Courier, monospace; */
 	font-size : 1.2rem;
 	color : #1C7871;
+}
+.t-wrap{
+	border : 1px solid rgba(0,0,0,0.2);
+	border-radius : 10px;
+	margin:25px;
+	padding : 20px;
 }
 /*-----------------------------------Testimonials---------------------------*/
 
@@ -236,9 +261,14 @@ header .upper-bar{
 }
 .v-item{
 	border: 1px solid rgba(0,0,0,0.2);
-	width: 220px!important;
 	height: auto;
 	margin: 15px;
+	width: 294px;
+    padding: 5px;
+    border-radius: 10px;
+    width: 250px!important;
+    
+}
 }
 .v-item .vid{
 	width: 100%;
@@ -321,7 +351,8 @@ header .upper-bar{
 	padding-top: 20px;
 }
 #contact{
-	padding:0 10%;
+	padding:0 0%;
+	margin-top:50px;
 }
 .contact-row{
 	background-color: rgba(232,245,233,0.4);

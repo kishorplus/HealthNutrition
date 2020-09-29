@@ -65,9 +65,20 @@ public class AdminReviwer
 	public String listTutorialAdmin(Model model) 
 	{	
 		
-		List<Tutorial> tutorial=(List<Tutorial>) tutorialdao.finByVideoStatus();
-
-		model.addAttribute("AdminListTutorias",tutorial);
+//		List<Tutorial> tutorial=(List<Tutorial>) tutorialdao.finByVideoStatus();
+//		model.addAttribute("AdminListTutorias",tutorial);
+		List<Tutorial> pending=(List<Tutorial>) tutorialdao.findByVideoAdminRevPending();
+		model.addAttribute("TutorialsPending",pending);
+		
+		List<Tutorial> improvement=(List<Tutorial>) tutorialdao.findByVideoAdminRevImprovement();
+		model.addAttribute("TutorialsImprovement",improvement);
+		
+		List<Tutorial> approved=(List<Tutorial>) tutorialdao.findByVideoAdminRevApproved();
+		model.addAttribute("TutorialsApproved",approved);
+		
+		List<Tutorial> all=(List<Tutorial>) tutorialdao.findByVideoAll();
+		model.addAttribute("TutorialsAll",all);
+		
 	
 		return "listTutorialAdminReviwer";
 

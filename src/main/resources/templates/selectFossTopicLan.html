@@ -11,19 +11,19 @@
 
 </head>
   <body>
-  		<!-- <div th:replace="common/trail :: navbar1"/> -->
-  		<div th:replace="common/header :: c_header"></div>
   		
-  		<!-- <div class="container" style="padding-top: 150px"> -->
+  		<!-- <div th:replace="common/header :: c_header"></div> -->
+  		
+  		
   		<div style="display:flex;">
   		<div th:replace="common/sidebar :: contributor_sidebar"></div>
 
 	    <div class="row" style='width:100%;'>
 	      <div class="col-lg-10 col-xl-9 mx-auto">
-	        <div class="card card-signin flex-row my-5">
+	        <div class="card card-signin flex-row a-card">
 	       
 	          <div class="card-body">
-	           <h5 class="card-title text-center" style="color:maroon; font-size: 20px">
+	           <h5 class="card-title text-center a-card-title">
     			<div class="">    
                                 <div th:if="${msg}">
    								 <span th:text="${msg}"></span>
@@ -53,19 +53,22 @@
 				
 	           				 <div class="form-group ">
 		
-					       <label for="inputTopicContributor">Topic Name</label>
+					       <!-- <label for="inputTopicContributor">Topic</label> -->
+					       <label for="inputTopicContributor"></label>
 					       <select id="inputTopicContributor" class="form-control" name="inputTopic"  required="required">
-					              
+					            <!-- <option id="categoryContributor"  selected="selected">Select Category</option> -->
+					            <option value="0">Select Topic</option>  
 					       </select> 
 					                	
 							 </div>
 
 			              <div class="form-group ">
 		
-					               <label for="inputLanguageContributor">Select Language</label>
+					               <!-- <label for="inputLanguageContributor">Language</label> -->
+					               <label for="inputLanguageContributor"></label>
 					               
 					                    <select id="inputLanguageContributor" class="form-control" name="inputLanguage"  required="required">
-					              
+					              		<option value="0">Select Language</option>
 					                </select> 
 					                    
 						  </div>
@@ -77,9 +80,9 @@
          	
 					<script>
 					function submitForm() {
-						  return confirm('Do you really want to submit the form?');
+						  /* return confirm('Do you really want to submit the form?'); */
 						  
-						  alert("Submit form succefully");
+						  /* alert("Submit form succefully"); */
 						}
 					</script>
   				 

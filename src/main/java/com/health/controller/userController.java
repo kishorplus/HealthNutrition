@@ -1,20 +1,12 @@
 package com.health.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 
-import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,16 +17,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.health.domain.security.Role;
 import com.health.domain.security.UserRole;
 import com.health.model.Category;
+import com.health.model.TraningInformation;
 import com.health.model.Tutorial;
 import com.health.model.User;
+import com.health.model.feedbackMasterTrainer;
 import com.health.model.language;
-import com.health.model.language_assign;
 import com.health.model.partipantDeatil;
 import com.health.model.state;
+import com.health.model.trainingInformationDao;
 import com.health.repository.RoleRepository;
 import com.health.repository.TutorialDao;
 import com.health.repository.UserRepository;
 import com.health.repository.UserRoleRepositary;
+import com.health.repository.feedbackRespositary;
 import com.health.repository.languageAssignDao;
 import com.health.repository.languagedao;
 import com.health.repository.participantDao;
@@ -45,14 +40,14 @@ import com.health.service.roleService;
 import com.health.service.tutorialService;
 
 @Controller
-public class userController 
+public class userController
 {
 
 	@Autowired
-	roleService roleservice;
+	private roleService roleservice;
 
 	@Autowired
-	RoleRepository rolerespositary;
+	private RoleRepository rolerespositary;
 
 	@Autowired
 	private UserService userService;
@@ -65,25 +60,25 @@ public class userController
 
 	@Autowired
 	private categoryService categoryservice;
-	
+
 	@Autowired
 	private tutorialService tutorialService;
-	
-	@Autowired 
-	private TutorialDao tutorialDao;
-	
-	@Autowired 
-	private participantDao participantDao;
-	
-	@Autowired 
-	private UserRepository userDao;
-	
+
 	@Autowired
-	private languagedao languagedao; 
-	
-	@Autowired 
+	private TutorialDao tutorialDao;
+
+	@Autowired
+	private participantDao participantDao;
+
+	@Autowired
+	private UserRepository userDao;
+
+	@Autowired
+	private languagedao languagedao;
+
+	@Autowired
 	private  languageAssignDao languageAssignDao;
-		
+
 	@RequestMapping(value = "/access-denied", method = RequestMethod.GET)
 	public String accessDeny() {
 
@@ -93,42 +88,94 @@ public class userController
 
 	@Autowired
 	private stateRespositary statedao;
-	
+
+	@Autowired
+	private languagedao languageDao;
+
+	@Autowired
+	private trainingInformationDao trainingInformationDao;
+
+
+	@Autowired
+	private feedbackRespositary feedbackRespositaryDao;
+
 	@RequestMapping(value = "/adminDeatail", method = RequestMethod.GET)
 	public String adminDeatail(Model model, Authentication authentication) {
-		
+
 
 		List<Category> category = categoryservice.findAll();
 
 		model.addAttribute("categorys", category);
-	
-		List<Tutorial> tutorial=tutorialService.findAll();
-	
-	
-		
-			List<partipantDeatil> participantdeatail=(List<partipantDeatil>) participantDao.findAll();
-			
-			
-			model.addAttribute("tutorials",tutorial);
-	
-			model.addAttribute("parcipantDeatails", participantdeatail);
-		
-		
-			List<state> state=(List<com.health.model.state>) statedao.findAll();
-			
-			model.addAttribute("stateInfo",state);
-			
-			User user=userDao.findByUsername(authentication.getName());
-		/*
-		 * 
-		 * UserRole userRole=userRoleRepositary.findByUserInfo(user);
-		 * 
-		 */
-		
-			model.addAttribute("userInfo",user);
 
+		List<Tutorial> tutorial=tutorialService.findAll();
+
+		List<Category> cats = categoryservice.findAll();
+
+		List<String> catInformation=new ArrayList<String>();
+
+
+		for (Category catInfo : cats) {
+
+			catInformation.add(catInfo.getCategoryname());
+
+		}
+
+		ArrayList<String> feedbakMasTra=new ArrayList<String>();
+
+		List<feedbackMasterTrainer> feedbackMasterTrainerList = (List<feedbackMasterTrainer>) feedbackRespositaryDao.findAll();
+
+		for (feedbackMasterTrainer feedbackMasterTrainer : feedbackMasterTrainerList) {
+
+			feedbakMasTra.add(feedbackMasterTrainer.getCategory().getCategoryname());
+
+		}
+
+		feedbakMasTra.removeAll(catInformation);
+
+
+
+		model.addAttribute("listOfcategory",feedbakMasTra);
+
+		model.addAttribute("categorys",category);
+
+
+//		List<Tutorial> tutorial=tutorialService.findAll();
+
+		List<language> languageAll=languageDao.findAll();
+
+
+			List<partipantDeatil> participantdeatail=(List<partipantDeatil>) participantDao.findAll();
+
+
+			model.addAttribute("tutorials",tutorial);
+
+			model.addAttribute("parcipantDeatails", participantdeatail);
+
+
+			List<state> state=(List<com.health.model.state>) statedao.findAll();
+
+			model.addAttribute("stateInfo",state);
+
+			User user=userDao.findByUsername(authentication.getName());
+
+		/*
+		 *
+		 * UserRole userRole=userRoleRepositary.findByUserInfo(user);
+		 *
+		 */
+
+
+
+			List<TraningInformation> traningInformation=trainingInformationDao.findByCategoryOnUser(user);
+
+
+
+			model.addAttribute("traningInformation",traningInformation);
+			model.addAttribute("languagesDisplay",languageAll);
+
+			model.addAttribute("userInfo",user);
 		return "roleAdminDetail";
-		
+
 	}
 	@RequestMapping(value = "/userDetail", method = RequestMethod.GET)
 	public String userDetail(Model model, Authentication authentication) {
@@ -138,141 +185,145 @@ public class userController
 
 
 	@RequestMapping(value = "/addMeAsContributer", method = RequestMethod.POST)
-	public String aaddMeAsContributer(Authentication authentication, Model model,@RequestParam(value="contributerLanguage") String languageName) 
+	public String aaddMeAsContributer(Authentication authentication, Model model,@RequestParam(value="contributerLanguage") String languageName)
 	{
-		
+
 		language lan=languagedao.findBylanguageName(languageName);
-		
+
 		int languageId=lan.getId();
-		
-		
+
+
 		java.util.Date dt = new java.util.Date();
 
-		java.text.SimpleDateFormat sdf = 
+		java.text.SimpleDateFormat sdf =
 		     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		String currentTime = sdf.format(dt);
-		
+
 		User user = userService.findByClassname(authentication.getName());
-		
+
 		String name = "Contributer";
-		
+
 		Role role = rolerespositary.findByname(name);
 
-		int status = 0;	
-		
-		UserRole userRoles = new UserRole(user, role);	
-		
-			userRoles.setLanguage(lan);		
-			userRoles.setCreated(currentTime);		
+		int status = 0;
+
+		UserRole userRoles = new UserRole(user, role);
+
+			userRoles.setLanguage(lan);
+			userRoles.setCreated(currentTime);
 			userRoles.setStatus(status);
-			
+
 		userRoleRepositary.save(userRoles);
-	
+
 		model.addAttribute("request","Request Send Successfully");
-		
-		return "roleAdminDetail";
-		
+
+		return "redirect:/contributerSelectionLanguage";
+//		return "addContributerRoleRequest";
+//		return "roleAdminDetail";
+
 	}
-	
+
 	@RequestMapping(value = "/addMeAsDomainRevieweer", method = RequestMethod.POST)
-	public String addMeAsDomainRevieweer(Authentication authentication, Model model,@RequestParam(value="contributerLanguage") String languageName) 
+	public String addMeAsDomainRevieweer(Authentication authentication, Model model,@RequestParam(value="contributerLanguage") String languageName)
 	{
 
-		
+
 		language lan=languagedao.findBylanguageName(languageName);
-		
+
 		User user = userService.findByClassname(authentication.getName());
-	
+
 		//List<UserRole> findAlreadyPresent=(List<UserRole>) userRoleRepositary.findByuser_id(user.getId());
-		
+
 		/*
 		 * for (UserRole exitRole : findAlreadyPresent) {
-		 * 
+		 *
 		 * if(exitRole.getRole().getRoleId()==3) {
-		 * 
+		 *
 		 * model.addAttribute("requestSend",true);
-		 * 
+		 *
 		 * return "roleAdminDetail";
-		 * 
+		 *
 		 * }
-		 * 
+		 *
 		 * }
 		 */
-		
-			
+
+
 		String name = "DomainReviweer";
 
 		Role role = rolerespositary.findByname(name);
 
 		java.util.Date dt = new java.util.Date();
 
-		java.text.SimpleDateFormat sdf = 
+		java.text.SimpleDateFormat sdf =
 		     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		String currentTime = sdf.format(dt);
-		
-		
+
+
 		int status = 0;
 		UserRole userRoles = new UserRole(user, role);
-		
+
 		userRoles.setStatus(status);
 		userRoles.setLanguage(lan);
 		userRoles.setCreated(currentTime);
 		userRoleRepositary.save(userRoles);
 
-		return "roleAdminDetail";
+		return "redirect:/domainLanguage";
+//		return "roleAdminDetail";
 
 	}
 	@RequestMapping(value = "/addMeAsAdminReviwer", method = RequestMethod.GET)
-	public String addMeAsAdminReviwer(Authentication authentication, Model model) 
+	public String addMeAsAdminReviwer(Authentication authentication, Model model)
 	{
-	
-		User user = userService.findByClassname(authentication.getName());
-		
 
-		List<UserRole> findAlreadyPresent=(List<UserRole>) userRoleRepositary.findByuser_id(user.getId());
-		
-		for (UserRole  exitRole : findAlreadyPresent) 
+		User user = userService.findByClassname(authentication.getName());
+
+
+		List<UserRole> findAlreadyPresent=userRoleRepositary.findByuser_id(user.getId());
+
+		for (UserRole  exitRole : findAlreadyPresent)
 		{
-			
+
 			if(exitRole.getRole().getRoleId()==6)
-			{	
-			
+			{
+
 				model.addAttribute("requestSend",true);
-				
+
 				return "roleAdminDetail";
-				
+
 			}
-			
+
 		}
-		
+
 		String name = "VideoReviwer";
-		
-		
+
+
 		java.util.Date dt = new java.util.Date();
 
-		java.text.SimpleDateFormat sdf = 
+		java.text.SimpleDateFormat sdf =
 		     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		String currentTime = sdf.format(dt);
-		
+
 		Role role = rolerespositary.findByname(name);
 
 		int status = 0;
 		UserRole userRoles = new UserRole(user, role);
 		userRoles.setStatus(status);
 		userRoles.setCreated(currentTime);
-		
+
 		userRoleRepositary.save(userRoles);
 
-		return "roleAdminDetail";
-		
+		return "redirect:/roleAdminDetail";
+//		return "roleAdminDetail";
+
 
 	}
-	
-	
-	
+
+
+
 
 	@RequestMapping(value = "/addMeAsQualityRevieweer", method = RequestMethod.GET)
 	public String addMeAsQualityRevieweer(Authentication authentication,Model model) {
@@ -280,28 +331,28 @@ public class userController
 		User user = userService.findByClassname(authentication.getName());
 
 
-		List<UserRole> findAlreadyPresent=(List<UserRole>) userRoleRepositary.findByuser_id(user.getId());
-		
-		for (UserRole  exitRole : findAlreadyPresent) 
+		List<UserRole> findAlreadyPresent=userRoleRepositary.findByuser_id(user.getId());
+
+		for (UserRole  exitRole : findAlreadyPresent)
 		{
-			
+
 			if(exitRole.getRole().getRoleId()==1)
-			{	
-			
+			{
+
 				model.addAttribute("requestSend",true);
-				
+
 				return "roleAdminDetail";
-				
+
 			}
-			
-			
+
+
 		}
-		
+
 		String name = "QualityReviweer";
-		
+
 		java.util.Date dt = new java.util.Date();
 
-		java.text.SimpleDateFormat sdf = 
+		java.text.SimpleDateFormat sdf =
 		     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		String currentTime = sdf.format(dt);
@@ -313,6 +364,8 @@ public class userController
 		userRoles.setStatus(status);
 		userRoles.setCreated(currentTime);
 		userRoleRepositary.save(userRoles);
+
+
 
 		return "roleAdminDetail";
 
@@ -324,29 +377,29 @@ public class userController
 		User user = userService.findByClassname(authentication.getName());
 
 
-		List<UserRole> findAlreadyPresent=(List<UserRole>) userRoleRepositary.findByuser_id(user.getId());
-		
-		for (UserRole  exitRole : findAlreadyPresent) 
+		List<UserRole> findAlreadyPresent=userRoleRepositary.findByuser_id(user.getId());
+
+		for (UserRole  exitRole : findAlreadyPresent)
 		{
-			
+
 			if(exitRole.getRole().getRoleId()==4)
-			{	
-			
+			{
+
 				model.addAttribute("requestSend",true);
-				
+
 				return "roleAdminDetail";
-				
+
 			}
-			
+
 		}
-		
+
 		String name = "MasterTrainer";
 
 		Role role = rolerespositary.findByname(name);
-		
+
 		java.util.Date dt = new java.util.Date();
 
-		java.text.SimpleDateFormat sdf = 
+		java.text.SimpleDateFormat sdf =
 		     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		String currentTime = sdf.format(dt);
@@ -356,7 +409,7 @@ public class userController
 		UserRole userRoles = new UserRole(user, role);
 		userRoles.setStatus(status);
 		userRoles.setCreated(currentTime);
-		
+
 		userRoleRepositary.save(userRoles);
 
 		return "roleAdminDetail";
@@ -367,7 +420,7 @@ public class userController
 
 	@RequestMapping(value = "/approveMeAsDomainRevieweer", method = RequestMethod.GET)
 	public String approveMeAsDomainRevieweer(Model model, Authentication autheticate){
-		
+
 
 		int rolId = 3;
 		Role role = rolerespositary.findByIdRoles(rolId);
@@ -387,13 +440,13 @@ public class userController
 
 		model.addAttribute("statusByApprov", userAddInformation);
 
-		return "showDomainReviweer";	
-	}	
-	
+		return "showDomainReviweer";
+	}
+
 	@RequestMapping(value = "/approveMeAsContributer", method = RequestMethod.GET)
-	public String approveMeAsContributer(Model model, Authentication autheticate) 
+	public String approveMeAsContributer(Model model, Authentication autheticate)
 	{
-	
+
 		int rolId = 5;
 		Role role = rolerespositary.findByIdRoles(rolId);
 
@@ -401,24 +454,24 @@ public class userController
 		List<UserRole> userByStatus = userRoleRepositary.findByStatus(status, role);
 
 		List<User> userAddInformation = new ArrayList<>();
-		for (UserRole ur : userByStatus) 
+		for (UserRole ur : userByStatus)
 		{
 
 			User userInformation = userRepository.findOne(ur.getUser().getId());
-					
-			userAddInformation.add(userInformation);		
+
+			userAddInformation.add(userInformation);
 		}
 
 		model.addAttribute("statusByApprov", userByStatus);
 		/* model.addAttribute("statusByApprov", userAddInformation); */
-	
+
 		return "showContributer";
-		
-		
+
+
 	}
-	
+
 	/* Here is code for Contributor Approve */
-	
+
 	@RequestMapping("/addContributerRoleById/add/{id}")
 	public String addContributerRoleById(@PathVariable Long id, Model model, HttpServletRequest req) {
 
@@ -439,47 +492,47 @@ public class userController
 		userRoleRepositary.save(userRole);
 
 		/* return "showContributer"; */
-		
+
 		return "redirect:/approveRole";
 
 	}
-	
+
 	/* here is code reject Contributor */
 	@RequestMapping("/addRejectRoleById/reject/{id}")
-	public String rejectContributorById(@PathVariable Long id, Model model, HttpServletRequest req) 
-	{ 
-		
+	public String rejectContributorById(@PathVariable Long id, Model model, HttpServletRequest req)
+	{
+
 		User user = userRepository.findOne(id);
-		
+
 		UserRole userRoles =userRoleRepositary.findByRejectElement(user);
-		
+
 		System.err.println("print value"+userRoles.getUserRoleId());
-		
-	
+
+
 		String name = "Contributer";
 		Role role = rolerespositary.findByname(name);
-		
-	
-		
+
+
+
 		int status = 0;
-		UserRole userRole = userRoleRepositary.findByContributorId(userRoles.getUserRoleId(),role);		
+		UserRole userRole = userRoleRepositary.findByContributorId(userRoles.getUserRoleId(),role);
 		userRole.setStatus(status);
-		
-		
+
+
 		userRoleRepositary.save(userRole);
-		
-		
-		
-		
+
+
+
+
 		return "redirect:/approveRole";
-	
+
 	}
 
-	
+
 	@RequestMapping("/addDomainRoleById/add/{id}")
 	public String addDomainRoleById(@PathVariable Long id, Model model, HttpServletRequest req) {
 
-		
+
 		User user = userRepository.findOne(id);
 
 		String name = "DomainReviweer";
@@ -487,24 +540,24 @@ public class userController
 		Role role = rolerespositary.findByname(name);
 
 		int status = 1;
-		
+
 		UserRole userRole = userRoleRepositary.findByUserAndRole(user,role);
 
 		userRole.setStatus(status);
 
 		userRoleRepositary.save(userRole);
-		
+
 		model.addAttribute("viewActive","active");
-		
-		
+
+
 
 		return "approveRoleLink";
-		
+
 
 	}
-	
+
 	@RequestMapping("/addAdminRoleById/add/{id}")
-	public String addAdminRoleById(@PathVariable Long id, Model model, HttpServletRequest req) 
+	public String addAdminRoleById(@PathVariable Long id, Model model, HttpServletRequest req)
 	{
 
 		// User user=-userRepository.findByUserId(id);
@@ -516,7 +569,7 @@ public class userController
 		Role role = rolerespositary.findByname(name);
 
 		int status = 1;
-		
+
 		UserRole userRole = userRoleRepositary.findByUserAndRole(user, role);
 
 		userRole.setStatus(status);
@@ -526,7 +579,7 @@ public class userController
 		return "redirect:/approveRole";
 
 	}
-	
+
 
 	/* add the Quality Revieweer */
 
@@ -576,7 +629,7 @@ public class userController
 
 		userRoleRepositary.save(userRole);
 
-		
+
 		return "redirect:/approveRole";
 		/* return "showQualityReviweer"; */
 
@@ -584,15 +637,15 @@ public class userController
 
 	@RequestMapping("/addQualityRoleRejectById/add/{id}")
 	public String addQualityRoleRejectById(@PathVariable Long id, Model model, HttpServletRequest req) {
-	
-		
-		
-		
-			
-		
+
+
+
+
+
+
 		return "redirect:/approveRole";
 		/* return "showQualityReviweer"; */
-				
+
 	}
 
 	/* approve the master Trainer */
@@ -642,10 +695,10 @@ public class userController
 		userRole.setStatus(status);
 
 		userRoleRepositary.save(userRole);
-		
-		
+
+
 		return "redirect:/approveRole";
-			
+
 		/* return "showMasterTrainer"; */
 
 	}
@@ -653,19 +706,19 @@ public class userController
 	@RequestMapping("/addmasterRoleRejectById/add/{id}")
 	public String addMasterRoleRejectById(@PathVariable Long id, Model model, HttpServletRequest req) {
 
-		
-		
+
+
 		return "redirect:/approveRole";
 		/* return "showQualityReviweer"; */
 	}
-	
+
 	/*
 	 * here approve request from user like Domain reviewer
 	 */
 	@RequestMapping("/approveRole")
 	public String approveRole(Model model)
 	{
-		
+
 		int rolId = 3;
 		Role role = rolerespositary.findByIdRoles(rolId);
 
@@ -674,18 +727,18 @@ public class userController
 
 		List<User> userAddInformation = new ArrayList<>();
 
-		for (UserRole ur : userByStatus) 
+		for (UserRole ur : userByStatus)
 		{
 			User userInformation = userRepository.findOne(ur.getUser().getId());
 
 			userAddInformation.add(userInformation);
 			System.out.println(userInformation.getFirstName());
-			
+
 		}
 
 		model.addAttribute("statusByApprovDomain", userByStatus);
-		
-	
+
+
 		int rolIdMaster = 4;
 
 		Role roleMaster = rolerespositary.findByIdRoles(rolIdMaster);
@@ -703,9 +756,9 @@ public class userController
 		}
 
 		model.addAttribute("statusByApprovMaster", userByStatusMaster);
-		
-		
-	
+
+
+
 		int rolIdContributer = 5;
 		Role roleContributer = rolerespositary.findByIdRoles(rolIdContributer);
 
@@ -714,7 +767,7 @@ public class userController
 
 		List<User> userAddInformationContributer = new ArrayList<>();
 
-		for (UserRole ur : userByStatusContributer) {	
+		for (UserRole ur : userByStatusContributer) {
 
 			User userInformation = userRepository.findOne(ur.getUser().getId());
 
@@ -722,7 +775,7 @@ public class userController
 	    	}
 		model.addAttribute("statusByApprovContributer", userByStatusContributer);
 
-	
+
 		int rolIdQuality = 1;
 		Role roleQuality = rolerespositary.findByIdRoles(rolIdQuality);
 
@@ -744,7 +797,6 @@ public class userController
 		int rolIdVideo = 6;
 		Role roleVideo = rolerespositary.findByIdRoles(rolIdVideo);
 
-		/* int status = 0; */
 		List<UserRole> userByStatusVideo = userRoleRepositary.findByStatus(status, roleVideo);
 
 		List<User> userAddInformationVideo = new ArrayList<>();
@@ -756,11 +808,11 @@ public class userController
 			userAddInformationVideo.add(userInformation);
 		}
 		model.addAttribute("statusByApprovAdmin",userByStatusVideo);
-	
+
 		return "approveRoleLink";
-			
+
 	}
-	
-	
+
+
 
 }

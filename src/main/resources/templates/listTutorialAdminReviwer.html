@@ -19,13 +19,30 @@
   <body>
   
   
-  		<!-- <div th:replace="common/trail :: navbar1"/> -->
+  		
   		<div style="display:flex;">
 		<div th:replace="common/sidebar :: contributor_sidebar"></div>
   		
 		<div class="container-fluid" style="padding-top: 120px">
-          	
-          	     <div>
+          	<!-- tabs start  -->
+          	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+			  <li class="nav-item">
+			    <a class="nav-link active" id="pills-pending-tab" data-toggle="pill" href="#pills-pending" role="tab" aria-controls="pills-home" aria-selected="true">Pending</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" id="pills-improvement-tab" data-toggle="pill" href="#pills-improvement" role="tab" aria-controls="pills-profile" aria-selected="false">Improvement</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" id="pills-approved-tab" data-toggle="pill" href="#pills-approved" role="tab" aria-controls="pills-contact" aria-selected="false">Approved</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-contact" aria-selected="false">All</a>
+			  </li>
+			</ul>
+			<div class="tab-content" id="pills-tabContent">
+			  <div class="tab-pane fade show active" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
+			  
+			            	     <div>
 					   <!--      <h2>Domain List</h2> -->
 					   
 					   
@@ -45,13 +62,13 @@
 						                <th>Keyword</th>
 						                <th>Video</th>
 						                
-						                <th><i style="color: purple; width:30px ; padding-left: 5px" class="fas fa-cogs"></i></th>
+						                <th>Review</th>
 						 
 					            </tr>    			    
 					            </thead>
 					            <tbody>	
 					            
-					            	<tr th:each="componenettutorial : ${AdminListTutorias}">
+					            	<tr th:each="componenettutorial : ${TutorialsPending}">
 					  					
 					  					<td th:text="${componenettutorial.getTutorialid()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>  						              	
 						              	<td th:text="${componenettutorial.getCategory().getCategoryname()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>     
@@ -267,6 +284,751 @@
 					        
 					      
 					    </div>
+			  
+			  </div>
+			  <div class="tab-pane fade" id="pills-improvement" role="tabpanel" aria-labelledby="pills-improvement-tab">
+			  
+			  			            	     <div>
+					   <!--      <h2>Domain List</h2> -->
+					   
+					   
+					        
+					        <table id="tableId" class="table table-striped">
+					      
+					        <thead class="">
+					         
+					            <tr>
+						            	<th>Sr No</th>
+						            	<th>Category</th>
+						                <th>Tutorial</th>
+						                <th>Language</th>
+						                <th>Outline</th>
+						               	<th>Script</th>
+						                <th>Slide</th>
+						                <th>Keyword</th>
+						                <th>Video</th>
+						                
+						                <th>Review</th>
+						 
+					            </tr>    			    
+					            </thead>
+					            <tbody>	
+					            
+					            	<tr th:each="componenettutorial : ${TutorialsImprovement}">
+					  					
+					  					<td th:text="${componenettutorial.getTutorialid()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>  						              	
+						              	<td th:text="${componenettutorial.getCategory().getCategoryname()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>     
+						                <td th:text="${componenettutorial.getTopic().getTopicname()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>  
+						                <td th:text="${componenettutorial.getLan().getLanguageName()}"><i  style="color: maroon;" class="fas fa-check-circle"></i> </td>
+						               
+						               
+						   <td>
+						        
+							 			 <span th:if="${componenettutorial.getOutlineStatus()==0}">
+									                 
+									               			 <i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									               			 
+									              </span>
+						           
+									                 <span th:if="${componenettutorial.getOutlineStatus()==1}">
+									                 
+									               			 <i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getOutlineStatus()==2}">
+									             	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getOutlineStatus()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getOutlineStatus()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	</span>
+						               		 
+						    
+						    
+						    
+						               		 		 <span th:if="${componenettutorial.getOutlineStatus()==5}">
+
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   </span>
+
+
+
+							</td>
+						                
+						     <td>
+						            
+						            <span th:if="${componenettutorial.getScriptStatus()==0}">
+									         
+									       
+									                <i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									               			  
+									   	  </span>	
+						                
+						                  		 <span th:if="${componenettutorial.getScriptStatus()==1}">
+									                 
+									               			 <i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getScriptStatus()==2}">
+									               	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getScriptStatus()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getScriptStatus()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	  </span>
+									               	   <span th:if="${componenettutorial.getScriptStatus()==5}">
+
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   
+									                   </span>      
+						            
+						                
+						                
+						     </td>
+						    <td>
+						    
+						    								             	
+						                   <span th:if="${componenettutorial.getSlideStatus()==0}">
+									                 
+									               			<i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									        </span>
+						             	
+						                   <span th:if="${componenettutorial.getSlideStatus()==1}">	
+									                 
+									               		<i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									        </span>	
+									               	
+									             <span th:if="${componenettutorial.getSlideStatus()==2}">
+									               	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getSlideStatus()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getSlideStatus()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	  </span>
+												     <span th:if="${componenettutorial.getSlideStatus()==5}">
+	
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   
+									                   </span>
+						    
+						    
+						    </td>
+						    
+						    <td>
+						    
+						    					    								             	
+						                   <span th:if="${componenettutorial.getKeywordStatusSet()==0}">
+									                 
+									               			<i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									        </span>
+						             	
+						                   <span th:if="${componenettutorial.getKeywordStatusSet()==1}">	
+									                 
+									               		<i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									        </span>	
+									               	
+									             <span th:if="${componenettutorial.getKeywordStatusSet()==2}">
+									               	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getKeywordStatusSet()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getKeywordStatusSet()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	  </span>
+												     <span th:if="${componenettutorial.getKeywordStatusSet()==5}">
+	
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   
+									                   </span>
+						    
+						    
+						    </td>
+						    
+						    
+						    <td>
+						    
+													               	   
+						              <span th:if="${componenettutorial.getVideoStatus()==0}">
+									                 
+									               			<i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									  </span>
+									   
+									    <span th:if="${ componenettutorial.getVideoStatus()== 1}">
+						                   
+						            				<i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+						                		
+						                 </span>
+									  
+						                   <span th:if="${ componenettutorial.getVideoStatus()== 2}">
+						                   
+						                		<i style="color: orange;" class="fas fa-check-circle"></i>	
+						                		
+						                   </span>
+						                   
+						                      <span th:if="${componenettutorial.getVideoStatus()== 3}">
+						                   
+						                		<i style="color: aqua;" class="fas fa-check-circle"></i>	
+						                		
+						                   </span>
+						                   
+						                     <span th:if="${componenettutorial.getVideoStatus()== 4}">
+						                   
+						                		<i style="color: green; ;" class="fas fa-check-circle"></i>	
+						                		
+						                   </span>
+						                   
+						              		 <span th:if="${componenettutorial.getVideoStatus()== 5}">
+						                   <i style="color: red;" class="fas fa-times-circle"></i>
+						                   </span>
+						    
+					   </td>						    
+						           				                
+						               <td><a th:href="${'/adminreview/review/'+ componenettutorial.tutorialid}"><b><i  class="fas fa-link"></i><u style="color: green;"> Review </u></b></a></td>
+										
+										
+									<!-- 	<td>
+										
+										<button  type="button" id="reviewIdAdmin"> <b><i  class="fas fa-link"></i><u style="color: green;"> Review </u></b></button>
+									
+										</td>  -->
+					
+					            </tr>
+					            </tbody>			            
+					        </table>
+					        
+					        
+					      
+					    </div>
+			  
+			  </div>
+			  <div class="tab-pane fade" id="pills-approved" role="tabpanel" aria-labelledby="pills-approved-tab">
+			  
+			  			            	     <div>
+					   <!--      <h2>Domain List</h2> -->
+					   
+					   
+					        
+					        <table id="tableId" class="table table-striped">
+					      
+					        <thead class="">
+					         
+					            <tr>
+						            	<th>Sr No</th>
+						            	<th>Category</th>
+						                <th>Tutorial</th>
+						                <th>Language</th>
+						                <th>Outline</th>
+						               	<th>Script</th>
+						                <th>Slide</th>
+						                <th>Keyword</th>
+						                <th>Video</th>
+						                
+						                <th>Review</th>
+						 
+					            </tr>    			    
+					            </thead>
+					            <tbody>	
+					            
+					            	<tr th:each="componenettutorial : ${TutorialsApproved}">
+					  					
+					  					<td th:text="${componenettutorial.getTutorialid()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>  						              	
+						              	<td th:text="${componenettutorial.getCategory().getCategoryname()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>     
+						                <td th:text="${componenettutorial.getTopic().getTopicname()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>  
+						                <td th:text="${componenettutorial.getLan().getLanguageName()}"><i  style="color: maroon;" class="fas fa-check-circle"></i> </td>
+						               
+						               
+						   <td>
+						        
+							 			 <span th:if="${componenettutorial.getOutlineStatus()==0}">
+									                 
+									               			 <i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									               			 
+									              </span>
+						           
+									                 <span th:if="${componenettutorial.getOutlineStatus()==1}">
+									                 
+									               			 <i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getOutlineStatus()==2}">
+									             	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getOutlineStatus()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getOutlineStatus()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	</span>
+						               		 
+						    
+						    
+						    
+						               		 		 <span th:if="${componenettutorial.getOutlineStatus()==5}">
+
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   </span>
+
+
+
+							</td>
+						                
+						     <td>
+						            
+						            <span th:if="${componenettutorial.getScriptStatus()==0}">
+									         
+									       
+									                <i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									               			  
+									   	  </span>	
+						                
+						                  		 <span th:if="${componenettutorial.getScriptStatus()==1}">
+									                 
+									               			 <i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getScriptStatus()==2}">
+									               	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getScriptStatus()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getScriptStatus()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	  </span>
+									               	   <span th:if="${componenettutorial.getScriptStatus()==5}">
+
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   
+									                   </span>      
+						            
+						                
+						                
+						     </td>
+						    <td>
+						    
+						    								             	
+						                   <span th:if="${componenettutorial.getSlideStatus()==0}">
+									                 
+									               			<i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									        </span>
+						             	
+						                   <span th:if="${componenettutorial.getSlideStatus()==1}">	
+									                 
+									               		<i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									        </span>	
+									               	
+									             <span th:if="${componenettutorial.getSlideStatus()==2}">
+									               	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getSlideStatus()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getSlideStatus()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	  </span>
+												     <span th:if="${componenettutorial.getSlideStatus()==5}">
+	
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   
+									                   </span>
+						    
+						    
+						    </td>
+						    
+						    <td>
+						    
+						    					    								             	
+						                   <span th:if="${componenettutorial.getKeywordStatusSet()==0}">
+									                 
+									               			<i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									        </span>
+						             	
+						                   <span th:if="${componenettutorial.getKeywordStatusSet()==1}">	
+									                 
+									               		<i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									        </span>	
+									               	
+									             <span th:if="${componenettutorial.getKeywordStatusSet()==2}">
+									               	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getKeywordStatusSet()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getKeywordStatusSet()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	  </span>
+												     <span th:if="${componenettutorial.getKeywordStatusSet()==5}">
+	
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   
+									                   </span>
+						    
+						    
+						    </td>
+						    
+						    
+						    <td>
+						    
+													               	   
+						              <span th:if="${componenettutorial.getVideoStatus()==0}">
+									                 
+									               			<i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									  </span>
+									   
+									    <span th:if="${ componenettutorial.getVideoStatus()== 1}">
+						                   
+						            				<i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+						                		
+						                 </span>
+									  
+						                   <span th:if="${ componenettutorial.getVideoStatus()== 2}">
+						                   
+						                		<i style="color: orange;" class="fas fa-check-circle"></i>	
+						                		
+						                   </span>
+						                   
+						                      <span th:if="${componenettutorial.getVideoStatus()== 3}">
+						                   
+						                		<i style="color: aqua;" class="fas fa-check-circle"></i>	
+						                		
+						                   </span>
+						                   
+						                     <span th:if="${componenettutorial.getVideoStatus()== 4}">
+						                   
+						                		<i style="color: green; ;" class="fas fa-check-circle"></i>	
+						                		
+						                   </span>
+						                   
+						              		 <span th:if="${componenettutorial.getVideoStatus()== 5}">
+						                   <i style="color: red;" class="fas fa-times-circle"></i>
+						                   </span>
+						    
+					   </td>						    
+						           				                
+						               <td><a th:href="${'/adminreview/review/'+ componenettutorial.tutorialid}"><b><i  class="fas fa-link"></i><u style="color: green;"> Review </u></b></a></td>
+										
+										
+									<!-- 	<td>
+										
+										<button  type="button" id="reviewIdAdmin"> <b><i  class="fas fa-link"></i><u style="color: green;"> Review </u></b></button>
+									
+										</td>  -->
+					
+					            </tr>
+					            </tbody>			            
+					        </table>
+					        
+					        
+					      
+					    </div>
+					    
+			  </div>
+			  <div class="tab-pane fade" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+			  
+			  			            	     <div>
+					   <!--      <h2>Domain List</h2> -->
+					   
+					   
+					        
+					        <table id="tableId" class="table table-striped">
+					      
+					        <thead class="">
+					         
+					            <tr>
+						            	<th>Sr No</th>
+						            	<th>Category</th>
+						                <th>Tutorial</th>
+						                <th>Language</th>
+						                <th>Outline</th>
+						               	<th>Script</th>
+						                <th>Slide</th>
+						                <th>Keyword</th>
+						                <th>Video</th>
+						                
+						                <th>Review</th>
+						 
+					            </tr>    			    
+					            </thead>
+					            <tbody>	
+					            
+					            	<tr th:each="componenettutorial : ${TutorialsAll}">
+					  					
+					  					<td th:text="${componenettutorial.getTutorialid()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>  						              	
+						              	<td th:text="${componenettutorial.getCategory().getCategoryname()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>     
+						                <td th:text="${componenettutorial.getTopic().getTopicname()}"><i style="color: green;" class="fas fa-check-circle"></i> </td>  
+						                <td th:text="${componenettutorial.getLan().getLanguageName()}"><i  style="color: maroon;" class="fas fa-check-circle"></i> </td>
+						               
+						               
+						   <td>
+						        
+							 			 <span th:if="${componenettutorial.getOutlineStatus()==0}">
+									                 
+									               			 <i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									               			 
+									              </span>
+						           
+									                 <span th:if="${componenettutorial.getOutlineStatus()==1}">
+									                 
+									               			 <i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getOutlineStatus()==2}">
+									             	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getOutlineStatus()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getOutlineStatus()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	</span>
+						               		 
+						    
+						    
+						    
+						               		 		 <span th:if="${componenettutorial.getOutlineStatus()==5}">
+
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   </span>
+
+
+
+							</td>
+						                
+						     <td>
+						            
+						            <span th:if="${componenettutorial.getScriptStatus()==0}">
+									         
+									       
+									                <i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									               			  
+									   	  </span>	
+						                
+						                  		 <span th:if="${componenettutorial.getScriptStatus()==1}">
+									                 
+									               			 <i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getScriptStatus()==2}">
+									               	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getScriptStatus()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getScriptStatus()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	  </span>
+									               	   <span th:if="${componenettutorial.getScriptStatus()==5}">
+
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   
+									                   </span>      
+						            
+						                
+						                
+						     </td>
+						    <td>
+						    
+						    								             	
+						                   <span th:if="${componenettutorial.getSlideStatus()==0}">
+									                 
+									               			<i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									        </span>
+						             	
+						                   <span th:if="${componenettutorial.getSlideStatus()==1}">	
+									                 
+									               		<i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									        </span>	
+									               	
+									             <span th:if="${componenettutorial.getSlideStatus()==2}">
+									               	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getSlideStatus()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getSlideStatus()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	  </span>
+												     <span th:if="${componenettutorial.getSlideStatus()==5}">
+	
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   
+									                   </span>
+						    
+						    
+						    </td>
+						    
+						    <td>
+						    
+						    					    								             	
+						                   <span th:if="${componenettutorial.getKeywordStatusSet()==0}">
+									                 
+									               			<i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									        </span>
+						             	
+						                   <span th:if="${componenettutorial.getKeywordStatusSet()==1}">	
+									                 
+									               		<i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+									        </span>	
+									               	
+									             <span th:if="${componenettutorial.getKeywordStatusSet()==2}">
+									               	  
+									               			<i  style="color: orange;" class="fas fa-check-circle"></i>
+									               	</span>	 
+									               	
+									               	  <span th:if="${componenettutorial.getKeywordStatusSet()==3}">
+									               	  
+									               			 <i  style="color: aqua;" class="fas fa-check-circle"></i>
+									               	</span>	
+									               	
+									               	  <span th:if="${componenettutorial.getKeywordStatusSet()==4}">
+									               	  
+									               			 <i  style="color: green;" class="fas fa-check-circle"></i>
+									               	  </span>
+												     <span th:if="${componenettutorial.getKeywordStatusSet()==5}">
+	
+									                   <i style="color: red;" class="fas fa-times-circle"></i>
+									                   
+									                   
+									                   </span>
+						    
+						    
+						    </td>
+						    
+						    
+						    <td>
+						    
+													               	   
+						              <span th:if="${componenettutorial.getVideoStatus()==0}">
+									                 
+									               			<i  style="color: #FFFF00;" class="fas fa-check-circle"></i>
+									  </span>
+									   
+									    <span th:if="${ componenettutorial.getVideoStatus()== 1}">
+						                   
+						            				<i  style="color: #ff97a0;" class="fas fa-check-circle"></i>
+						                		
+						                 </span>
+									  
+						                   <span th:if="${ componenettutorial.getVideoStatus()== 2}">
+						                   
+						                		<i style="color: orange;" class="fas fa-check-circle"></i>	
+						                		
+						                   </span>
+						                   
+						                      <span th:if="${componenettutorial.getVideoStatus()== 3}">
+						                   
+						                		<i style="color: aqua;" class="fas fa-check-circle"></i>	
+						                		
+						                   </span>
+						                   
+						                     <span th:if="${componenettutorial.getVideoStatus()== 4}">
+						                   
+						                		<i style="color: green; ;" class="fas fa-check-circle"></i>	
+						                		
+						                   </span>
+						                   
+						              		 <span th:if="${componenettutorial.getVideoStatus()== 5}">
+						                   <i style="color: red;" class="fas fa-times-circle"></i>
+						                   </span>
+						    
+					   </td>						    
+						           				                
+						               <td><a th:href="${'/adminreview/review/'+ componenettutorial.tutorialid}"><b><i  class="fas fa-link"></i><u style="color: green;"> Review </u></b></a></td>
+										
+										
+									<!-- 	<td>
+										
+										<button  type="button" id="reviewIdAdmin"> <b><i  class="fas fa-link"></i><u style="color: green;"> Review </u></b></button>
+									
+										</td>  -->
+					
+					            </tr>
+					            </tbody>			            
+					        </table>
+					        
+					        
+					      
+					    </div>
+					    
+			  </div>
+			</div>
+          	
+          	<!-- tabs end -->
+          	
+
          
 			</div> 
 	</div> 
@@ -286,8 +1048,11 @@
 			
 			<div th:fragment="body-bottom-scripts">
 
-        	 <script src="static/js/bootstrap.bundle.min.js"></script>
-       		 <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        	 <!-- <script src="static/js/bootstrap.bundle.min.js"></script>
+       		 <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+       		 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 			 	
 			
 			

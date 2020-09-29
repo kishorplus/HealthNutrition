@@ -20,6 +20,7 @@
   
   		<div th:replace="common/trail :: navbar1"/>
   		
+  		
 			    	<div class="container" style="padding-top: 120px">
          
           	  	   <div>
@@ -41,7 +42,7 @@
 					            	<tr th:each="question: ${questions}">
 					           		 <td th:text="${question.id}">Question Name</td>
 					                <td th:text="${question.Quetionpath}">Question Name</td><i class="fas fa-download"></i>
-					       			<td><a  target="_blank" th:href="${question.Quetionpath}">Click To Download</a></td>  
+					       			<td><a  target="_blank" th:href="${question.Quetionpath}">Click Me To Download</a></td>  
 					    
 								 <td></td>
 		
@@ -72,9 +73,6 @@
 
         	 <script src="static/js/bootstrap.bundle.min.js"></script>
        		 <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-			 	
-			
-			
 			
 			</div>
  </body>

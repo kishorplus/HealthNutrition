@@ -5,94 +5,63 @@
 <head th:replace="common/trail :: common-trail">
 
 
-		<meta charset="utf-8"/>
-		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-		 <link rel="stylesheet" href="css/style3.css"/>
- 	 	<link rel="stylesheet" href="css/bootstrap.min.css"/> 
-
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="css/style3.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
 </head>
-
-
- <body>
-  
-  		<!-- <div th:replace="common/trail :: navbar1"/> -->
-  		
-	<!-- <div class="container" style="padding-top: 150px"> -->
-	<div style="display:flex;">
-		<div th:replace="common/sidebar :: nav_sidebar"></div>
-	
-	
-	    <div class="row" style='width:100%;'>
-	      <div class="col-lg-10 col-xl-9 mx-auto">
-	        <div class="card card-signin flex-row a-card">
-	       
-	          <div class="card-body">
-	           <h5 class="card-title text-center a-card-title">
-    			<div class="">    
-                                <div th:if="${msg}">
-   								 <span th:text="${msg}"></span>
- 											 </div> </div></h5>
-	            <h5 class="card-title text-center" style="color:maroon; font-size: 30px">Add Testimonial</h5>
-	            
-	           <form class="form-horizontal"  th:action="@{/addTestimonial}" method="post"  enctype="multipart/form-data" onsubmit="return submitForm(this);">
- 
- 
-				     <div class="form-group">  
-				     
-				       <label for="testimonialName">Name</label> 
-					    <input type="text" class="form-control" id="testimonialName" name="testimonialName" required="required" />
-					    
-					               
-					  </div>
- 
-	 <div class="form-group">  
-	 
-	                        <label for="testimonialDescription">Description</label> 
-	                      <textarea class="form-control" rows="5" id="testimoniaqlDescription" name="testimoniaqlDescription" required="required" placeholder="Testimonial text"></textarea>
-	 
-	 </div>
-	 
-	  <div class="form-group"> 
-	                        <label for="testimonialVideo" style="padding-top: 8px">Add  Video</label> 
-	  						<input type="file"  class="form-control-file" id="testimonialVideo"  name="uploadTestiminial"  accept=".mp4" placeholder="uploadFile" required="required"/>
-	  						
-	  
-	  
-	  
-	  </div>
-	 
- 
-                          <button type="submit" value="showAlert" onclick="showAlert();"  class="btn a-btn">Submit</button>&nbsp;&nbsp;&nbsp;
-                           <button type="reset" class="btn a-btn">Reset</button>
-                                                
-              
-                      </form>
-  				 
-  				 	
-					<script>
-					function submitForm() {
-						  return confirm('Do you really want to submit the form?');
-						  
-						  alert("Submit form succefully");
-						}
-					</script>
-  				 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-			<div th:fragment="body-bottom-scripts">
-
-        	 <script src="static/js/bootstrap.bundle.min.js"></script>
-       		 <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-			
-			
-			
+<body>
+	<div style="display: flex;">
+		<div th:replace="common/sidebar :: contributor_sidebar"></div>
+		<div class="row" style='width: 100%;'>
+			<div class="col-lg-10 col-xl-9 mx-auto">
+				<div class="card card-signin flex-row a-card">
+					<div class="card-body">
+						<h5 class="card-title text-center a-card-title">
+							<div class="">
+								<div th:if="${msg}">
+									<span th:text="${msg}"></span>
+								</div>
+							</div>
+						</h5>
+						<h5 class="card-title text-center"
+							style="color: maroon; font-size: 30px">Add Testimonial</h5>
+						<form class="form-horizontal" th:action="@{/addTestimonial}"
+							method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="testimonialName">Name</label> <input type="text"
+									class="form-control" id="testimonialName"
+									name="testimonialName" required="required" />
+							</div>
+							<div class="form-group">
+								<label for="testimonialDescription">Description</label>
+								<textarea class="form-control" rows="5"
+									id="testimoniaqlDescription" name="testimoniaqlDescription"
+									required="required" placeholder="Testimonial text"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="testimonialVideo" style="padding-top: 8px">Add
+									Video</label> <input type="file" class="form-control-file"
+									id="testimonialVideo" name="uploadTestiminial" accept=".mp4"
+									placeholder="uploadFile" required="required" />
+							</div>
+							<button type="submit" value="showAlert" onclick="showAlert();"
+								class="btn a-btn">Submit</button>
+							&nbsp;&nbsp;&nbsp;
+							<button type="reset" class="btn a-btn">Reset</button>
+						</form>
+					</div>
+				</div>
 			</div>
- </body>
+		</div>
+	</div>
+
+	<div th:fragment="body-bottom-scripts">
+		<script src="static/js/bootstrap.bundle.min.js"></script>
+		<script src="static/js/jquery.slim.min"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
+	</div>
+</body>
 </html>
- 
- 
+

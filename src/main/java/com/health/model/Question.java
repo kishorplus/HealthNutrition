@@ -47,6 +47,20 @@ public class Question
 	@JoinColumn(name="topic_id")
 	private topic topic;
 	
+	
+	public Question() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="cat_id")
+	private Category category;
+	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="lan_id")
+	private language lan;
+	
 
 	public String getQuetionpath() {
 		return Quetionpath;
@@ -69,10 +83,30 @@ public class Question
 		this.tutorial = tutorial;
 	}
 
-	public Question() {
-		super();
-		// TODO Auto-generated constructor stub
+	public topic getTopic() {
+		return topic;
 	}
+
+	public void setTopic(topic topic) {
+		this.topic = topic;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public language getLan() {
+		return lan;
+	}
+
+	public void setLan(language lan) {
+		this.lan = lan;
+	}
+
 	
 
 	/*

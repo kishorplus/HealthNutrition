@@ -19,7 +19,8 @@
 	</head>
   <body>
   
-  		<div th:replace="common/trail :: navbar1"/>
+  		
+  		
   		
 	<!-- <div class="" style="padding-top: 90px"> -->
 	<div style="display:flex;">
@@ -85,21 +86,22 @@
 
 
 	    <div class="row" style='width:100%;'>
-	      <div class="col-lg-10 col-xl-9 mx-auto">
-	        <div class="card card-signin flex-row my-5">
+	      <div class="col-md-12 mx-auto">
+	      <div  class="a-update-msg"></div>
+	        <div class="card card-signin flex-row a-card">
 	       
 	       
 	
 	       
 	          <div class="card-body">
-	            <h5 class="card-title text-center" style="color:maroon;">Upload Tutorial</h5>
+	            <h5 class="card-title text-center a-card-title" >Upload Tutorial</h5>
 	            
 	                  <form th:action="@{/submitTutorial}" method="post">
 
 			               <table class="table table-bordered">
                                     <thead>
                                       <tr>
-                                        <th>Foss</th>
+                                        <th>Category</th>
                                     <td>
                       
 										  <span id="catId" th:each="catgoryName : ${categoryName}">
@@ -175,7 +177,7 @@
 		                                          <th>Status</th>
 		                                          <th>User</th>  
 		                                          <th>
-		                                          <i style="color: purple; width:30px " class="fas fa-cogs"></i>
+		                                          <!-- <i style="color: purple; width:30px " class="fas fa-cogs"></i> -->
 		                                          </th>
 		                
                                         </tr>                         
@@ -195,8 +197,8 @@
 		                                          <th> <span th:if="${uploadIcon}"> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i style="color: blue;" class="fas fa-upload"></i>
 		                                          		
 		                                          		</button></span>
-		                                          		<span  th:if="${statusOutlineTrue}"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#outlineViewModel" data-whatever="@mdo"><i class="fas fa-eye"></i>
-		                                          		</button></span>
+		                                          		<!-- <span  th:if="${statusOutlineTrue}"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#outlineViewModel" data-whatever="@mdo"><i class="fas fa-eye"></i>
+		                                          		</button></span> -->
 		                                          		
 		                                          </th>
 
@@ -216,8 +218,8 @@
 		                                          <th>-</th>
 		                                          <th><span th:if="${uploadIcon}"> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#scriptModale" data-whatever="@mdo"><i style="color: blue;" class="fas fa-upload"></i> </button>
 		                                          </span>
-		                                       	 <span th:if="${statusScriptTrue}">  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewScriptId" data-whatever="@mdo"><i class="fas fa-eye"></i>
-		                                         	</button></span>
+		                                       	 <!-- <span th:if="${statusScriptTrue}">  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewScriptId" data-whatever="@mdo"><i class="fas fa-eye"></i>
+		                                         	</button></span> -->
 		                                          
 		                                          </th>
 
@@ -236,9 +238,11 @@
 		                                       
 		                                          <th>-</th>
 		                                          <th> <span th:if="${uploadIcon}"> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#slideModale" data-whatever="@mdo"><i style="color: blue;" class="fas fa-upload"></i> </button></span>
-		                                          <span th:if="${statusSlideTrue}"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#slideModaleView" data-whatever="@mdo"><i class="fas fa-eye"></i>
+		                                         <!--  <span th:if="${statusSlideTrue}"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#slideModaleView" data-whatever="@mdo"><i class="fas fa-eye"></i>
 		                                          </button>
-		                                          </span></th>
+		                                          </span> -->
+		                                          
+		                                          </th>
  	
                                      </tr>
                                      	 
@@ -255,9 +259,11 @@
 		                                          <th>-</th>
 		                                          <th><span th:if="${uploadIcon}"> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#videoModel" data-whatever="@mdo"><i style="color: blue;" class="fas fa-upload"></i> </button> 
 		                                          </span>
-		                                          <span th:if="${statusVideoTrue}"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#videoViewId" data-whatever="@mdo"><i class="fas fa-eye"></i>
+		                                          <!-- <span th:if="${statusVideoTrue}"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#videoViewId" data-whatever="@mdo"><i class="fas fa-eye"></i>
 		                                          		</button>
-		                                          	</span>	</th>
+		                                          	</span> -->
+		                                          	
+		                                          		</th>
 
                                     </tr>
                                      	 
@@ -274,9 +280,9 @@
 		                                          <th>-</th>
 		                                          <th> <span th:if="${uploadIcon}"> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#keywordModale" data-whatever="@mdo"><i style="color: blue;" class="fas fa-upload"></i> </button>
 		                                          </span>
-		                                          	<span th:if="${statusKeywordTrue}"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#keywordModaleView" data-whatever="@mdo"><i class="fas fa-eye"></i>
+		                                          	<!-- <span th:if="${statusKeywordTrue}"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#keywordModaleView" data-whatever="@mdo"><i class="fas fa-eye"></i>
 		                                          		</button>
-		                                          		</span>
+		                                          		</span> -->
 		                                          	
 		                                          </th>
 
@@ -415,6 +421,8 @@
 					  
 						          </div>
 						        <button id="outlineId" type="button" class="btn btn-success">Upload Outline</button>
+								<span style="color:green;"> <i class="fas fa-edit" id="editOutline"></i> Edit</span>       
+						        <!-- <button id="editOutline" type="button" class="btn btn-success">Upload Outline</button> -->
 						     
 						        </form>
 						       <div class="modal-footer">
@@ -450,6 +458,46 @@
 						        </button>
 						      </div>
 						      <div class="modal-body">
+						
+						
+						<form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+
+						          <div class="form-group">
+						            
+							   		<div  id="VideoView">
+							   		
+							   		
+							   		</div>
+							        
+							        <span id="VideoView1">
+							        
+							        </span>
+							        
+							        
+					
+  				
+		 <!-- <iframe src="about:blank" name="videoSet" id="videoSet"  height="240" width="320" scrolling="auto" autoplay="autoplay">
+		 </iframe>	 
+		 --> 
+		 		
+		<div id="videoDiv" class="container" height="240" width="320" scrolling="auto" autoplay="autoplay">
+		   
+		    <video id='storedVideoId' height="240" width="320" controls="controls">
+		    
+		    </video>
+		    
+		</div>
+		
+		
+		   				
+				   		 					
+				   	
+						          </div>
+						 <button id="videoClick1" type="button" class="btn btn-success" >View</button>	   
+						             
+					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
+						     
+</form>
 						
 			
 						 <form id="upload-file-form-video"  onsubmit="return submitForm(this);">
@@ -552,6 +600,8 @@
 						      </div>
 						      <div class="modal-body">
 						      
+						      
+						      
 				 <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
 
 						          <div class="form-group">
@@ -561,7 +611,8 @@
 							        
 							            </textarea>
 						          </div>
-						        <button id="keywordId" type="button" class="btn btn-success">Upload</button>	        
+						        <button id="keywordId" type="button" class="btn btn-success">Upload</button>	
+						        <span style="color:green;"> <i class="fas fa-edit" id="editKeyword"></i> Edit</span>        
 					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
 						     
 					</form>
@@ -592,6 +643,7 @@
 						         </div>
 						         
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          
 						          <span aria-hidden="true">&times;</span>
 						        </button>
 						      </div>
@@ -602,6 +654,7 @@
 						          <div class="form-group">
 						          
 							        <span id="outlineViewResponse" width="200" height="500">
+							        
 							        
 							        </span>
 							        
@@ -689,7 +742,7 @@
 						      </div>
 						      <div class="modal-body">
 						      
-				 <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+				 <!-- <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
 
 						          <div class="form-group">
 						            
@@ -697,11 +750,11 @@
 					      
 						          </div>
 						          
-						    <!--   <button id="outlineView" type="button" class="btn btn-success">View</button>	  -->  
+						      <button id="outlineView" type="button" class="btn btn-success">View</button>	   
 						             
-					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
+						   <button id="keyword" type="submit" class="btn btn-success">Upload</button>    
 						     
-					</form>
+					</form> -->
 						    
 						       <div class="modal-footer">
 						         
@@ -750,7 +803,7 @@
 						             
 					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
 						   
-					</form>
+				</form>
 						    
 						       <div class="modal-footer">
 						         
@@ -771,7 +824,7 @@
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
-						        <h5 class="modal-title" id="exampleModalLabelKeyWordView">View KeyWord</h5>
+						        <h5 class="modal-title" id="exampleModalLabelKeyWordView">View KeyWordss</h5>
 						        <div class="modal-title">
 						        
 						         </div>
@@ -782,7 +835,7 @@
 						      </div>
 						      <div class="modal-body">
 						      
-				 <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+				<form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
 
 						          <div class="form-group">
 						            
@@ -798,15 +851,15 @@
 							        
 					
   				
-		 <!-- <iframe src="about:blank" name="videoSet" id="videoSet"  height="240" width="320" scrolling="auto" autoplay="autoplay">
+		 <iframe src="about:blank" name="videoSet" id="videoSet"  height="240" width="320" scrolling="auto" autoplay="autoplay">
 		 </iframe>	 
-		 --> 
+		 
 		 		
 		<div id="videoDiv" class="container" height="240" width="320" scrolling="auto" autoplay="autoplay">
 		   
-		    <video id='storedVideoId' height="240" width="320" controls="controls">
+		  <!--   <video id='storedVideoId' height="240" width="320" controls="controls">
 		    
-		    </video>
+		    </video> -->
 		    
 		</div>
 		
@@ -817,9 +870,9 @@
 						          </div>
 						 <button id="videoClick" type="button" class="btn btn-success" >View</button>	   
 						             
-					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
+						   <button id="keyword" type="submit" class="btn btn-success">Upload</button>    
 						     
-					</form>
+					</form> 
 						    
 						       <div class="modal-footer">
 						         
@@ -956,7 +1009,7 @@
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
-						        <h5 class="modal-title" id="exampleModalLabelScript">Upload  Script</h5>
+						        <h5 class="modal-title" id="exampleModalLabelScript">Upload Script</h5>
 						         <span  style="color: green; padding-left: 50px"  id="statusofScript"> 
 								
 							
@@ -967,10 +1020,28 @@
 						        </button>
 						      </div>
 						      <div class="modal-body">
+						      
+						      <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+
+						          <div class="form-group">
+						            
+							      <!-- <a name="ScriptPdf" target="_blank" id="ScriptPdf" >Click To View</a> -->
+							      <a name="ScriptPdf" target="_blank" id="viewScript" href="#">No script added yet</a>
+							      
+					      
+						          </div>
+						          
+						    <!--   <button id="outlineView" type="button" class="btn btn-success">View</button>	  -->  
+						             
+					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
+						     
+					</form>
 				
 								 <form id="upload-file-form-script" submit="return submitForm(this);">
 				                          
 								<div class="form-group" style="padding-top: 80px"> 
+				                         		
+				                         	<!-- here -->	
 				                         		
 											<label for="uploadsScriptId" >Add Script</label> 
 											<input  style="padding-left:300px height: 300px, width:200px ; border: red;" type="file"  class="form-control-file w-50" id="uploadScriptFile"   name="uploadsScriptFile" placeholder="uploadFile"  accept=".pdf" required="required"></input>									
@@ -1013,6 +1084,20 @@
 						        </button>
 						      </div>
 						      <div class="modal-body">
+						      
+						      <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+
+						          <div class="form-group">
+						            
+							      			<a name="sliedPdf" target="_blank" id="sliedPdf">Click To View</a>
+					      
+						          </div>
+						          
+						    <!--   <button id="outlineView" type="button" class="btn btn-success">View</button>	  -->  
+						             
+					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
+						     
+					</form>
 				
 								 <form id="upload-file-form" submit="return submitForm(this);">
 				                          
@@ -1046,14 +1131,33 @@
 <script src="js/ckeditor.js"></script>
 
 	<script>
-	
+	$( document ).ready(function() {
+		var msg = localStorage.getItem("upload_outline_msg");
+		var content = '<div class="alert alert-info" role="alert">'+msg+'</div>';
+	    if(msg!=""){
+	    	/* alert('not null'); */
+	    	$(".a-update-msg").html(content);
+		    localStorage.setItem("upload_outline_msg", "");
+	    	$('.a-card').css("margin-top", "20px"); 	
+	    }
+	    
+	   /*  CKEDITOR.replace( 'editor' ); */
+	    
+	  /*   $( ".editor" ).load(function() {
+	    	  alert('loaded');
+	    	}); */
+	    
+	    
+	    
+	});
 	
 	let editor;
 
 	ClassicEditor
 	    .create( document.querySelector( '#editor' ) )
 	    .then( newEditor => {
-	        editor = newEditor;
+	       editor = newEditor;
+	       editor.setReadOnly(true);
 	    } )
 	    .catch( error => {
 	        console.error( error );"@{/}"
@@ -1062,7 +1166,6 @@
 	// Assuming there is a <button id="submit">Submit</button> in your application.
 		document.querySelector( '#outlineId' ).addEventListener( 'click', () => {
 	    const editorData = editor.getData();
-	  
 	    return editor.getData();
 
 	    // ...
@@ -1088,6 +1191,7 @@
 			    <script src="/s/js/bootstrap.min.js"></script>
 			
 			 <script src="/s/js/main.js"></script>
+			 <!-- <script src="js/ckeditor.js"></script> -->
 			  <script src="/js/ajaxSupport.js"></script>
 			     
 			     

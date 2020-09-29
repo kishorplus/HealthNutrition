@@ -4,87 +4,96 @@
 
 <head th:replace="common/trail :: common-trail">
 
-	<meta charset="utf-8"/>
-		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-		 <link rel="stylesheet" href="css/style3.css"/>
- 	 	<link rel="stylesheet" href="css/bootstrap.min.css"/> 
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="css/style3.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
 
 </head>
-  <body>
-  		<div th:replace="common/trail :: navbar1"/>
-  		
-  		<div class="container" style="padding-top: 90px">
+<body>
 
-	    <div class="row">
-	    
-	      <div class="col-lg-10 col-xl-9 mx-auto">
-	        <div class="card card-signin flex-row my-5">
-	       
-	          <div class="card-body">
-	           <h5 class="card-title text-center" style="color:maroon; font-size: 20px">
-    			<div class="">    
-                     		 <div th:if="${msgSuccefull}">
-   								 <span th:text="${msgSuccefull}"></span>
- 									 </div> </div></h5>
-	            <h5 class="card-title text-center" style="color:maroon; font-size: 30px">Add Contributer language</h5>
-	         
-	       <form class="form-horizontal"  th:action="@{/addMeAsContributer}" method="post"  onsubmit="return submitForm()(this);">
- 
- 
-			<div class="form-group">  
 
-	             <div class="form-group">
-								 	  
-								 <label for="languageContributerId">Select language </label>
-    
-                                       <select id="languageContributerId" class="form-control" name="contributerLanguage"   required="required" >
-			
-								                        <option selected="selected" >Select language</option>      
-								                        <span th:each="lan : ${languages}">
-								                     
-								  								<option th:value="${lan}"><span  th:text="${lan}"></span></option>		
-								  						
-								  						</span>
-									  </select>
-								 </div>	            
-	                        
-	                        
-	 		
-							<span style="color: red;" th:if="${msg1}">
-										Choose another Role</span>
-	 						 	
-						</div>
-	
-	 		
-                          <button type="submit" value="showAlert"  class="btn btn-success">Submit</button>&nbsp;&nbsp;&nbsp;
-                           <button type="reset" class="btn btn-success">Reset</button>
-                                                
-              
-                     </form>
-              
-        		 	
-					<script>
+	<div style="display: flex;">
+		<div th:replace="common/sidebar :: contributor_sidebar"></div>
+
+		<div class="row" style='width: 100%;'>
+
+			<div class="col-lg-10 col-xl-9 mx-auto">
+				<div class="a-update-msg"></div>
+				<div class="card card-signin flex-row  a-card">
+
+					<div class="card-body">
+						<h5 class="card-title text-center a-card-title">
+							<div class="">
+								<div th:if="${msgSuccefull}">
+									<span th:text="${msgSuccefull}"></span>
+								</div>
+							</div>
+						</h5>
+						<h5 class="card-title text-center"
+							style="color: maroon; font-size: 30px">Add Contributor
+							Language</h5>
+
+						<form class="form-horizontal" th:action="@{/addMeAsContributer}"
+							method="post" onsubmit="return submitForm()(this);">
+
+
+							<div class="form-group">
+
+								<div class="form-group">
+
+									<!-- <label for="languageContributerId">Select language </label> -->
+									<label for="languageContributerId"></label> <select
+										id="languageContributerId" class="form-control"
+										name="contributerLanguage" required="required">
+
+										<option selected="selected">Select Language</option>
+										<span th:each="lan : ${languages}">
+
+											<option th:value="${lan}"><span th:text="${lan}"></span></option>
+
+									</span>
+									</select>
+								</div>
+								<span style="color: red;" th:if="${msg1}"> Choose another
+									Role</span>
+
+							</div>
+							<button type="submit" value="showAlert" class="btn btn-success">Submit</button>
+							&nbsp;&nbsp;&nbsp;
+							<button type="reset" class="btn btn-success">Reset</button>
+						</form>
+
+
+						<script>
+					
+					$( document ).ready(function() {
+					    $(".a-update-msg").html(localStorage.getItem("contri_role_msg"));
+					    localStorage.setItem("contri_role_msg", "");
+					});
 					function submitForm() {
-						  return confirm('Do you really want to submit the form?');
-						  
-						  alert("Submit form succefully");
+						  /* return confirm('Do you really want to submit the form?'); */
+						  /* $('.a-update-msg').html("Record Added Successfully !"); */
+						  /* alert("Submit form succefully"); */
+						  localStorage.setItem("contri_role_msg", "Request submitted successfully for contributor role.");
 						}
 					</script>
-  				 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
 
-			<div th:fragment="body-bottom-scripts">
-        	 <script src="static/js/bootstrap.bundle.min.js"></script>
-       		 <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-			
-			
+					</div>
+				</div>
 			</div>
- </body>
+		</div>
+	</div>
+
+
+	<div th:fragment="body-bottom-scripts">
+		<script src="static/js/bootstrap.bundle.min.js"></script>
+		<script src="static/js/jquery.slim.min"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
+
+
+	</div>
+</body>
 </html>
- 
- 
+

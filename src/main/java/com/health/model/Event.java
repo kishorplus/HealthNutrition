@@ -21,12 +21,21 @@ public class Event {
 		this.id = id;
 	}
 	private String eventname;
-	private String date;
+	private Date date;
 	private String description;
 	private String venuename;
 	private String contactperson;
 	private String contactnumber;
 	private String email;
+	private Date endDate;
+	
+	
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 	private java.sql.Timestamp timedate;
 	
 	public Timestamp getTimedate() {
@@ -43,10 +52,11 @@ public class Event {
 	public void setEventname(String eventname) {
 		this.eventname = eventname;
 	}
-	public String getDate() {
+	
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public String getDescription() {

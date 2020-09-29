@@ -1,9 +1,13 @@
 package com.health.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -18,7 +22,31 @@ public class feedbackMasterTrainer {
 	private String description;
 	private String datetime; 
 	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="cat_id")
+	private Category category;
 	
+	 @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	 @JoinColumn(name="traning_Id")
+	 private TraningInformation TraningInformation;
+
+	
+	public TraningInformation getTraningInformation() {
+		return TraningInformation;
+	}
+
+	public void setTraningInformation(TraningInformation traningInformation) {
+		TraningInformation = traningInformation;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	public int getId() {
 		return id;
 	}

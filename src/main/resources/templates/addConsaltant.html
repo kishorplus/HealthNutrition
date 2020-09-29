@@ -3,160 +3,123 @@
 <html xmlns:th="https://thymeleaf.org">
 
 <head th:replace="common/trail :: common-trail">
-
-
-		<!-- <meta charset="utf-8"/>
-		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-		 <link rel="stylesheet" href="css/style3.css"/>
- 	 	<link rel="stylesheet" href="css/bootstrap.min.css"/>  -->
-
-
-<script>
-					
-					/* function submitForm() {
-						  return confirm('Do you really want to submit the form?');
-						  
-						  alert("Submit form succefully");
-						} */
-					</script>
-					
 <style>
-.cons_record{
-	display : none;
+.cons_record {
+	display: none;
 }
-</style>					
+</style>
 </head>
 
-  <body>
-  
-  	<!-- 	<div th:replace="common/trail :: navbar1"/> -->
-  		
-<!-- 	<div class="container" style="padding-top: 150px"> -->
-	<div style="display:flex;">
-		<!-- <div th:replace="common/sidebar :: nav_sidebar"></div> -->
+<body>
+	<div style="display: flex;">
 		<div th:replace="common/sidebar :: contributor_sidebar"></div>
-	
-	    <div class="row" style='width:100%;'>
-	      <div class="col-lg-10 col-xl-9 mx-auto">
-	        <div class="card card-signin flex-row a-card">
-	       
-	          <div class="card-body">
-	           <h5 class="card-title text-center">
-	           
-	           
-    						<div  id="#test" class="">    
-                                <div th:if="${msg}">
-   								 <span th:text="${msg}"></span>
- 											 </div> </div></h5>
- 											 
- 											 
- 											 
-	            <h5 class="card-title text-center a-card-title" >Add Consultant</h5>
-	            
-	      <form class="form-horizontal"  th:action="@{/addConsaltant}" method="post"  enctype="multipart/form-data"  onsubmit="return submitForm(this);">
-                          
-                       
-  					 <div class="form-group">  
-                            
-                                 <label for="nameConsaltant">Name</label> 
-                                  <input type="text" class="form-control input-lg" id="nameConsaltant" name="nameConsaltant"  required="required" placeholder="Name of the consultant"/>
-   										
-              		   </div>             
-                         <div class="form-group">       
-                                           <label for="descriptionConsaltant" >Description</label>  
-                                            <textarea class="form-control" rows="5" id="descriptionConsaltant" name="descriptionConsaltant"  required="required" placeholder="Description about the consultant"></textarea>
-                                             
-                                 </div>
-                                 
-                                  <div class="form-group"> 
-                          <label for="consaltantImage" style="padding-top: 8px">Add Image</label> 
-                  	 	<input type="file" style="padding-right: 50px" class="form-control-file" id="consaltantImage"  name="uploadConsaltantImage" placeholder="uploadFile"   accept=".jpg, .jpeg ,img,.png" required="required"/>													
-                                 
-                                 </div>                             
-                                          
-                                                    
-                                             
-                                                            <button type="submit" class="btn  a-btn">Submit</button>&nbsp;&nbsp;&nbsp;
-                                                             <button type="submit" class="btn  a-btn">Reset</button>
-                        
-                      
-              </form>
-  				 
-  				 	
-					
-  				 
-          </div>
-        </div>
-        <div>
-        
-      	<p>
-<button type="button" class="btn btn-success" id="show_cons">Success</button>
-</p>
-<div id="cons_record" >
-    <div class="container" style="padding-top: 120px">
-          	
-          	     <div>
-					        <h2>Consalantant List</h2>
-					        
-					        <table id="tableId" class="table table-striped">
-					      
-					        <thead class="">
-					         
-					            <tr>
-					                <th>Id</th>
-					                <th>Name</th>
-					                <th>Description</th>
-					          	    <th>Image</th>
-					         
-					                <th>Edit</th>
-					                <th>Delete</th>
-					            </tr>
-					            
-					            
-					            </thead>
-					            <tbody>					            	
-					            
-					            
-					            		<!-- <tr th:each="product : ${products}">
-						                <td th:text="${product.id}">description</td>  
-						                <td th:text="${product.nameConsaltant}">descirption</td>
-						                <td th:text="${product.descriptionConsaltant}">descirption</td>
-						
-						                <td> 
-						                  	<img th:src="${product.uploadConsaltantImage}"  width="120" height="180"/>
-						                
-						                </td>  
-					   
-					                <td><a  th:href="${'productconsalantant/edit/' + product.id}">Edit</a></td>
-					                
-					                
-					                
-					                <td><a onclick="submitForm()" th:href="${'/consalantant/delete/' + product.id}">Delete</a></td>
-      
-					            </tr> -->
-					            </tbody>
-					            
-					        </table>
-					    </div>
-         
-			</div> 
-</div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-			<div th:fragment="body-bottom-scripts">
 
-        	 <script src="static/js/bootstrap.bundle.min.js"></script>
-       		 <!-- <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-			<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-			
-			<script type="text/javascript">
+		<div class="row" style='width: 100%;'>
+			<div class="col-lg-10 col-xl-9 mx-auto">
+				<div class="card card-signin flex-row a-card">
+
+					<div class="card-body">
+						<h5 class="card-title text-center">
+							<div id="#test" class="">
+								<div th:if="${msg}">
+									<span th:text="${msg}"></span>
+								</div>
+							</div>
+						</h5>
+						<h5 class="card-title text-center a-card-title">Add
+							Consultant</h5>
+
+						<form class="form-horizontal" th:action="@{/addConsaltant}"
+							method="post" enctype="multipart/form-data"
+							onsubmit="return submitForm(this);">
+
+							<div class="form-group">
+
+								<label for="nameConsaltant">Name</label> <input type="text"
+									class="form-control input-lg" id="nameConsaltant"
+									name="nameConsaltant" required="required"
+									placeholder="Name of the consultant" />
+
+							</div>
+							<div class="form-group">
+								<label for="descriptionConsaltant">Description</label>
+								<textarea class="form-control" rows="5"
+									id="descriptionConsaltant" name="descriptionConsaltant"
+									required="required"
+									placeholder="Description about the consultant"></textarea>
+
+							</div>
+
+							<div class="form-group">
+								<label for="consaltantImage" style="padding-top: 8px">Add
+									Image</label> <input type="file" style="padding-right: 50px"
+									class="form-control-file" id="consaltantImage"
+									name="uploadConsaltantImage" placeholder="uploadFile"
+									accept=".jpg, .jpeg ,img,.png" required="required" />
+
+							</div>
+
+							<button type="submit" class="btn  a-btn">Submit</button>
+							&nbsp;&nbsp;&nbsp;
+							<button type="submit" class="btn  a-btn">Reset</button>
+						</form>
+					</div>
+				</div>
+				<div>
+
+					<p>
+						<button type="button" class="btn btn-success" id="show_cons">View
+							Contributor List</button>
+					</p>
+					<div id="cons_record">
+						<div class="container" style="padding-top: 120px">
+							<div>
+								<h2>Consalantant List</h2>
+								<table id="tableId" class="table table-striped">
+									<thead class="">
+										<tr>
+											<th>Id</th>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Image</th>
+
+											<th>Edit</th>
+											<th>Delete</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+
+								</table>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:fragment="body-bottom-scripts">
+
+		<script src="static/js/bootstrap.bundle.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.js"
+			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+		<script type="text/javascript">
 			$(document).ready(function(){
 				  
 				function submitForm() {
@@ -170,15 +133,10 @@
 					$.ajax({
 			   		  	 type: "GET",
 			       		 url: "/displayConsultants",
-			       		 /* data: { "id": "1"} */
 			       		 contentType: "application/json",
 			       		 success: function (result){
-			       		 alert('success!');
 			       		 console.log(result);
 			       		 $('.cons_record').show();
-			       		/*  console.log(result[0]);
-			       		console.log(result[0].id);
-			       		console.log(result[0].nameConsaltant); */
 			       		var id = result[0].id;
 			       		var name = result[0].nameConsaltant;
 			       		var desc = result[0].descriptionConsaltant;
@@ -192,8 +150,6 @@
 			       		
 			       		console.log(elink);
 			       		console.log(dlink);
-			       		/* console.log(ilink); */
-			       		
 			       		console.log(markup);
 			            $("table tbody").append(markup);
 			       		 
@@ -205,37 +161,9 @@
 					});
 				    
 				  });
-				
-				
-				
 				});
-			
-			
-			/* $( "#show_cons" ).click(function() {
-				  
-				alert('Hi again');
-
-				$.ajax({
-			   		  	 type: "GET",
-			       		 url: "/show_participantDeatail",
-			       		 data: { "id": categoryid,"lanid": language}
-			       		 contentType: "application/json",
-			       		 success: function (result){
-			       		 alert('success!');
-			       		 
-							},
-							
-								error : function(err){
-							console.log("not working. ERROR: "+JSON.stringify(err));
-						}
-						
-						
-					});
-				
-				}); */
 			</script>
-			</div>
- </body>
+	</div>
+</body>
 </html>
- 
- 
+

@@ -27,6 +27,7 @@ import com.health.domain.security.UserRole;
 @Table(name="tutorial_resoureses")
 public class Tutorial
 {
+	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

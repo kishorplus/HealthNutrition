@@ -114,7 +114,7 @@
 									
 									
 										<div class="form-group">
-											<label for="newUsername">Username: </label>&nbsp;<span
+											<label for="newUsername">Username </label>&nbsp;<span
 												style="color: red;" th:if="${usernameExists}">Username
 												already exists. Choose a different one.</span> <input
 												required="required" type="text" class="form-control"
@@ -124,7 +124,7 @@
 			
 										<div class="form-group">
 										
-											<label for="firstName">First Name: </label>&nbsp;
+											<label for="firstName">First Name </label>&nbsp;
 											<!-- <span
 												style="color: red;" th:if="${usernameExists}">Username
 												already exists. Choose a different one.
@@ -137,7 +137,7 @@
 										
 										<div class="form-group">
 
-											<label for="lastName">Last Name: </label>&nbsp;
+											<label for="lastName">Last Name </label>&nbsp;
 											<!-- <span
 												style="color: red;" th:if="${usernameExists}">Username
 												already exists. Choose a different one.
@@ -154,7 +154,7 @@
 										<div class="form-group">
 
 
-											<label for="email">Email Id: </label><span
+											<label for="email">Email Id </label><span
 												style="color: red;" th:if="${emailExists}">Email
 												already exists. Choose a different one.</span> <input
 												required="required" type="text" class="form-control"
@@ -162,13 +162,13 @@
 											<p style="color: #828282">
 												<!-- A valid email address.  -->
 
-												All emails from the system withll be sent to this address. The
+												All emails from the system will be sent to this email address. The
 												email address is not made public and will only be used if
 												you wish to receive a new password or wish to receive
 												certain notification.</p>
 										</div>
 										<div class="form-group">
-											<label for="password">Password : </label>
+											<label for="password">Password </label>
 											<span style="color: red;">
 												
 												</span> <input
@@ -180,14 +180,14 @@
 										</div>
 										
 										<div class="form-group">
-											<label for="passwordconform">Confirm Password : </label>
+											<label for="passwordconform">Confirm Password</label>
 											<span style="color: red;">
 												
 												</span> <input
 												required="required" type="password" class="form-control"
-												id="passwordconform" name="password"/>
+												id="passwordconform" name="password" placeholder="Re-enter password"/>
 												
-											<p style="color:#828282">Reenter your password</p>
+											<!-- <p style="color:#828282">Re-enter your password</p> -->
 											
 										</div>
 										
@@ -201,7 +201,7 @@
 											<input
 												required="required" type="text" class="form-control"
 												id="address" name="address" />
-											<p style="color: #828282">Enter your Address here.</p>
+											<!-- <p style="color: #828282">Enter your Address here.</p> -->
 										</div>
 										
 										<div class="form-group">
@@ -215,7 +215,7 @@
 										<input	required="required" type="number" class="form-control"
 												id="phone" name="phone"	/>
 	
-											<p style="color: #828282">Enter your phone here.</p>		
+											<!-- <p style="color: #828282">Enter your phone here.</p>	 -->	
 										</div>
 										
 				<button type="submit" class="btn c-btn" onclick="return Validate() ">Create new account</button>

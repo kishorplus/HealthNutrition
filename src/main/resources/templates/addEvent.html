@@ -5,119 +5,107 @@
 <head th:replace="common/trail :: common-trail">
 
 
-		<meta charset="utf-8"/>
-		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-		 <link rel="stylesheet" href="css/style3.css"/>
- 	 	<link rel="stylesheet" href="css/bootstrap.min.css"/> 
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="css/style3.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
 
 </head>
-  <body>
-  
-  		<!-- <div th:replace="common/trail :: navbar1"/> -->
-  		
-<!-- 	<div class="container" style="padding-top: 150px"> -->
-	<div style="display:flex;">
-		<!-- <div th:replace="common/sidebar :: nav_sidebar"></div> -->
+<body>
+		<div style="display: flex;">
 		<div th:replace="common/sidebar :: contributor_sidebar"></div>
-	
-	    <div class="row" style='width:100%;'>
-	      <div class="col-lg-10 col-xl-9 mx-auto">
-	        <div class="card card-signin flex-row a-card">
-	       
-	          <div class="card-body">
-	           <h5 class="card-title text-center" style="color:maroon; font-size: 20px">
-    	<div class="">    
-                                <div th:if="${msg}">
-   								 <span th:text="${msg}"></span>
- 											 </div> </div></h5>
-	            <h5 class="card-title text-center a-card-title">Add Event</h5>
-	            
-	            
-	              <form class="form-horizontal"  th:action="@{/addEvent}" method="post" onsubmit="return submitForm(this);">
-       
-       
-       					 <div class="form-group"> 
+
+		<div class="row" style='width: 100%;'>
+			<div class="col-lg-10 col-xl-9 mx-auto">
+				<div class="card card-signin flex-row a-card">
+
+					<div class="card-body">
+						<h5 class="card-title text-center"
+							style="color: maroon; font-size: 20px">
+							<div class="">
+								<div th:if="${msg}">
+								</div>
+							</div>
+						</h5>
+						<h5 class="card-title text-center a-card-title">Add Event</h5>
+						<form class="form-horizontal" th:action="@{/addEvent}"
+							method="post">
+							<div class="form-group">
+
+								<label for="event">Event Name</label> <input type="text"
+									class="form-control" id="event" name="eventname"
+									required="required" />
+							</div>
+							<!-- <div class="form-group">
+
+								<label for="eventdate">Event Date</label> <input type="date"
+									class="form-control" id="eventdate" name="date"
+									required="required" />
+							</div> -->
+							<div class="form-group"> 
         
-       						   <label for="event">Event Name</label> 
-                                  <input type="text" class="form-control" id="event" name="eventname"  required="required"/>
-        
-        
-	         		    </div>
-	         		    
-	         		    
-	         		    <div class="form-group"> 
-        
-       						                       <label for="eventdate">Event Date</label> 
+       						                       <label for="eventdate">Start Date</label> 
                                                    <input type="date" class="form-control" id="eventdate" name="date"  required="required"/>
 
 	         		    </div>
-       
-       						  <div class="form-group"> 
-       
-                                        <label for="eventDescription" style="padding-top: 40px">Enter Description</label> 
-     
-                                     <textarea class="form-control" rows="5" id="eventDescription" name="description" required="required" placeholder="Description of the event"></textarea>
-                                 </div>  
-                                 
-                                 
-                                  <div class="form-group"> 
-                                					 <label for="venue">Venue Name</label> 
-                                    				 <input type="text" class="form-control" id="venue" name="venuename"  required="required"/>
-                                  
-                                 
-                                   </div>     
-                                   
-                                    <div class="form-group"> 
-                                    <label for="contactperson">Contact Person</label> 
-                                                   <input type="text" class="form-control" id="contactperson" name="contactperson"  required="required"/>
-                                    </div>
-                                    
-                                    
-                                      <div class="form-group"> 
-                                    
-                                         <label for="contactnumber">Contact Number</label> 
-                                                   <input type="number" class="form-control" id="conatctNumber" name="contactnumber"  required="required"/>
-                                    
-       									</div>
-       									
-       									
-       									    <div class="form-group"> 
-       									
-       									         <label for="email">Email Id</label> 
-                                                   <input type="email" class="form-control" id="email" name="email"  required="required"/>
-                                  
-       									</div>
-       									
-														 <button type="submit" class="btn a-btn">Submit</button>&nbsp;&nbsp;&nbsp;
-                                                            
-                                                             <button type="reset" class="btn a-btn">Reset</button>
-						
-                      </form>
-  				 
-  				 	
-					<script>
-					function submitForm() {
-						  return confirm('Do you really want to submit the form?');
-						  
-						  alert("Submit form succefully");
-						}
-					</script>
-  				 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-			<div th:fragment="body-bottom-scripts">
+	         		    
+	         		     <div class="form-group"> 
+        
+       						                       <label for="endDate">End Date</label> 
+                                                   <input type="date" class="form-control" id="endDatee" name="endDate"  required="required"/>
 
-        	 <script src="static/js/bootstrap.bundle.min.js"></script>
-       		 <script src="static/js/jquery.slim.min" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-			
-			
-			
+	         		     </div>
+	         		    
+
+							<div class="form-group">
+								<label for="eventDescription" style="padding-top: 40px">Enter
+									Description</label>
+								<textarea class="form-control" rows="5" id="eventDescription"
+									name="description" required="required"
+									placeholder="Description of the event"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="venue">Venue Name</label> <input type="text"
+									class="form-control" id="venue" name="venuename"
+									required="required" />
+							</div>
+							<div class="form-group">
+								<label for="contactperson">Contact Person</label> <input
+									type="text" class="form-control" id="contactperson"
+									name="contactperson" required="required" />
+							</div>
+							<div class="form-group">
+								<label for="contactnumber">Contact Number</label> <input
+									type="number" class="form-control" id="conatctNumber"
+									name="contactnumber" required="required" />
+							</div>
+							<div class="form-group">
+
+								<label for="email">Email Id</label> <input type="email"
+									class="form-control" id="email" name="email"
+									required="required" />
+							</div>
+
+							<button type="submit" class="btn a-btn">Submit</button>
+							&nbsp;&nbsp;&nbsp;
+							<button type="reset" class="btn a-btn">Reset</button>
+						</form>
+					</div>
+				</div>
 			</div>
- </body>
+		</div>
+	</div>
+
+	<div th:fragment="body-bottom-scripts">
+
+		<script src="static/js/bootstrap.bundle.min.js"></script>
+		<script src="static/js/jquery.slim.min"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
+
+
+
+	</div>
+</body>
 </html>
- 
- 
+

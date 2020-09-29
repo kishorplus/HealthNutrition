@@ -21,7 +21,7 @@
     <div class="col-md-2 col-sm-12">
       <i class="fas fa-user-alt"></i>
       <span class="h-login">
-								<a sec:authorize="isAnonymous()" th:href="@{/login}">Login|New
+								<a sec:authorize="isAnonymous()" th:href="@{/login}">Login | New
 									User</a> <a sec:authorize="isAuthenticated()"
 									th:href="@{/adminDeatail}">MY ACCOUNT</a> <a
 									sec:authorize="isAuthenticated()" th:href="@{/logout}">LOGOUT</a>
@@ -41,22 +41,115 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">Features</a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
-      <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      <a class="nav-item nav-link" href="#about_us">About Us</a>
+      <a class="nav-item nav-link" href="#events">Events</a>
+      <a class="nav-item nav-link " href="#contact" tabindex="-1">Contact Us</a>
     </div>
   </div>
 </nav>
   </header>
   
  <main>
+ 
+ <!-- <section id="search-bar" class="container">
+<div class="row">
+<form th:action="@{/showListTutorial}" class="form-inline">
+<div class="row">
+<div class="col-md-5 mb-3">
+            <label for="country">Topic</label>
+            <label class="sr-only" for="inputState">Category</label>
+            <select class="custom-select d-block w-100" id="categoryname" name="categoryName">
+              <option value="">Select Topic...</option>
+              <option th:each="category : ${categorys}"><span th:text="${category}">Title ...</span></option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid foss.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="state">Language</label>
+            <select class="custom-select d-block w-100" id="inputLanguage" name="inputLanguage">
+              <option value="">Select Language</option>
+              <option th:each="language : ${languages}"><span th:text="${language.languageName}">Title ...</span></option>
+            </select>
+            <div class="invalid-feedback">
+              Please provide a valid language.
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <button type="submit" class="btn btn-outline-info" style="height: 38px;width: 100px;margin:0;"> Submit </button>
+          </div>
+</div>
+</form>
+          
+        </div>
+</section> -->
+
   <!-- Intro Text with carousel -->
 <section id="intro" class="offset">
   <div class="row jumbotron p-4 p-md-5 text-white rounded">
     <div class="col-md-6 px-0 car-content">
+    <div class="row" style="width:100%;">
+<form th:action="@{/showListTutorial}" class="form-inline" style="width:100%;">
+<div class="row" style="width:100%;">
+<div class="col-md-5 mb-3">
+            <!-- <label for="country">Topic</label> -->
+            <label class="sr-only" for="inputState">Category</label>
+            <select class="custom-select d-block w-100" id="categoryname" name="categoryName">
+              <option value="">Select Topic...</option>
+              <option th:each="category : ${categorys}"><span th:text="${category}">Title ...</span></option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid foss.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <!-- <label for="state">Language</label> -->
+            <select class="custom-select d-block w-100" id="inputLanguage" name="inputLanguage">
+              <option value="">Select Language</option>
+              <!-- <option th:each="language : ${languages}"><span th:text="${language.languageName}">Title ...</span></option> -->
+            </select>
+            <div class="invalid-feedback">
+              Please provide a valid language.
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <button type="submit" class="btn btn-outline-info" style="height: 38px;width: 100px;margin:0;background:#1C7871"> Submit </button>
+          </div>
+
+
+</div>
+
+						<!-- <div class="pad-extra">
+							<label class="sr-only" for="inputState">Category</label> 
+			<select id="categoryname" class="form-control" name="categoryName" style="width: 400px">
+
+						<option selected="selected">Select Category</option>
+						
+						<span th:each="category: ${categorys}">
+								
+								<option th:value="${category.getCategory().getId()}">
+								<span th:text="${category.getCategory().getCategoryname()}"></span></option>							
+						</span>
+			  </select>
+						</div>
+						<div class="pad-extra">
+							<label class="sr-only" for="inputState">language</label> 
+							<select	id="inputLanguage" class="form-control" name="inputLanguage"
+								style="width: 400px">
+							</select>
+							<div id="idselection"></div>
+						</div>
+						<div class="pad-extra">
+						 <button type="submit" class="btn btn-primary btn-rounded" id="headerSubmit">Search</button>
+						</div> -->
+</form>
+          
+        </div>
+    
       <!-- <h1 class="display-4 font-italic title"><span class="health">Health And </span><span class="nutrition">Nutrition</span> </h1> -->
-      <p class="lead light-txt">Advice on Maternal Nutrition, lactation, child's nutrition by a team of doctors,nutritionists and field officers with 10+ years of experience</p>
-      <p class="lead mb-0"><a href="#" class="font-weight-bold btn">Know More...</a></p>
+      <p class="lead light-txt" style="margin:20px -10px;">Advice on Maternal Nutrition, lactation, child's nutrition by a team of doctors,nutritionists and field officers with 10+ years of experience</p>
+      <p class="lead mb-0" style="margin:20px -10px;"><a href="https://script.spoken-tutorial.org/index.php/Health_and_Nutrition" class="font-weight-bold btn" target="_blank">Know More...</a></p>
     </div>
     <div class="col-md-6 px-0">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -95,12 +188,14 @@
       <div class="col-md-12 order-md-2">
         <h2 class="main-heading">About Us</h2>
         <hr/>
+        <div>
         <p class="lead about-text">We are creating 40+ video tutorials of 10-12 minutes each on nourishing a mother and a child in the first 1000 days of an infant’s life, i.e, from day 1 of pregnancy till a child’s 2nd birthday.
-
         Each video will be translated and dubbed in 22 officially recognized Indian languages to cover the entire Indian landscape.
-
         Through this series, the Health Spoken Tutorial project at IIT Bombay aims to reach out to scores of people for spreading awareness on nutrition and improve the quality of life in India and globally as well.</p>
         <p class="lead mb-0"><a href="#" class="font-weight-bold btn">Know More...</a></p>
+        
+        </div>
+        
       </div>
     </div>
 </section>
@@ -111,7 +206,7 @@
   <div class="card-deck mb-3 text-center">
     <div class="card mb-4 shadow-sm">
       <div class="card-body custom-card card1">
-        <h1 class="card-title pricing-card-title">40+ <small class="text-muted">videos</small></h1>
+        <h1 class="card-title pricing-card-title">40+ <small class="text-muted">Videos</small></h1>
         <p>
           10-12 minutes each on nourishing a mother and a child in the first 1000 days of an infant’s life
         </p>
@@ -119,7 +214,7 @@
     </div>
     <div class="card mb-4 shadow-sm card2">
       <div class="card-body">
-        <h1 class="card-title pricing-card-title">22+ <small class="text-muted">languages</small></h1>
+        <h1 class="card-title pricing-card-title">22+ <small class="text-muted">Languages</small></h1>
         <p>
           translated videos and dubbed in officially recognized Indian languages
         </p>
@@ -140,14 +235,14 @@
 <!-- Events  -->
 <section class="container">
   <div class="d-flex align-items-center p-3 my-3 text-white-50 events-bg rounded shadow-sm">
-    <img class="mr-3" src="../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48" />
+    <!-- <img class="mr-3" src="../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48" /> -->
     <div class="lh-100">
-      <h6 class="mb-0 text-white lh-100">Events</h6>
+      <h6 class="mb-0 text-white lh-100" style="font-size:1.5rem;">Events</h6>
     </div>
   </div>
 
   <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+    <!-- <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6> -->
     <div th:each="event : ${events}">
     <div class="row text-muted pt-3">
         <div class="col-md-1 e-cal">
@@ -181,7 +276,7 @@
     
     
     <small class="d-block text-right mt-3">
-      <a href="#">All updates</a>
+      <a href="#">View all events</a>
     </small>
   </div>
 </section>
@@ -190,28 +285,30 @@
 
 <!-- Consultants -->
 <section class="marketing">
+<h2 class="main-heading">Our Consultants</h2>
  <div class="row">
       <div class="col-lg-4" th:each="consantant : ${listofConsalatatnt}">
         <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
         <img th:src="${consantant.getUploadConsaltantImage()}" width="150" height="200" />
-        <h2 th:text="${consantant.getNameConsaltant()}">Heading</h2>
+        <h3 th:text="${consantant.getNameConsaltant()}">Heading</h3>
         <p th:text="${consantant.getDescriptionConsaltant()}" class="text-muted">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row --> 
+ <!--    <div style="float:right"><a href="#">View list of consultants</a></div> -->
 </section>
 <!-- Events -->
 
 <!-- Video Display -->
 <section id="videos">
   <div class='your-class'>
-  <div class="v-item card" th:each="tutorial : ${tutorials}">
+  <div class="v-item card shadow" th:each="tutorial : ${tutorials}">
     <div class="embed-responsive embed-responsive-4by3">
     <iframe class="embed-responsive-item" th:src="${tutorial.getVideo()}"></iframe>
     </div>
-    <h6 th:text="${tutorial.getCategory()}">Video Category</h6>
-    <p th:text="${tutorial.getTopic()}" class="text-muted">Video Title</p>
-    <div th:text="${tutorial.getLan()}" class="lang"><span>Language</span></div>
+    <h6 th:text="${tutorial.getCategory().getCategoryname()}">Video Category</h6>
+    <p th:text="${tutorial.getTopic().getTopicname()}" class="text-muted">Video Title</p>
+    <div th:text="${tutorial.getLan().getLanguageName()}" class="lang"><span>Language</span></div>
   </div>
 </div>
 <!-- <div>
@@ -223,9 +320,11 @@
 <!-- Video Display -->
 
 <section id="testimonials">
+<h2 class="main-heading text-center">Testimonials</h2>
   <div class="testimonials-wrapper">
     <div class="t-item" th:each="testimonial : ${listofTestimonial}">
-      <div class="row t-user">
+    <div class="t-wrap">
+    <div class="row t-user">
         <div class="col-md-4">
           <div class="embed-responsive embed-responsive-4by3">
           <iframe class="embed-responsive-item" th:src="${testimonial.getUploadTestiminial()}"></iframe>
@@ -242,6 +341,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
   
 </section>
@@ -250,16 +350,16 @@
 <section id="contact" >
     <h2 class="main-heading text-center">Contact Us</h2>
   <div class="row shadow-sm contact-row">
-    <div class="col-md-6 col-sm-12 contact-info">
+    <div class="col-md-3 col-sm-12 offset-md-3 contact-info">
       <p>
       <i class="fas fa-map-marker-alt"></i>
-       Location <br></br><i class="fas fa-map-marker-alt disable" ></i>
-      Location<br></br> <i class="fas fa-map-marker-alt disable" style=""></i> Location
+       IIT Bombay <br></br>
+       
       </p> 
-      <p><i class="fas fa-phone-alt"></i>123456789</p>
+      <p><i class="fas fa-phone"></i>123456789</p>
       <p><i class="fas fa-envelope"></i>contact@spoken-tutorial.in</p>   
     </div>
-    <div class="col-md-6 col-sm-12">
+    <div class="col-md-3 col-sm-12">
       <form>
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -341,15 +441,18 @@
       <div class="col-6 col-md ">
         <img class=" logo" src="image/iitb-logo.png" alt="" />
         <hr/>
-        <small class="d-block  dev">Developed at IIT Bombay</small>
+        <span class="dev"><small class="d-block  ">Developed at IIT Bombay</small></span>
+        
       </div>
     </div>
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="/js/ajaxSupport.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){

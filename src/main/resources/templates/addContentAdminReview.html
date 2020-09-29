@@ -24,9 +24,10 @@
   <body>
   
   
-  		<div th:replace="common/trail :: navbar1"/>
   		
-	<div class="" style="padding-top: 90px">
+  		
+	<div style="display:flex;">
+  		<div th:replace="common/sidebar :: contributor_sidebar"></div>
 
 
 
@@ -35,15 +36,15 @@
 
  		</script>
 
-	    <div class="row">	  
+	    <div class="row" style='width:100%;'>	  
 	      <div class="col-lg-10 col-xl-9 mx-auto">
-	        <div class="card card-signin flex-row my-5">
+	        <div class="card card-signin flex-row a-card">
 	       
 	       
 	
 	       
 	          <div class="card-body">
-	            <h5 class="card-title text-center" style="color:maroon;"> Admin Review</h5>
+	            <h5 class="card-title text-center a-card-title" style="color:maroon;"> Admin Review</h5>
 	            
 	                  <form th:action="@{/submitTutorial}" method="post">
 
@@ -107,8 +108,61 @@
                                     </thead> -->
                
                             </table>
+                            
+                            <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+
+				<div class="form-group">
+		
+								<div id="videoDiv" class="row" height="240" width="320" scrolling="auto" autoplay="autoplay">
+								   
+								   <div class="col-sm-12" style="border:2px solid red;">
+								   	<video id='storedVideoId' height="240" width="320" controls="controls">
+								    </video>
+								   </div>
+								</div>
+								<div class="row">
+								<div class="col-md-12" style="border: 1px solid green;">
+								<form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+
+						          <div class="form-group">
+						 
+				                      <select id="VideoAcceptAdmin"  class="form-control" > 
+				                      
+									     <option value="0">Select</option>
+									     <option value="1">Accept</option>
+									     <option value="2">Need Improvement</option>
+									    
+									  </select>  
+				                    
+						          </div>
+						          
+				 <div id="videoNeedImprovement" style="visibility: hidden">
+				 
+				 
+								 <textarea class="form-control"  name="msgVideoCommentByAdmin" id="msgVideoCommentByAdmin" rows="10" required="required" />
+							
+				</div>
+				<br/>
+				              
+				 <button id="videoAcceptOrNeedToImprovemenetByAdmin"  type="button" class="btn btn-success">Submit</button>	   
+
+		</form>	
+								</div>
+								</div>
+		
+	            </div>
+						 <!-- <button id="videoClick" type="button" class="btn btn-success" >View</button> -->
+						 <button id="videoViewAdmin" type="button" class="btn btn-success" >Viewss</button>	 
+						 
+						 
+						   
+						             
+					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
+						     
+					</form>
+                            
                                 
-                            <table class="table table-bordered" style="background-color: hsla(14, 100%, 53%, 0.6);;">
+                            <!-- <table class="table table-bordered" style="background-color: hsla(14, 100%, 53%, 0.6);;">
                             
                             
                             
@@ -127,7 +181,7 @@
                              </thead>
 
                                       <tbody>
-                                 <!--      <tr>  
+                                      <tr>  
 		                                          <td>1</td>
 		                                          <td>Outline</td>
 		                                          <td>	                                          
@@ -148,8 +202,8 @@
 
 					
 			  
-                                      </tr> -->
-                               <!--         <tr>
+                                      </tr>
+                                       <tr>
                                             
 		                                          <td>2</td>
 		                                          <td>Script</td>
@@ -172,7 +226,7 @@
 						
 		                                          </th>
 
-                                     	 </tr> -->
+                                     	 </tr>
 
                                      	 
                                       <tr>
@@ -196,8 +250,8 @@
                                     </tr>
                                      	 
 
-                                    </tbody>
-							    </table>
+                                    </tbody> 
+							    </table>-->
 							    
 	<!-- 	Here is code for comment View -->  
 	
@@ -297,14 +351,16 @@
 						        </button>
 						      </div>
 						      <div class="modal-body">
-						      
-				 <form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
+						    
+						    
+						    <!-- start comment -->  
+				<form  class="form-horizontal"  th:action="@{/addkeyword}" onsubmit="return submitForm(this);" method="post" >
 
 				<div class="form-group">
 		
 								<div id="videoDiv" class="row" height="240" width="320" scrolling="auto" autoplay="autoplay">
 								   
-								   <div class="col-sm-6">
+								   <div class="col-sm-6" style="border:2px solid red;">
 								   	<video id='storedVideoId' height="240" width="320" controls="controls">
 								    </video>
 								   </div>
@@ -340,12 +396,13 @@
 								</div>
 		
 	            </div>
-						 <button id="videoClick" type="button" class="btn btn-success" >View</button>	   
+						  <button id="videoClick" type="button" class="btn btn-success" >View</button>	   
 						             
-					<!-- 	   <button id="keyword" type="submit" class="btn btn-success">Upload</button>   -->  
+						   <button id="keyword" type="submit" class="btn btn-success">Upload</button>    
 						     
 					</form>
-						    
+				    
+						    <!-- end comment -->
 						       <div class="modal-footer">
 						         
 							        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
@@ -474,11 +531,11 @@
 							        
 	
 		 		
-		<div id="storedVideoId"  name="videoDivDomain" class="container" height="240" width="320" scrolling="auto" autoplay="autoplay">
+		<!-- <div id="storedVideoId"  name="videoDivDomain" class="container" height="240" width="320" scrolling="auto" autoplay="autoplay">
 		  
 		    
 		   
-		</div>
+		</div> -->
 			
 			
 			   
@@ -515,7 +572,7 @@
 	
 		
 	          </div>
-						 <button id="videoClick" type="button" class="btn btn-success" >View</button>	   
+						 <!-- <button id="videoClick" type="button" class="btn btn-success" >View</button> -->	   
 				
 					</form>
 						    

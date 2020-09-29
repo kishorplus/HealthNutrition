@@ -40,9 +40,6 @@ public interface TutorialDao extends CrudRepository<Tutorial, Integer> {
     @Query("from Tutorial u where u.lan=?1")
 	List<Tutorial> findByLan(language language);
 
-	@Query("from Tutorial u where u.videoStatus IN (2,5,4,3)")
-	List<Tutorial> findByVideoStatusByAdmin();
-
 	@Query("from Tutorial u where u.outlineStatus=4 or slideStatus=4 or  supadateKeywordByQualitycriptStatus=4 or  videoStatus=4 or keywordStatusSet=4")
 	List<Tutorial> findByTutorialQualityReview();
 
@@ -67,8 +64,23 @@ public interface TutorialDao extends CrudRepository<Tutorial, Integer> {
 	List<Tutorial> finBystatus();
 	
 	
+//	@Query("from Tutorial u where u.videoStatus=1")
+//	List<Tutorial> finByVideoStatus();
+	
 	@Query("from Tutorial u where u.videoStatus=1")
-	List<Tutorial> finByVideoStatus();
+	List<Tutorial> findByVideoAdminRevPending();
+	
+	@Query("from Tutorial u where u.videoStatus=5")
+	List<Tutorial> findByVideoAdminRevImprovement();
+	
+	@Query("from Tutorial u where u.videoStatus=2")
+	List<Tutorial> findByVideoAdminRevApproved();
+	
+	@Query("from Tutorial u where u.videoStatus IN (1,2,5,4,3)")
+	List<Tutorial> findByVideoAll();
+	
+	@Query("from Tutorial u where u.videoStatus IN (2,5,4,3)")
+	List<Tutorial> findByVideoStatusByAdmin();
 
 	@Query("from Tutorial u where  topic=?1 and category=?2 and langaueg_id=?3")
 	Tutorial findByTutorialForComment(topic topic, Category category, language language);
